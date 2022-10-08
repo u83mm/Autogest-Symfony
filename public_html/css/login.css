@@ -1,0 +1,363 @@
+	@font-face{
+	font-family: ubuntuRegular;
+	src: url('../ttf/Ubuntu-R.ttf') format('truetype');
+	}
+
+	@font-face{
+	font-family: ubuntuBold;
+	src: url('../ttf/Ubuntu-B.ttf') format('truetype');
+	}
+
+	@font-face{
+	font-family: ubuntuBoldItalic;
+	src: url('../ttf/Ubuntu-BI.ttf') format('truetype');
+	}
+
+	@font-face{
+	font-family: ubuntuItalic;
+	src: url('../ttf/Ubuntu-I.ttf') format('truetype');
+	}
+
+	@keyframes fadeOut {
+		from {
+			opacity: 1;
+		}
+		to {
+			opacity: 0;
+		}
+	}
+
+	@-moz-keyframes fadeIn {
+		from {
+			opacity: 0;
+			color: black;
+		}
+		to {
+			opacity: 1;
+			color: white;
+		}
+	}
+	
+	@-moz-keyframes fadeLogin {
+		from {
+			margin-left: 80%;
+			
+		}		
+		to {
+			margin-left: 0;
+			
+		}	
+	}
+
+.loginFadeIn  {
+	-moz-animation: fadeIn 4s ease-in forwards, fadeLogin 2s ease-in-out forwards; 
+}	
+
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+html {
+	background-image:url('../images/jaguar_movil.jpeg');
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-attachment: fixed;
+	background-size: cover; 
+}
+
+body {
+	width: 80%;
+	margin: 0 auto;
+	max-width: 1350px;
+}
+
+header {
+	padding: 10px;
+	border-bottom: 1px solid black;
+}
+
+#contenedor {
+	border: 1px solid black;
+	margin: 10px;
+	height: auto;
+	background-color: rgba(175,215,230,0.6);
+	border-radius: 10px;
+}
+
+#contenido {
+	height: 410px;
+}
+
+#formlogin {
+	margin-top: 150px;
+	margin-bottom: 150px;
+}
+
+form {
+	font-family: ubuntuRegular;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+form fieldset {
+	margin-left: auto;
+	margin-right: auto;
+	width: 40%;
+	border-radius: 5px;
+	border: 1px solid white;
+}
+
+form label {
+	display: block;
+	width: 100px;
+	text-align: center;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+form input[type="submit"] {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 1em;
+} 
+
+input[type="text"], [type="password"] {
+	font-family: ubuntuRegular;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	height: 30px;
+}
+
+input:focus {
+	background-color: #e8d854;
+	//border-radius: 5px;
+}
+
+input[type="submit"],[type="button"] {
+	font-family: ubuntuRegular;
+	font-size: 16px;
+	border-radius: 5px;
+	border-style: none;
+	padding: 0.5em;
+	outline: none;
+	text-decoration: none;
+	background-color: white;
+	margin-bottom:5px;
+	border: 1px solid blanchedalmond;
+}
+
+input[type="submit"]:hover,[type="button"]:hover {
+	border: 1px solid darkslateblue;
+	background: khaki;
+}
+
+legend {
+	margin-left: 50px;
+	color: black;
+}
+
+.createUser label {
+	display: inline-block;
+	width: 150px;
+	text-align: right;
+	margin-right: 5px;
+	margin-left: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.center {
+	margin-top: 5px;
+	text-align: center;
+}
+
+h1 {
+	text-align:center;
+}
+
+.error p {
+	animation-name: fadeOut;
+	animation-duration: 3s;
+	animation-delay: 4s;
+	animation-fill-mode: forwards;
+	font-family: ubuntuItalic;
+	text-align: center; 
+	background: red;
+	color: white;
+	width: 70%;	
+	margin-top: 10px;
+	margin-right: auto;
+	margin-left: auto;
+	padding: 10px;
+}
+
+/* Descomentar este código para añadir opción de registro en el index
+#registro {
+	height: 40px;
+	text-align: center;
+	width: 40%;
+	margin-top: 5px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+a.registro {
+	color: white;
+	outline: none;
+}*/
+
+footer {
+	padding: 10px;
+	border-top: 1px solid black;
+}
+
+.footer {
+	text-align: center;
+	font-family: ubuntuRegular;
+}
+
+input[type="text"] {
+	//height: 30px;
+}
+
+.alert {
+	background: red;
+	color: white;
+	text-align: center;
+	padding: 0.5em;
+	font-style: italic;
+	width: 80%;
+	margin: 0 auto;
+	animation-name: fadeOut;
+	animation-duration: 3s;
+	animation-delay: 4s;
+	animation-fill-mode: forwards;
+}
+
+/************************************************************************
+*					Configuración para móviles											*
+************************************************************************/
+@media (max-width:480px) {
+	html {
+		background-image:url('../images/jaguar_movil.jpeg');
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-attachment: fixed;
+		background-size: cover; 		
+	}
+
+	body {
+		width: 100%;
+		margin: 0 auto;
+		max-width: 1350px;
+		font-size: 100%;
+	}
+
+	#contenedor {
+		width: 99%;	
+		margin: 0 auto;
+	}
+
+	#contenido {
+		height: 650px;
+		padding-top: 5em;		
+	}
+
+	form fieldset {
+		margin-left: auto;
+		margin-right: auto;
+		width: 90%;
+	}
+
+	form label {
+		margin-left: auto;
+		margin-right: auto;
+		display: block;
+		text-align: center;
+	}
+
+	#formlogin {
+		margin-top: 100px;
+		margin-bottom: 100px;
+	}
+
+	input[type="text"]:focus {
+		background-color: #e8d854;
+		border-radius: 5px;
+		//font-size: 16px;
+	} 
+
+	input[type="text"],[type="password"] {
+		//font-size: 16px;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	footer {
+		font-size: 0.6em;
+	}
+}
+
+/************************************************************************
+*			Configuración para tablets portrait (retrato)						*
+************************************************************************/
+@media (min-width:481px) and (max-width: 768px){
+	html {
+		background-image:url('../images/jaguar_movil.jpeg');
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-attachment: fixed;
+		background-size: cover; 
+	}	
+
+	body {
+		width: 100%;
+	}
+
+	#contenido {
+		height: 350px;
+	}
+
+	form fieldset {
+		margin-left: auto;
+		margin-right: auto;
+		width: 90%;
+	}
+
+	form label {
+		margin-left: auto;
+		margin-right: auto;
+		display: block;
+		text-align: center;
+	}
+
+	#formlogin {
+		margin-top: 100px;
+		margin-bottom: 100px;
+	}
+
+	input[type="text"]:focus {
+		background-color: #e8d854;
+		border-radius: 5px;
+		//font-size: 16px;
+	} 
+
+	input[type="text"],[type="password"] {
+		//font-size: 16px;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		width: 250px;
+	}
+
+	footer {
+		font-size: 0.6em;
+	}
+}
+

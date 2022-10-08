@@ -1,0 +1,14 @@
+{% extends 'main_menu/base.html.twig' %}
+
+{% block title %}Pedidos - Buscar{% endblock %}
+
+{% block body %}
+    <h2>Búsqueda de Pedido</h2>
+    <div id="datos">				
+		<div id="gif">
+							
+		</div>
+	</div>
+
+    {{ include('pedido_call_center/_form_search.html.twig', {'button_label': 'Buscar'}) }}
+{% endblock %}

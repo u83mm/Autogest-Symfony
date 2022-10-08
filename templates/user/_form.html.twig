@@ -1,0 +1,72 @@
+{{ form_start(form, {'attr': {'id': 'createUser', 'enctype': 'multipart/form-data'}}) }}
+	<div class="text-center" style="color:red">
+		{% if errors is defined %}
+			{% for error in errors %}
+				 <h4 class="p-2 validaForm">{{ error.message }}</h4>
+			{% endfor %}
+		{% endif %}		
+	</div>
+	<fieldset class="createUser">
+		<legend>Datos de Usuario</legend>
+		<div class="col-sm-8">
+			{{ form_label(form.nombre, 'Nombre:') }}
+			{{ form_widget(form.nombre, { 'attr': { 'autofocus': 'true', 'placeholder': 'Introduce un nombre' }}) }}
+		</div>
+		<div class="col-sm-8">
+			{{ form_label(form.apellido1, '1º Apellido:') }}
+			{{ form_widget(form.apellido1, { 'attr': { 'placeholder': 'Primer apellido' }}) }}
+		</div>		
+		<div class="col-sm-8">
+			{{ form_label(form.apellido2, '2º Apellido:') }}
+			{{ form_widget(form.apellido2, { 'attr': { 'placeholder': 'Segundo apellido' }}) }}
+		</div>		
+		<div class="col-sm-8">
+			{{ form_label(form.email, 'Email:') }}
+			{{ form_widget(form.email, { 'attr': { 'placeholder': 'Introduce tu email' }}) }}
+		</div>		
+		<div class="col-sm-8">
+			{{ form_label(form.username, 'Usuario:') }}
+			{{ form_widget(form.username, { 'attr': { 'placeholder': 'Nombre de usuario' }}) }}
+		</div>
+		
+		{% if user.id %}					
+			<div class="col-sm-8">						
+				<label>Contraseña:</label>
+				<a href="{{ path('user_change_passwd', {'id': user.id}) }}" class="button">Cambiar</a>
+			</div>
+			<div class="col-sm-8" hidden>	
+					{{ form_label(form.password, 'Password:') }}
+					{{ form_widget(form.password, { 'attr': { 'placeholder': 'Escribe una contraseña', 'value': user.password }}) }}			
+			</div>
+			<div class="col-sm-8" hidden>
+				{{ form_label(form.confirm_password, 'Repite Password:') }}
+				{{ form_widget(form.confirm_password, { 'attr': { 'placeholder': 'Repite la contraseña', 'disabled': 'true', 'value': user.password }}) }}			
+			</div>
+		{% else %}
+			<div class="col-sm-8">	
+					{{ form_label(form.password, 'Password:') }}
+					{{ form_widget(form.password, { 'attr': { 'placeholder': 'Escribe una contraseña' }}) }}			
+			</div>
+			<div class="col-sm-8">
+				{{ form_label(form.confirm_password, 'Repite Password:') }}
+				{{ form_widget(form.confirm_password, { 'attr': { 'placeholder': 'Repite la contraseña' }}) }}			
+			</div>
+		{% endif %}		
+		
+		<div class="col-12 col-sm-8">
+			{{ form_label(form.departamento, 'Departamento:') }}
+			{{ form_widget(form.departamento) }}				
+		</div>
+		
+		<div class="col-sm-12">
+			{{ form_label(form.foto, 'Subir foto:') }}
+			{{ form_widget(form.foto) }}
+		</div>			
+		{# {{ form_widget(form) }} #}
+		{# {{ form_widget(form_dep) }} #}		
+    </fieldset>    
+	<fieldset class="showUserControls">
+		<button class="btn button">{{ button_label|default('Enviar') }}</button>
+		<a class="btn button" href="{{ path('user_index') }}">Volver</a>	
+	</fieldset>	
+{{ form_end(form) }}

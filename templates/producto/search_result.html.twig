@@ -1,0 +1,65 @@
+{% extends 'main_menu/base.html.twig' %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block body %}
+    <h2>Listado de Productos</h2>
+	<div id="datos">				
+		<div id="gif">
+							
+		</div>
+	</div>
+    <table id="listado" class="table table-hover">
+        <thead>
+            <tr>
+                <th class="hidde">Id</th>
+                <th>Referencia</th>                                       
+                <th>Descripción</th>
+                <th class="hidde">Familia</th>
+                <th class="hidde">Marca</th>
+                <th class="hidde">P.V.P</th>                                            
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for product in products %}
+            <tr>
+                <td class="hidde">{{ product.id }}</td> 
+                <td><a href="{{ path('producto_show', {'id': product.id}) }}">{{ product.referencia }}</a></td>                                    
+                <td><a href="{{ path('producto_show', {'id': product.id}) }}">{{ product.descripcion }}</a></td>
+                <td class="hidde"><a href="{{ path('producto_show', {'id': product.id}) }}">{{ product.familia|upper }}</a></td>
+                {% for marca in marcas %}
+	            	{% if product.marca == marca.id %}
+	            		<td class="hidde">{{ marca.nombre }}</td>
+	            	{% endif %}
+	            {% endfor %}
+	            <td class="hidde">{{ product.pvp}}</td>                                          
+                <td class="tdActions">
+                	<a class="button" href="{{ path('producto_show', {'id': product.id}) }}">show</a>                    
+                    <a class="hidde" href="{{ path('producto_edit', {'id': product.id}) }}"><img class="fotoUsuarioPeq" src="{{ asset('images/pen_write_edit.png') }}"></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <fieldset class="buscar">
+    	<a class="btn button" href="{{ path('producto_search') }}">Buscar Artículo</a>
+    </fieldset>
+    <p class="center">Mostrando del <strong>{{ desde }}</strong> al <strong>{{ next }}</strong> de <strong>{{ products|length }}</strong> productos</p>
+    <fieldset class="showUserControls index">
+    {% if previous >= 1 %}
+    	<a href="{{ path('producto_search_results', {offset: 0, campo: campo, valor: valor}) }}" class="btn button">Primero</a>
+    {% endif %} 
+	{% if previous >= 0 %}
+		<a href="{{ path('producto_search_results', {offset: previous, campo: campo, valor: valor}) }}" class="btn button">Anterior</a>
+	{% endif %}		
+	{% if next - products|length %}
+		<a href="{{ path('producto_search_results', {offset: next, campo: campo, valor: valor}) }}" class="btn button">Siguiente</a>
+		<a href="{{ path('producto_search_results', {offset: products|length -1, campo: campo, valor: valor}) }}" class="btn button">Último</a>
+	{% endif %}
+	</fieldset>    
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'main_menu/base.html.twig' %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block body %}
+    <h2>Listado de clientes</h2>
+	<div id="datos">				
+		<div id="gif">
+							
+		</div>
+	</div>
+    <table id="listado" class="table table-hover">
+        <thead>
+            <tr>
+                <th class="hidde hiddenHorizontal">Id</th>
+                <th>Razón Social</th>                                       
+                <th>Nombre</th>
+                <th>Apellidos</th>               
+                <th class="hidde hiddenHorizontal">Email</th> 
+                <th class="hidde">Tfno.</th>
+                <th class="hidde">Localidad</th>
+                <th class="hidde">Provincia</th>              
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for client in clients %}
+            <tr>
+                <td class="hidde hiddenHorizontal">{{ client.id }}</td> 
+                <td><a href="{{ path('cliente_show', {'id': client.id}) }}">{{ client.razonSocial|upper }}</a></td>                                    
+                <td><a href="{{ path('cliente_show', {'id': client.id}) }}">{{ client.nombre|upper }}</a></td>
+                <td><a href="{{ path('cliente_show', {'id': client.id}) }}">{{ client.apellido1|upper }} {{ client.apellido2|upper }}</a></td>             
+                <td class="hidde hiddenHorizontal"><a href="mailto:{{ client.email }}">{{ client.email }}</a></td> 
+                <td class="hidde">{{ client.tfno }}</td>
+                <td class="hidde"><a href="{{ path('cliente_show', {'id': client.id}) }}">{{ client.localidad|upper }}</a></td> 
+                <td class="hidde"><a href="{{ path('cliente_show', {'id': client.id}) }}">{{ client.provincia|upper }}</a></td>                 
+                <td class="tdActions">
+                    <a class="button" href="{{ path('cliente_show', {'id': client.id}) }}">show</a>                                   
+                    <a class="hidde" href="{{ path('cliente_edit', {'id': client.id}) }}"><img class="fotoUsuarioPeq" src="{{ asset('images/pen_write_edit.png') }}"></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <fieldset class="buscar">
+    	<a class="btn button" href="{{ path('client_search') }}">Buscar Cliente</a>
+    </fieldset>
+    <p class="center">Mostrando del <strong>{{ desde }}</strong> al <strong>{{ next }}</strong> de <strong>{{ clients|length }}</strong> clientes</p>
+    <fieldset class="showUserControls index">
+    {% if previous >= 1 %}
+    	<a href="{{ path('client_search_results', {offset: 0, campo: campo, valor: valor}) }}" class="btn button">Primero</a>
+    {% endif %} 
+	{% if previous >= 0 %}
+		<a href="{{ path('client_search_results', {offset: previous, campo: campo, valor: valor}) }}" class="btn button">Anterior</a>
+	{% endif %}		
+	{% if next - clients|length %}
+		<a href="{{ path('client_search_results', {offset: next, campo: campo, valor: valor}) }}" class="btn button">Siguiente</a>
+		<a href="{{ path('client_search_results', {offset: clients|length -1, campo: campo, valor: valor}) }}" class="btn button">Último</a>
+	{% endif %}
+	</fieldset>
+    <!--<a href="{{ path('user_new') }}">Create new</a>-->
+{% endblock %}

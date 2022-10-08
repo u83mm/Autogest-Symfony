@@ -1,0 +1,26 @@
+{{ form_start(form, {'attr': {'id': 'createUser'}}) }}
+	<div class="text-center" style="color:red">
+		{% if errors is defined %}
+			{% for error in errors %}
+				 <p class="validaForm">{{ error.message }}</p>
+			{% endfor %}
+		{% endif %}		
+	</div>
+	<fieldset class="createUser">
+		<legend>Buscar Usuario</legend>
+		
+		<div class="col-sm-8">			
+			{{ form_label(form.selecciona, 'Campo:') }}
+			{{ form_widget(form.selecciona) }}
+		</div>
+		<div class="col-sm-8">			
+			{{ form_label(form.valor, 'Valor:') }}
+			{{ form_widget(form.valor) }}
+		</div>						
+		{{ form_widget(form) }}			
+    </fieldset>
+    <fieldset class="showUserControls">
+		<button class="btn button">{{ button_label|default('Buscar') }}</button>
+		<a class="btn button" href="{{ path('user_index') }}">Volver</a>	
+	</fieldset>
+{{ form_end(form) }}

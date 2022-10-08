@@ -1,0 +1,15 @@
+{% extends 'main_menu/base.html.twig' %}
+
+{% block title %}AutoGest - Cuenta atrás{% endblock %}
+
+{% block body %}	
+	<form>
+		<fieldset>
+			<legend>Aviso fin de sesión</legend>
+			<p>Su sesión va a finalizar en<span id="segundos">&nbsp;</span> segundos.</p>
+			<p>Pulse ACEPTAR para salir o CANCEL para continuar.</p>
+			<p><a class="button" href="{{ path('main_menu') }}">Cancel</a>
+				<a class="button" href={{ path('app_logout') }}>Acetar</a></p>
+		</fieldset>
+	</form>   
+{% endblock %}

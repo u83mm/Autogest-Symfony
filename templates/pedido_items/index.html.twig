@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PedidoItems index{% endblock %}
+
+{% block body %}
+    <h1>PedidoItems index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>PedidoId</th>
+                <th>Descripcion</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+                <th>Referencia</th>
+                <th>Stock</th>
+                <th>Dto</th>
+                <th>Neto</th>
+                <th>TotalPvp</th>
+                <th>TotalDto</th>
+                <th>TotalNeto</th>
+                <th>TotalIva</th>
+                <th>Total</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for pedido_item in pedido_items %}
+            <tr>
+                <td>{{ pedido_item.id }}</td>
+                <td>{{ pedido_item.pedidoId }}</td>
+                <td>{{ pedido_item.descripcion }}</td>
+                <td>{{ pedido_item.cantidad }}</td>
+                <td>{{ pedido_item.precio }}</td>
+                <td>{{ pedido_item.referencia }}</td>
+                <td>{{ pedido_item.stock }}</td>
+                <td>{{ pedido_item.dto }}</td>
+                <td>{{ pedido_item.neto }}</td>
+                <td>{{ pedido_item.totalPvp }}</td>
+                <td>{{ pedido_item.totalDto }}</td>
+                <td>{{ pedido_item.totalNeto }}</td>
+                <td>{{ pedido_item.totalIva }}</td>
+                <td>{{ pedido_item.total }}</td>
+                <td>
+                    <a href="{{ path('pedido_items_show', {'id': pedido_item.id}) }}">show</a>
+                    <a href="{{ path('pedido_items_edit', {'id': pedido_item.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="15">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('pedido_items_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'main_menu/base.html.twig' %}
+
+{% block title %}Search User{% endblock %}
+
+{% block body %}
+    <h2>Búsqueda de Usuario</h2>
+    <div id="datos">				
+		<div id="gif">
+							
+		</div>
+	</div>
+
+    {{ include('user/_form_search.html.twig', {'button_label': 'Buscar'}) }}
+{% endblock %}

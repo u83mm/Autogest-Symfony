@@ -1,0 +1,111 @@
+{% extends 'pedido_call_center/base_pdf.html.twig' %} 
+
+{#{% block title %}Pedidos - Pdf{% endblock %} #}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="row">
+            <h2 class="text-center">Pedido de Call Center</h2>
+            <div class="col-3">
+                <figure class="figure">
+                    <img class="w-100" src="{{ absolute_url(asset('images/logo_pb.png')) }}" alt="Logo">
+                </figure>
+            </div> 
+        </div>
+        
+        <p><span class="fw-bold">Fecha: </span>{{ pedido_call_center.fecha |date('d/m/Y') }}</p>    
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Datos del cliente</th>
+                </tr>            
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="fw-bold">Nombre: </span><span>{{ pedido_call_center.nombreCliente }}</span></td>               
+                </tr>
+                <tr>
+                    <td><span class="fw-bold">Contacto: </span><span>{{ pedido_call_center.contacto }}</span></td>              
+                </tr>
+                <tr>
+                    <td><span class="fw-bold">Tfno: </span><span>{{ pedido_call_center.telefono1 }}</span></td>               
+                </tr>
+                <tr>
+                    <td><span class="fw-bold">Tfno contacto: </span><span>{{ pedido_call_center.telefono }}</span></td>          
+                </tr>
+                <tr>
+                    <td><span class="fw-bold">E-mail: </span><span>{{ pedido_call_center.email }}</span></td>          
+                </tr>
+                <tr>
+                    <td><span class="fw-bold">Localidad: </span><span>{{ pedido_call_center.localidad }}</span></td>          
+                </tr>
+                <tr>
+                    <td><span class="fw-bold">Cif: </span><span>{{ pedido_call_center.cif }}</span></td>          
+                </tr>
+                <tr>
+                    <td><span class="fw-bold">Comentario: </span><span>{{ pedido_call_center.comentario }}</span></td>          
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Datos del pedido</th>
+                </tr>            
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="fw-bold">VIN: </span><span>{{ pedido_call_center.vin }}</span></td>               
+                    <td><span class="fw-bold">Marca: </span><span>{{ logo.nombre }}</span></td>
+                    <td colspan="4"><span class="fw-bold">Estado: </span><span>{{ pedido_call_center.estado }}</span></td>                              
+                </tr>                       
+            </tbody>
+        </table>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Detalle del pedido</th>
+                </tr>            
+            </thead>
+            <tbody>        
+                <tr>
+                    <td class="col-3"><span class="fw-bold">Referencia</span></td>               
+                    <td class="col-5"><span class="fw-bold">Descripción</span></td>
+                    <td><span class="fw-bold">Cant</span></td>
+                    <td><span class="fw-bold">P.V.P</span></td>               
+                    <td><span class="fw-bold">Dto</span></td>
+                    <td><span class="fw-bold">Neto</span></td>
+                </tr>
+                {% for item in pedido_items %}
+                    <tr>
+                        <td class="col-3">{{ item.referencia }}</td>
+                        <td class="col-5">{{ item.descripcion }}</td>
+                        <td>{{ item.cantidad }}</td>
+                        <td>{{ item.precio }}</td>
+                        <td>{{ item.dto }}</td>
+                        <td>{{ item.neto }}</td>
+                    </tr>                
+                {% endfor %}           
+            </tbody>
+        </table>          
+    
+        <div class="row justify-content-end">
+            <div class="col-2">
+                <label class="w-100 text-end">Total P.V.P</label>
+                <label class="w-100 text-end">Total dto</label>
+                <label class="w-100 text-end">Total neto</label>
+                <label class="w-100 text-end">Total iva</label>
+                <label class="w-100 text-end fw-bold">TOTAL</label>
+            </div>
+            <div class="col-1">
+                <label class="w-100 text-end">{{ total_pvp }}</label>
+                <label class="w-100 text-end">{{ total_dto }}</label>
+                <label class="w-100 text-end">{{ total_neto }}</label>
+                <label class="w-100 text-end">{{ total_iva }}</label>
+                <label class="w-100 text-end">{{ total }}</label>
+            </div>
+        </div>
+    </div>
+{% endblock %}

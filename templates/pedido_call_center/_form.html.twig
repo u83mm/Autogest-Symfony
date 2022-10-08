@@ -1,0 +1,390 @@
+{{ form_start(form, {'attr': {'id': 'createUser'}}) }}
+	<div class="text-center" style="color:red">
+		{% if errors is defined %}
+			{% for error in errors %}
+				 <p class="validaForm">{{ error.message }}</p>
+			{% endfor %}
+		{% endif %}		
+	</div>
+	<fieldset class="createUser">
+		<legend>Datos del Cliente</legend>		
+		<div class="clienteForm col-12 col-sm-6 col-md-6">
+			{{ form_label(form.cuentaCliente, 'Cuenta:') }}
+			{{ form_widget(form.cuentaCliente, { 'attr': { 'size': '5', 'readonly': 'true', 'autofocus': 'true', 'value': cliente.id }}) }}			
+		</div>
+		<div class="clienteForm col-12 col-sm-6 col-md-6">
+			{{ form_label(form.fecha, 'Fecha:') }}
+			{{ form_widget(form.fecha, { 'attr': { 'size': '10', 'readonly': 'true'}}) }}
+		</div>
+		<div class="clienteForm col-12 col-sm-8 col-md-12 col-xxl-12">
+			{{ form_label(form.nombreCliente, 'Cliente:') }}
+			{% if cliente.razonSocial != "" %}
+				{{ form_widget(form.nombreCliente, { 'attr': { 'size': '30', 'readonly': 'true', 'value': cliente.razonSocial }}) }}
+			{% else %}
+				{% set personaFisica = cliente.nombre ~ " " ~ cliente.apellido1 ~ " " ~ cliente.apellido2 %}
+				{{ form_widget(form.nombreCliente, { 'attr': { 'size': '30', 'readonly': 'true', 'value': personaFisica }}) }}
+			{% endif %}			
+		</div>
+		<div class="clienteForm col-12 col-sm-7 col-lg-12 col-xl-4">
+			{{ form_label(form.contacto, 'Contacto:') }}
+			{{ form_widget(form.contacto) }}
+		</div>
+		<div class="clienteForm col-12 col-xl-4">
+			{{ form_label(form.telefono, 'Telf. contacto:') }}
+			{{ form_widget(form.telefono, { 'attr': { 'maxlength': 9 }}) }}
+		</div>
+		<div class="clienteForm col-12 col-xl-4">
+			{{ form_label(form.telefono1, 'Telf.:') }}
+			{{ form_widget(form.telefono1, { 'attr': { 'readonly': 'true', 'value': cliente.tfno }}) }}
+		</div>
+		<div class="clienteForm col-12 col-sm-8 col-md-12">
+			{{ form_label(form.email, 'E-mail') }}
+			{{ form_widget(form.email, { 'attr': { 'readonly': 'true', 'value': cliente.email }}) }}			
+		</div>
+		<div class="clienteForm col-12 col-sm-12 col-lg-12">
+			{{ form_label(form.localidad, 'Localidad:') }}
+			{{ form_widget(form.localidad, { 'attr': { 'size': '10', 'readonly': 'true', 'value': cliente.localidad }}) }}			
+		</div>    	  	
+		<div class="clienteForm col-12 col-md-12">
+			{{ form_label(form.cif, 'C.I.F:') }}
+			{{ form_widget(form.cif, { 'attr': { 'size': '10', 'readonly': 'true', 'value': cliente.cif }}) }}			
+		</div>
+		<div class="clienteForm col-12">
+			{{ form_label(form.comentario, 'Comentario:') }}
+			{{ form_widget(form.comentario, { 'attr': { 'placeholder': 'Puedes añadir un comentario' }}) }}			
+		</div>    	
+    </fieldset>
+    <fieldset class="createUser">
+		<legend>Datos del Pedido</legend>
+		<div class="row cols-row-4">		
+			<div class="clienteForm col-12 col-xxl-4">
+				{{ form_label(form.vin, 'VIN:') }}
+				{{ form_widget(form.vin, { 'attr': { 'size': '16', 'minlength': 17, 'maxlength': 17, 'placeholder': 'SAJAB52M21XC41941' }}) }}			
+			</div>
+			<div class="pedidoCallForm col-12 col-sm-25 marca col-md-6 col-xxl-3">
+				{{ form_label(form.marca, 'Marca:') }}
+				{{ form_widget(form.marca, { 'attr': { 'onchange': 'showLogoMarca(this.value)' }}) }}			
+			</div>		
+			{% if is_granted('ROLE_ADMIN') or is_granted('ROLE_RECAMBIOS') %}
+				<div class="pedidoCallForm col-12 col-sm-25 col-md-6 estado col-xxl-3">			
+					{{ form_label(form.estado, 'Estado:') }}
+					{{ form_widget(form.estado)}}					
+				</div>
+			{% else %}
+				<div class="pedidoCallForm col-12 col-sm-25 col-md-6 hidde col-xxl-3">			
+					{{ form_label(form.estado, 'Estado:') }}
+					{{ form_widget(form.estado)}}					
+				</div>			
+			{% endif %}
+			<div class="pedidoCallForm float-right col-12 col-sm-12 col-lg-12 col-xxl-2" id="logoMarca"></div>
+			{{ form_widget(form) }}
+		</div>	
+	</fieldset>
+	<fieldset class="createUser">
+		<div class="row g-0 row-cols-7">				
+			<div class="pedidoCallForm col-sm-15 col-lg-2 col-xxl-2">
+				{{ form_label(pedidoItems.referencia, 'Referencia', { 'label_attr': { 'class': 'pedidoItemsCallForm hidde hiddenHorizontal' }}) }}						
+			</div>
+			<div class="pedidoCallForm col-sm-25 col-lg-4 col-xxl-3">
+				{{ form_label(pedidoItems.descripcion, 'Descripción', { 'label_attr': { 'class': 'pedidoItemsCallForm hidde hiddenHorizontal' }}) }}						
+			</div>
+			<div class="pedidoCallForm col-sm-05 col-lg-1 col-xxl-1">
+				{{ form_label(pedidoItems.cantidad, 'Cant.', { 'label_attr': { 'class': 'pedidoItemsCallForm hidde hiddenHorizontal' }}) }}						
+			</div>
+			<div class="pedidoCallForm col-sm-05 col-lg-1 col-xxl-1">
+				{{ form_label(pedidoItems.precio, 'P.V.P', { 'label_attr': { 'class': 'pedidoItemsCallForm hidde hiddenHorizontal' }}) }}						
+			</div>
+			<div class="pedidoCallForm col-sm-05 col-lg-1 col-xxl-1">
+				{{ form_label(pedidoItems.dto, 'Dto.', { 'label_attr': { 'class': 'pedidoItemsCallForm hidde hiddenHorizontal' }}) }}						
+			</div>
+			<div class="pedidoCallForm col-sm-05 col-lg-2 col-xxl-1">
+				{{ form_label(pedidoItems.neto, 'Neto', { 'label_attr': { 'class': 'pedidoItemsCallForm hidde hiddenHorizontal' }}) }}						
+			</div>
+			<div class="pedidoCallForm col-sm-05 col-lg-1 col-xxl-1">
+				{{ form_label(pedidoItems.stock, 'Stock', { 'label_attr': { 'class': 'pedidoItemsCallForm hidde hiddenHorizontal' }}) }}						
+			</div>
+		</div>	
+		<div class="row g-0 mb-1 row-cols-7">							
+			<div class="pedidoCallForm col-3 col-sm-2 col-md-2 col-xxl-2">
+				{{ form_widget(pedidoItems.referencia) }}					
+			</div>
+			<div class="pedidoCallForm mb-1 mb-md-0 col-sm-25 col-md-4 col-xxl-3">
+				{{ form_widget(pedidoItems.descripcion) }}					
+			</div>
+			<div class="pedidoCallForm mb-3 mb-md-0 col-2 col-sm-05 col-md-1 col-xxl-1">
+				{{ form_widget(pedidoItems.cantidad) }}					
+			</div>
+			<div class="pedidoCallForm col-sm-05 col-md-2 col-lg-1 col-xxl-1">
+				{{ form_widget(pedidoItems.precio) }}					
+			</div>
+			<div class="pedidoCallForm col-sm-05 col-md-1 col-xxl-1">
+				{{ form_widget(pedidoItems.dto) }}					
+			</div>
+			<div class="pedidoCallForm col-sm-05 col-md-2 col-lg-2 col-xxl-1">
+				{{ form_widget(pedidoItems.neto) }}					
+			</div>
+			<div class="pedidoCallForm col-sm-05 col-lg-1 col-xxl-1">
+				{{ form_widget(pedidoItems.stock) }}					
+			</div>
+		</div>	
+		<div class="row g-0 mb-1 row-cols-7">				
+			<div class="pedidoCallForm col-sm-15 col-md-2 col-xxl-2">
+				{{ form_widget(pedidoItems.referencia1) }}					
+			</div>
+			<div class="pedidoCallForm mb-1 mb-md-0 col-sm-25 col-md-4 col-xxl-3">
+				{{ form_widget(pedidoItems.descripcion1) }}					
+			</div>
+			<div class="pedidoCallForm mb-3 mb-md-0 col-2 col-sm-05 col-md-1 col-xxl-1">
+				{{ form_widget(pedidoItems.cantidad1) }}					
+			</div>
+			<div class="pedidoCallForm col-sm-05 col-md-2 col-lg-1 col-xxl-1">
+				{{ form_widget(pedidoItems.precio1) }}					
+			</div>
+			<div class="pedidoCallForm col-sm-05 col-md-1 col-xxl-1">
+				{{ form_widget(pedidoItems.dto1) }}					
+			</div>
+			<div class="pedidoCallForm col-sm-05 col-md-2 col-lg-2 col-xxl-1">
+				{{ form_widget(pedidoItems.neto1) }}					
+			</div>
+			<div class="pedidoCallForm col-sm-05 col-lg-1 col-xxl-1">
+				{{ form_widget(pedidoItems.stock1) }}					
+			</div>
+		</div>
+		<div class="row g-0 mb-1 row-cols-7">								
+			<div class="pedidoCallForm col-sm-15 col-md-2 col-xxl-2">
+				{{ form_widget(pedidoItems.referencia2) }}					
+			</div>
+			<div class="pedidoCallForm mb-1 mb-md-0 col-sm-25 col-md-4 col-xxl-3">
+				{{ form_widget(pedidoItems.descripcion2) }}					
+			</div>
+			<div class="pedidoCallForm mb-3 mb-md-0 col-2 col-sm-05 col-md-1 col-xxl-1">
+				{{ form_widget(pedidoItems.cantidad2) }}					
+			</div>
+				<div class="pedidoCallForm col-sm-05 col-md-2 col-lg-1 col-xxl-1">
+				{{ form_widget(pedidoItems.precio2) }}					
+			</div>
+			<div class="pedidoCallForm col-sm-05 col-md-1 col-xxl-1">
+				{{ form_widget(pedidoItems.dto2) }}					
+			</div>
+			<div class="pedidoCallForm col-sm-05 col-md-2 col-lg-2 col-xxl-1">
+				{{ form_widget(pedidoItems.neto2) }}					
+			</div>
+			<div class="pedidoCallForm col-sm-05 col-lg-1 col-xxl-1">
+				{{ form_widget(pedidoItems.stock2) }}					
+			</div>														
+		</div>
+		<div class="row g-0 mb-1 row-cols-7">							
+			<div class="pedidoCallForm col-sm-15 col-md-2 col-xxl-2">
+				{{ form_widget(pedidoItems.referencia3) }}					
+			</div>
+			<div class="pedidoCallForm mb-1 mb-md-0 col-sm-25 col-md-4 col-xxl-3">
+				{{ form_widget(pedidoItems.descripcion3) }}					
+			</div>
+			<div class="pedidoCallForm mb-3 mb-md-0 col-2 col-sm-05 col-md-1 col-xxl-1">
+				{{ form_widget(pedidoItems.cantidad3) }}					
+			</div>
+			<div class="pedidoCallForm col-sm-05 col-md-2 col-lg-1 col-xxl-1">
+				{{ form_widget(pedidoItems.precio3) }}					
+			</div>
+			<div class="pedidoCallForm col-sm-05 col-md-1 col-xxl-1">
+				{{ form_widget(pedidoItems.dto3) }}					
+			</div>
+			<div class="pedidoCallForm col-sm-05 col-md-2 col-lg-2 col-xxl-1">
+				{{ form_widget(pedidoItems.neto3) }}					
+			</div>
+			<div class="pedidoCallForm col-sm-05 col-lg-1 col-xxl-1">
+				{{ form_widget(pedidoItems.stock3) }}					
+			</div>
+		</div>
+		<div class="row g-0 mb-1 row-cols-7">								
+			<div class="pedidoCallForm col-sm-15 col-md-2 col-xxl-2">
+				{{ form_widget(pedidoItems.referencia4) }}					
+			</div>
+			<div class="pedidoCallForm mb-1 mb-md-0 col-sm-25 col-md-4 col-xxl-3">
+				{{ form_widget(pedidoItems.descripcion4) }}					
+			</div>
+			<div class="pedidoCallForm mb-3 mb-md-0 col-2 col-sm-05 col-md-1 col-xxl-1">
+				{{ form_widget(pedidoItems.cantidad4) }}					
+			</div>
+			<div class="pedidoCallForm col-sm-05 col-md-2 col-lg-1 col-xxl-1">
+				{{ form_widget(pedidoItems.precio4) }}					
+			</div>
+			<div class="pedidoCallForm col-sm-05 col-md-1 col-xxl-1">
+				{{ form_widget(pedidoItems.dto4) }}					
+			</div>
+			<div class="pedidoCallForm col-sm-05 col-md-2 col-lg-2 col-xxl-1">
+				{{ form_widget(pedidoItems.neto4) }}					
+			</div>
+			<div class="pedidoCallForm col-sm-05 col-lg-1 col-xxl-1">
+				{{ form_widget(pedidoItems.stock4) }}					
+			</div>	
+		</div>
+		<div class="row g-0 mb-1 row-cols-7">							
+			<div class="pedidoCallForm col-sm-15 col-md-2 col-xxl-2">
+				{{ form_widget(pedidoItems.referencia5) }}					
+			</div>
+			<div class="pedidoCallForm mb-1 mb-md-0 col-sm-25 col-md-4 col-xxl-3">
+				{{ form_widget(pedidoItems.descripcion5) }}					
+			</div>
+			<div class="pedidoCallForm mb-3 mb-md-0 col-2 col-sm-05 col-md-1 col-xxl-1">
+				{{ form_widget(pedidoItems.cantidad5) }}					
+			</div>
+			<div class="pedidoCallForm col-sm-05 col-md-2 col-lg-1 col-xxl-1">
+				{{ form_widget(pedidoItems.precio5) }}					
+			</div>
+			<div class="pedidoCallForm col-sm-05 col-md-1 col-xxl-1">
+				{{ form_widget(pedidoItems.dto5) }}					
+			</div>
+			<div class="pedidoCallForm col-sm-05 col-md-2 col-lg-2 col-xxl-1">
+				{{ form_widget(pedidoItems.neto5) }}					
+			</div>
+			<div class="pedidoCallForm col-sm-05 col-lg-1 col-xxl-1">
+				{{ form_widget(pedidoItems.stock5) }}					
+			</div>
+		</div>
+		<div class="row g-0 mb-1 row-cols-7">								
+			<div class="pedidoCallForm col-sm-15 col-md-2 col-xxl-2">
+				{{ form_widget(pedidoItems.referencia6) }}					
+			</div>
+			<div class="pedidoCallForm mb-1 mb-md-0 col-sm-25 col-md-4 col-xxl-3">
+				{{ form_widget(pedidoItems.descripcion6) }}					
+			</div>
+			<div class="pedidoCallForm mb-3 mb-md-0 col-2 col-sm-05 col-md-1 col-xxl-1">
+				{{ form_widget(pedidoItems.cantidad6) }}					
+			</div>
+			<div class="pedidoCallForm col-sm-05 col-md-2 col-lg-1 col-xxl-1">
+				{{ form_widget(pedidoItems.precio6) }}					
+			</div>
+			<div class="pedidoCallForm col-sm-05 col-md-1 col-xxl-1">
+				{{ form_widget(pedidoItems.dto6) }}					
+			</div>
+			<div class="pedidoCallForm col-sm-05 col-md-2 col-lg-2 col-xxl-1">
+				{{ form_widget(pedidoItems.neto6) }}					
+			</div>
+			<div class="pedidoCallForm col-sm-05 col-lg-1 col-xxl-1">
+				{{ form_widget(pedidoItems.stock6) }}					
+			</div>
+		</div>
+		<div class="row g-0 mb-1 row-cols-7">										
+			<div class="pedidoCallForm col-sm-15 col-md-2 col-xxl-2">
+				{{ form_widget(pedidoItems.referencia7) }}					
+			</div>
+			<div class="pedidoCallForm mb-1 mb-md-0 col-sm-25 col-md-4 col-xxl-3">
+				{{ form_widget(pedidoItems.descripcion7) }}					
+			</div>
+			<div class="pedidoCallForm mb-3 mb-md-0 col-2 col-sm-05 col-md-1 col-xxl-1">
+				{{ form_widget(pedidoItems.cantidad7) }}					
+			</div>
+			<div class="pedidoCallForm col-sm-05 col-md-2 col-lg-1 col-xxl-1">
+				{{ form_widget(pedidoItems.precio7) }}					
+			</div>
+			<div class="pedidoCallForm col-sm-05 col-md-1 col-xxl-1">
+				{{ form_widget(pedidoItems.dto7) }}					
+			</div>
+			<div class="pedidoCallForm col-sm-05 col-md-2 col-lg-2 col-xxl-1">
+				{{ form_widget(pedidoItems.neto7) }}					
+			</div>
+			<div class="pedidoCallForm col-sm-05 col-lg-1 col-xxl-1">
+				{{ form_widget(pedidoItems.stock7) }}					
+			</div>
+		</div>
+		<div class="row g-0 mb-1 row-cols-7">								
+			<div class="pedidoCallForm col-sm-15 col-md-2 col-xxl-2">
+				{{ form_widget(pedidoItems.referencia8) }}					
+			</div>
+			<div class="pedidoCallForm mb-1 mb-md-0 col-sm-25 col-md-4 col-xxl-3">
+				{{ form_widget(pedidoItems.descripcion8) }}					
+			</div>
+			<div class="pedidoCallForm mb-3 mb-md-0 col-2 col-sm-05 col-md-1 col-xxl-1">
+				{{ form_widget(pedidoItems.cantidad8) }}					
+			</div>
+			<div class="pedidoCallForm col-sm-05 col-md-2 col-lg-1 col-xxl-1">
+				{{ form_widget(pedidoItems.precio8) }}					
+			</div>
+			<div class="pedidoCallForm col-sm-05 col-md-1 col-xxl-1">
+				{{ form_widget(pedidoItems.dto8) }}					
+			</div>
+			<div class="pedidoCallForm col-sm-05 col-md-2 col-lg-2 col-xxl-1">
+				{{ form_widget(pedidoItems.neto8) }}					
+			</div>
+			<div class="pedidoCallForm col-sm-05 col-lg-1 col-xxl-1">
+				{{ form_widget(pedidoItems.stock8) }}					
+			</div>
+		</div>
+		<div class="row g-0 mb-1 row-cols-7">							
+			<div class="pedidoCallForm col-sm-15 col-md-2 col-xxl-2">
+				{{ form_widget(pedidoItems.referencia9) }}					
+			</div>
+			<div class="pedidoCallForm mb-1 mb-md-0 col-sm-25 col-md-4 col-xxl-3">
+				{{ form_widget(pedidoItems.descripcion9) }}					
+			</div>
+			<div class="pedidoCallForm mb-3 mb-md-0 col-2 col-sm-05 col-md-1 col-xxl-1">
+				{{ form_widget(pedidoItems.cantidad9) }}					
+			</div>
+			<div class="pedidoCallForm col-sm-05 col-md-2 col-lg-1 col-xxl-1">
+				{{ form_widget(pedidoItems.precio9) }}					
+			</div>
+			<div class="pedidoCallForm col-sm-05 col-md-1 col-xxl-1">
+				{{ form_widget(pedidoItems.dto9) }}					
+			</div>
+			<div class="pedidoCallForm col-sm-05 col-md-2 col-lg-2 col-xxl-1">
+				{{ form_widget(pedidoItems.neto9) }}					
+			</div>
+			<div class="pedidoCallForm col-sm-05 col-lg-1 col-xxl-1">
+				{{ form_widget(pedidoItems.stock9) }}					
+			</div>
+		</div>
+		<div class="row g-0 mb-1 row-cols-7">								
+			<div class="pedidoCallForm col-sm-15 col-md-2 col-xxl-2">
+				{{ form_widget(pedidoItems.referencia10) }}					
+			</div>
+			<div class="pedidoCallForm mb-1 mb-md-0 col-sm-25 col-md-4 col-xxl-3">
+				{{ form_widget(pedidoItems.descripcion10) }}					
+			</div>
+			<div class="pedidoCallForm mb-3 mb-md-0 col-2 col-sm-05 col-md-1 col-xxl-1">
+				{{ form_widget(pedidoItems.cantidad10) }}					
+			</div>
+			<div class="pedidoCallForm col-sm-05 col-md-2 col-lg-1 col-xxl-1">
+				{{ form_widget(pedidoItems.precio10) }}					
+			</div>
+			<div class="pedidoCallForm col-sm-05 col-md-1 col-xxl-1">
+				{{ form_widget(pedidoItems.dto10) }}					
+			</div>
+			<div class="pedidoCallForm col-sm-05 col-md-2 col-lg-2 col-xxl-1">
+				{{ form_widget(pedidoItems.neto10) }}					
+			</div>
+			<div class="pedidoCallForm col-sm-05 col-lg-1 col-xxl-1">
+				{{ form_widget(pedidoItems.stock10) }}					
+			</div>
+		</div>							
+	</fieldset>
+	
+	<fieldset class="createUser">
+		<legend>Totales</legend>
+		<div class="col-12 col-sm-12 totalesPedido col-md-12 col-xxl-10">
+			{{ form_label(pedidoItems.totalPvp, 'Total P.V.P.') }}
+			{{ form_widget(pedidoItems.totalPvp, { 'attr': { 'size': 5 }}) }}			
+		</div>
+		<div class="col-12 col-sm-12 totalesPedido col-md-12 col-xxl-10">
+			{{ form_label(pedidoItems.totalDto, 'Total dto.') }}
+			{{ form_widget(pedidoItems.totalDto, { 'attr': { 'size': 5 }}) }}			
+		</div>
+		<div class="col-12 col-sm-12 totalesPedido col-md-12 col-xxl-10">
+			{{ form_label(pedidoItems.totalNeto, 'Total neto') }}
+			{{ form_widget(pedidoItems.totalNeto, { 'attr': { 'size': 5 }}) }}			
+		</div>
+		<div class="col-12 col-sm-12 totalesPedido col-md-12 col-xxl-10">
+			{{ form_label(pedidoItems.totalIva, 'Total I.V.A') }}
+			{{ form_widget(pedidoItems.totalIva, { 'attr': { 'size': 5 }}) }}			
+		</div>
+		<div class="col-12 col-sm-12 totalesPedido col-md-12 col-xxl-10">
+			{{ form_label(pedidoItems.total, 'TOTAL') }}
+			{{ form_widget(pedidoItems.total, { 'attr': { 'size': 5 }}) }}			
+		</div>
+		{{ form_widget(pedidoItems) }}
+	</fieldset>
+    <fieldset class="showUserControls">
+    	<button class="btn button">{{ button_label|default('Guardar') }}</button>
+    	<a class="btn button" href="{{ path('pedido_call_center_index') }}">Ir a Listado</a>
+    </fieldset>
+{{ form_end(form) }}

@@ -1,0 +1,88 @@
+{% extends 'main_menu/base.html.twig' %}
+
+{% block title %}Clientes - Show{% endblock %}
+
+{% block body %}
+    <h2>Datos de {{ cliente.nombre|upper }} {{ cliente.razonSocial|upper }}</h2>
+    <div id="datos">				
+		<div id="gif">
+							
+		</div>
+	</div>
+
+    <table class="table table-showUser">
+        <tbody>
+            <tr>
+                <th>Id:</th>
+                <td>{{ cliente.id }}</td>
+            </tr>
+            <tr>
+                <th>Razón Social:</th>
+                <td>{{ cliente.razonSocial }}</td>
+            </tr>
+            <tr>
+                <th>Nombre:</th>
+                <td>{{ cliente.nombre|upper }}</td>
+            </tr>
+            <tr>
+                <th>1º Apellido:</th>
+                <td>{{ cliente.apellido1 }}</td>
+            </tr>
+            <tr>
+                <th>2º Apellido:</th>
+                <td>{{ cliente.apellido2 }}</td>
+            </tr>
+            <tr>
+                <th>Tipo de Vía:</th>
+                <td>{{ cliente.tipoVia }}</td>
+            </tr>
+            <tr>
+                <th>Nombre de la Vía:</th>
+                <td>{{ cliente.nombreVia }}</td>
+            </tr>
+            <tr>
+                <th>Código Postal:</th>
+                <td>{{ cliente.codigoPostal }}</td>
+            </tr>
+            <tr>
+                <th>Número:</th>
+                <td>{{ cliente.numVia }}</td>
+            </tr>
+            <tr>
+                <th>Puerta:</th>
+                <td>{{ cliente.puerta }}</td>
+            </tr>
+            <tr>
+                <th>Localidad:</th>
+                <td>{{ cliente.localidad }}</td>
+            </tr>
+            <tr>
+                <th>Provincia:</th>
+                <td>{{ cliente.provincia }}</td>
+            </tr>
+            <tr>
+                <th>Tfno:</th>
+                <td>{{ cliente.tfno }}</td>
+            </tr>
+            <tr>
+                <th>Email:</th>
+                <td>{{ cliente.email }}</td>
+            </tr>
+            <tr>
+                <th>C.I.F:</th>
+                <td>{{ cliente.cif }}</td>
+            </tr>
+            <tr>
+                <th>Fecha de Alta:</th>
+                <td>{{ cliente.fechaAlta ? cliente.fechaAlta|date('d-m-Y') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+	<fieldset class="showUserControls"> 
+		<a class="btn button" href="{{ path('cliente_index') }}">Ir a Listado</a>
+
+		<a class="btn button" href="{{ path('cliente_edit', {'id': cliente.id}) }}">Editar</a>
+
+		{{ include('cliente/_delete_form.html.twig') }}
+    </fieldset>
+{% endblock %}

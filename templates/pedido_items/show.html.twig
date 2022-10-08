@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PedidoItems{% endblock %}
+
+{% block body %}
+    <h1>PedidoItems</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ pedido_item.id }}</td>
+            </tr>
+            <tr>
+                <th>PedidoId</th>
+                <td>{{ pedido_item.pedidoId }}</td>
+            </tr>
+            <tr>
+                <th>Descripcion</th>
+                <td>{{ pedido_item.descripcion }}</td>
+            </tr>
+            <tr>
+                <th>Cantidad</th>
+                <td>{{ pedido_item.cantidad }}</td>
+            </tr>
+            <tr>
+                <th>Precio</th>
+                <td>{{ pedido_item.precio }}</td>
+            </tr>
+            <tr>
+                <th>Referencia</th>
+                <td>{{ pedido_item.referencia }}</td>
+            </tr>
+            <tr>
+                <th>Stock</th>
+                <td>{{ pedido_item.stock }}</td>
+            </tr>
+            <tr>
+                <th>Dto</th>
+                <td>{{ pedido_item.dto }}</td>
+            </tr>
+            <tr>
+                <th>Neto</th>
+                <td>{{ pedido_item.neto }}</td>
+            </tr>
+            <tr>
+                <th>TotalPvp</th>
+                <td>{{ pedido_item.totalPvp }}</td>
+            </tr>
+            <tr>
+                <th>TotalDto</th>
+                <td>{{ pedido_item.totalDto }}</td>
+            </tr>
+            <tr>
+                <th>TotalNeto</th>
+                <td>{{ pedido_item.totalNeto }}</td>
+            </tr>
+            <tr>
+                <th>TotalIva</th>
+                <td>{{ pedido_item.totalIva }}</td>
+            </tr>
+            <tr>
+                <th>Total</th>
+                <td>{{ pedido_item.total }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('pedido_items_index') }}">back to list</a>
+
+    <a href="{{ path('pedido_items_edit', {'id': pedido_item.id}) }}">edit</a>
+
+    {{ include('pedido_items/_delete_form.html.twig') }}
+{% endblock %}

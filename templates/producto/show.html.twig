@@ -1,0 +1,37 @@
+{% extends 'main_menu/base.html.twig' %}
+
+{% block title %}Producto - Show{% endblock %}
+
+{% block body %}
+    <h2>Producto</h2>
+
+    <table class="table table-showUser">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ producto.id }}</td>
+            </tr>
+            <tr>
+                <th>Referencia</th>
+                <td>{{ producto.referencia }}</td>
+            </tr>
+            <tr>
+                <th>Descripcion</th>
+                <td>{{ producto.descripcion }}</td>
+            </tr>
+            <tr>
+                <th>Familia</th>
+                <td>{{ producto.familia|upper }}</td>
+            </tr>
+             <tr>
+                <th>Marca</th>
+                <td>{{ producto.marca }}</td>
+            </tr>
+        </tbody>
+    </table>
+	<fieldset class="showUserControls"> 
+		<a class="btn button" href="{{ path('producto_index') }}">Ir a Listado</a>
+		<a class="btn button" href="{{ path('producto_edit', {'id': producto.id}) }}">Editar</a>
+		{{ include('producto/_delete_form.html.twig') }}
+	</fieldset>
+{% endblock %}

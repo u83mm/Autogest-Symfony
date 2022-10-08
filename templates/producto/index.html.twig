@@ -1,0 +1,68 @@
+{% extends 'main_menu/base.html.twig' %}
+
+{% block title %}Autogest - Referencias{% endblock %}
+
+{% block body %}
+    <h2>Listado de Referencias</h2>
+	<div id="datos">				
+		<div id="gif">
+							
+		</div>
+	</div>
+	
+    <table id="listado" class="table table-hover">
+        <thead>
+            <tr>
+                <th class="hidde">Id</th>
+                <th>Referencia</th>
+                <th>Descripcion</th>
+                <th class="hidde">Familia</th>
+                <th class="hidde">Marca</th>
+                <th class="hidde">P.V.P</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% if productos|length >= 1 %}
+		    {% for producto in productos %}
+		        <tr>
+		            <td class="hidde">{{ producto.id }}</td>
+		            <td>{{ producto.referencia}}</td>
+		            <td>{{ producto.descripcion}}</td>
+		            <td class="hidde">{{ producto.familia|upper }}</td>
+		            {% for marca in marcas %}
+		            	{% if producto.marca == marca.id %}
+		            		<td class="hidde">{{ marca.nombre }}</td>
+		            	{% endif %}
+		            {% endfor %}
+		            <td class="hidde">{{ producto.pvp}}</td>
+		            <td class="tdActions">
+		                <a class="button" href="{{ path('producto_show', {'id': producto.id}) }}">show</a>                   
+		                <a class="hidde" href="{{ path('producto_edit', {'id': producto.id}) }}"><img class="fotoUsuarioPeq" src="{{ asset('images/pen_write_edit.png') }}"></a>
+		            </td>
+		        </tr>		    
+		    {% endfor %}
+		{% else %}
+	        <tr>
+	            <td colspan="7">no records found</td>
+	        </tr>
+		{% endif %}
+        </tbody>
+    </table>
+	<fieldset class="buscar">
+		<a class="btn button" href="{{ path('producto_new') }}">Crear Artículo</a>
+		<a class="btn button" href="{{ path('producto_search') }}">Buscar Artículo</a>
+	</fieldset>
+	<p class="center">Mostrando del <strong>{{ desde }}</strong> al <strong>{{ next }}</strong> de <strong>{{ productos|length }}</strong> productos</p>
+    <fieldset class="showUserControls index">
+    {% if previous >= 1 %}
+    	<a href="{{ path('producto_index', {offset: 0}) }}" class="btn button">Primero</a>
+    {% endif %}
+	{% if previous >= 0 %}	
+		<a href="{{ path('producto_index', {offset: previous}) }}" class="btn button">Anterior</a>		
+	{% endif %}		
+	{% if next - productos|length %}
+		<a href="{{ path('producto_index', {offset: next}) }}" class="btn button">Siguiente</a>
+		<a href="{{ path('producto_index', {offset: productos|length -1}) }}" class="btn button">Último</a>
+	{% endif %}
+{% endblock %}

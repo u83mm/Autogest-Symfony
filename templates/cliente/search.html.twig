@@ -1,0 +1,14 @@
+{% extends 'main_menu/base.html.twig' %}
+
+{% block title %}Clientes - Buscar{% endblock %}
+
+{% block body %}
+    <h2>Búsqueda de Cliente</h2>
+    <div id="datos">				
+		<div id="gif">
+							
+		</div>
+	</div>
+
+    {{ include('cliente/_form_search.html.twig', {'button_label': 'Buscar'}) }}
+{% endblock %}

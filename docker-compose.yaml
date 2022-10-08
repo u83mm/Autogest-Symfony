@@ -1,0 +1,60 @@
+version: '3.1'
+
+services:
+
+  db:
+    build: ./MariaDB/
+    container_name: autogest_db
+    restart: always
+    ports:
+      - 3306:3306
+    labels:
+      com.symfony.server.service-prefix: 'DATABASE'
+    environment:
+      MARIADB_ROOT_PASSWORD: cantinflas
+      MARIADB_DATABASE: autogest
+      MARIADB_USER: pepe
+      MARIADB_PASSWORD: cantinflas
+      
+    volumes: 
+        - "./db_vol:/var/lib/mysql"
+        - "./log/db:/var/log"
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: autogest_myadmin
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      - PMA_ARBITRARY=1
+      
+  web:      
+      build: .
+      container_name: autogest_app
+      ports:
+      - "80:80"
+      tty: true
+      volumes: 
+        - "../Autogest:/var/www"
+        - "./log/apache:/var/log/apache2"
+        - "./log/php:/srv/var/log"
+
+###> doctrine/doctrine-bundle ###
+  #database:
+    #image: postgres:${POSTGRES_VERSION:-13}-alpine
+    #environment:
+      #POSTGRES_DB: ${POSTGRES_DB:-app}
+      # You should definitely change the password in production
+      #POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-ChangeMe}
+      #POSTGRES_USER: ${POSTGRES_USER:-symfony}
+    #volumes:
+      #- db-data:/var/lib/postgresql/data:rw
+      # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
+      # - ./docker/db/data:/var/lib/postgresql/data:rw
+###< doctrine/doctrine-bundle ###
+
+#volumes:
+###> doctrine/doctrine-bundle ###
+  #db-data:
+###< doctrine/doctrine-bundle ###

@@ -1,0 +1,68 @@
+{% extends 'main_menu/base.html.twig' %}
+
+{% block title %}PedidoCallCenter{% endblock %}
+
+{% block body %}
+    <h2>PedidoCallCenter</h2>
+    <div id="datos">				
+		<div id="gif">
+							
+		</div>
+	</div>
+
+    <table class="table table-showUser">    	
+        <tbody>       	       	
+        	<tr>
+                <th class="logoMarcaShow hidde">&nbsp;</th>
+                <td class="logoMarcaShow"><img class="logoMarcaOrderShow" src="{{ asset('uploads/logo_marca/') ~ logo.logo}}" alt="logo marca"></td>
+            </tr>
+            <tr>
+                <th>Id del pedido:</th>
+                <td>{{ pedido_call_center.id }}</td>
+            </tr>
+            <tr>
+                <th>Fecha:</th>
+                <td>{{ pedido_call_center.fecha ? pedido_call_center.fecha|date('d-m-Y') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Nº Cliente:</th>
+                <td>{{ pedido_call_center.cuentaCliente }}</td>
+            </tr>
+            <tr>
+                <th>Nombre Cliente:</th>
+                <td>{{ pedido_call_center.nombreCliente | upper }}</td>
+            </tr>           
+	        <tr>            			        		
+    			<th>Persona de Contacto:</th>
+        		<td>{{ pedido_call_center.contacto | upper}}</td>  
+        	</tr>
+        	<tr>      		
+    			<th>Teléfono Contacto:</th>
+    			<td>{{ pedido_call_center.telefono }}</td>            			        				        		           	                               
+	        </tr>            
+            <tr>
+                <th>Teléfono:</th>
+                <td>{{ pedido_call_center.telefono1 }}</td>
+            </tr>
+            <tr>
+                <th>Comentario:</th>
+                <td class="justify">{{ pedido_call_center.comentario }}</td>
+            </tr>           
+            <tr>
+                <th>VIN:</th>
+                <td>{{ pedido_call_center.vin }}</td>
+            </tr>
+            <tr>
+                <th>Estado:</th>
+                <td>{{ pedido_call_center.estado }}</td>
+            </tr>
+        </tbody>
+    </table>
+	<fieldset class="showUserControls"> 
+		<a class="btn button" href="{{ path('pedido_call_center_index') }}">Ir a listado</a>
+
+		<a class="btn button" href="{{ path('pedido_call_center_edit', {'id': pedido_call_center.id}) }}">Editar</a>
+
+    	{{ include('pedido_call_center/_delete_form.html.twig') }}
+	</fieldset>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'main_menu/base.html.twig' %}
+
+{% block title %}User{% endblock %}
+
+{% block body %}
+    <h2>Datos de {{ user.nombre }}</h2>
+    <div id="datos">				
+		<div id="gif">
+							
+		</div>
+	</div>
+	<!--<div class="imageProfile"><img src="{{ asset('uploads/image_profile/' ~ user.foto) }}" alt="imagen de perfil"></div> -->
+	<div class="row">
+		<div class="col-12 col-sm-3 showPhotoProfile">
+			<figure class="col-1 figure float-none float-xxl-end d-inline-block">
+				<img src="{{ asset('uploads/image_profile/' ~ user.foto) }}" class="figure-img img-fluid w-100" alt="Imagen Perfil">
+			</figure>
+		</div>
+	</div>
+    <table class="table table-showUser">   	
+        <tbody>        
+            <tr>
+                <th>Id:</th>
+                <td>{{ user.id }}</td>
+            </tr>
+            <tr>
+                <th>Username:</th>
+                <td>{{ user.username }}</td>
+            </tr>
+            <tr>
+                <th>Roles:</th>
+                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+            </tr>            
+            <tr>
+                <th>Nombre:</th>
+                <td>{{ user.nombre }}</td>
+            </tr>
+            <tr>
+                <th>1º Apellido:</th>
+                <td>{{ user.apellido1 }}</td>
+            </tr>
+            <tr>
+                <th>2º Apellido:</th>
+                <td>{{ user.apellido2 }}</td>
+            </tr>
+            <tr>
+                <th>Email:</th>
+                <td><a href="mailto:{{ user.email }}">{{ user.email }}</a></td>
+            </tr>
+            <tr>
+                <th>Departamento:</th>
+                <td>{{ user.departamento }}</td>
+            </tr>           
+        </tbody>
+    </table>	
+	<fieldset class="showUserControls"> 
+		<a class="btn button" href="{{ path('user_index') }}">Ver listado</a>		
+		<a class="btn button" href="{{ path('user_edit', {'id': user.id}) }}">Editar</a> 		 
+
+		{{ include('user/_delete_form.html.twig') }}
+	</fieldset>	
+{% endblock %}

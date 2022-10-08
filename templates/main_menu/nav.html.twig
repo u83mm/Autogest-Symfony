@@ -1,0 +1,23 @@
+<li class="nav-item">
+	<a href="{{ path('user_show', {'id': app.user.id}) }}">Mi Perfil</a>
+</li>
+<li class="nav-item">
+	<a href="{{ path('main_menu') }}" onclick="menuConsultaPedidos()">Postventa</a>
+</li>		
+	{% if is_granted('ROLE_ADMIN') %}
+		<li class="nav-item">
+			<a href="{{ path('user_index') }}" onclick="menuConsultaPedidos()">Ver Usuarios</a>
+		</li>
+		<li class="nav-item">
+			<a href="{{ path('marca_index') }}" onclick="menuConsultaPedidos()">Marcas</a>
+		</li>
+		<li class="nav-item">
+			<a href="{{ path('user_new') }}" onclick="menuConsultaPedidos()">Crear Usuario</a>
+		</li>
+		<li class="nav-item">
+			<a href="{{ path('admin') }}">Dashboard</a>
+		</li>								
+	{% endif %}
+<li class="nav-item">		
+	<a id="salir" href={{ path('app_logout') }} onclick="return salir()">Salir</a>
+</li>

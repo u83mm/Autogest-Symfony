@@ -1,0 +1,1906 @@
+	@font-face{
+	font-family: ubuntuRegular;
+	src: url('../ttf/Ubuntu-R.ttf') format('truetype');
+	}
+
+	@font-face{
+	font-family: ubuntuBold;
+	src: url('../ttf/Ubuntu-B.ttf') format('truetype');
+	}
+
+	@font-face{
+	font-family: ubuntuBoldItalic;
+	src: url('../ttf/Ubuntu-BI.ttf') format('truetype');
+	}
+
+	@font-face{
+	font-family: ubuntuItalic;
+	src: url('../ttf/Ubuntu-I.ttf') format('truetype');
+	}
+	
+	/*Animación barra errores*/ 
+	@keyframes fadeOut {
+		from {
+			opacity: 1;
+		}
+		to {
+			opacity: 0;
+		}
+	}
+
+* {
+	margin: 0px;
+	padding: 0px;
+	outline: none;
+	text-decoration: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+.ajaxMenu {
+	display: block;
+	width: 15%;
+	padding: 10px 0 0 5px;
+	margin-left: 10px;
+	color: rgba(255,255,255,0.5);
+}
+
+html {
+	background-image: url('../images/bg_page.png');
+}
+
+body {
+	font-family: ubuntuRegular;	
+	margin: 0 auto;	
+	font-size: 100%;
+}
+
+.botonesConsulta {
+	border: none;	
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.botonesConsulta button {
+	border: 1px solid white;
+	font-family: ubuntuRegular;
+	font-size: 16px;
+	outline: none;
+	text-decoration: none;
+	border-radius: 5px;
+	margin: 5px;
+	/*padding: 3px;*/
+	background: rgb(175,100,50);
+	background: linear-gradient(rgb(200,147,97), rgb(175,100,50));
+	color: white;
+	transition: transform .5s;
+}
+
+.botonesConsulta button:hover {
+	border: 1px solid rgba(175, 100, 50, 1);
+	box-shadow: 0 0 4px white;
+	transform: scale(1.1);
+}
+
+.botonesPaginacion {
+	width: 78%;
+	border: none;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 10px;
+	text-align: center;
+	//background: yellow;
+}
+
+.center {
+	margin-top: 5px;
+	text-align: center;
+	border: none;
+}
+
+#contador {
+	background: rgba(200,145,90,0.8);
+}
+
+.contador {
+	display: inline-block;
+	color: rgb(155,85,20);
+	padding: 3px;
+	margin-right: 0px;
+}
+
+#contenedor {
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 0px;
+	height: auto;
+	background: rgba(200,145,50,.8);
+}
+
+#createUser .datosUsuario {
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 5px;
+}
+
+#createUser .datosUsuario label {
+	width: 170px;
+}
+
+#createUser fieldset{
+	width: 92%;
+	font-size: 0.9em;
+}
+
+.createUser label{
+	display: inline-block;
+	width: 170px;
+	text-align: right;
+	margin-right: 5px;
+	margin-left: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding: 0.3em;
+}
+
+#datos {
+	background: rgba(175,100,50,0.8);
+	display: inline-block;
+	width: 100%;
+}
+
+#datos li {
+	list-style: none;
+}
+
+#datos a {
+	margin-left: 10px;
+	color: rgba(255,255,255,0.5);
+}
+
+#usuarios a {
+	color: black;	
+}
+
+#usuarios td.email a {
+	color: revert;
+}
+
+#datos a:hover, #usuarios a:hover, #usuarios td.email a:hover {
+	color: white;
+}
+
+.eliminaFoto {
+	border: none;
+	position: relative;
+	width: 98%;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: right;
+	padding-right: 10px;
+}
+
+.eliminaFoto input[type="submit"] {
+	margin-right: 10%;
+}
+
+.errorh3 {
+	font-family: ubuntuItalic;
+	color: white;
+	margin-top: 15px;
+	text-align: center;
+}
+
+fieldset p {	
+	text-align: center;
+	margin-bottom: 1em;
+}
+
+form {
+	margin-top: 30px;
+	margin-bottom: 30px;
+	//background: yellow;		
+	margin: 0;
+	padding: 0.23em;
+}
+
+form fieldset {
+	margin-left: auto;
+	margin-right: auto;
+	width: 40%;
+	padding: 1em;
+	border: 1px solid white;
+}
+
+form label {
+	display: inline-block;
+	width: 150px;
+	text-align: right;
+	margin-right: 5px;
+	margin-left: 60px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.foto {
+	width: 12%;
+	max-width: 100%;
+	height: 12em;	
+	float: right;
+	border: 1px solid white;
+	margin-bottom: 1em;
+	margin-left: 88%;
+	border-radius: 10px;
+	box-shadow: 0 0 8px 2px rgba(0,0,0,0.75);
+}
+
+#gif {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+	text-align: center;
+}
+
+h1 {
+	margin-top: 10px;
+	text-align:center;
+}
+
+h2 {
+	margin-top: 10px;
+	text-align:center;
+	display: inline-block;
+	width: 100%;
+}
+
+header {
+	padding: 10px;
+	background: rgba(175,100,50,1);
+	//border-radius: 10px 10px 0px 0px;
+}
+
+legend {
+	margin-left: 5%;
+	color: white;
+	padding: 0.3em;
+	float: initial;
+	width: initial;
+	font-size: initial;
+}
+
+.menuRecambios li a {
+	width: 20%;
+}
+
+#listado {
+	margin: 10px auto;
+	width: 99%;
+	border-spacing: 0;
+}
+
+#listado a {	
+	margin: 0px;
+}
+
+#listado p {
+	text-align: center;
+	margin: 0px;
+	color: rgba(255,255,255,.5);
+	width: 100%;
+}
+
+#listado td, th {
+	border: 1px solid white;
+	padding: 5px 0px 4px 0px;
+	text-align: center;
+	//background: linear-gradient(rgb(200,147,97), rgb(175,100,50));
+	color: white;
+}
+
+#listado td {
+	color: rgba(255,255,255,.7);
+	vertical-align: middle;
+	padding: 0.4em
+}
+
+#listado td a {
+	color: rgba(255,255,255,.7);
+}
+
+#listado td a.button {
+	display: block;	
+	float: left;
+}
+
+#listado td a:hover {
+	color: white;
+}
+
+#listado tr:nth-of-type(even) {
+	background-color: rgba(155,75,20,.7);
+}
+
+#listado tbody tr:nth-of-type(odd) {
+	background-color: rgba(155,75,20,1);
+}
+
+#listado thead th, #usuarios thead th {
+	color: rgba(255,255,255,1);
+	font-weight: bold;
+	background: linear-gradient(rgb(200,147,97), rgb(175,100,50));
+}
+
+#marcas {
+	margin-left: auto;
+	margin-right: auto;
+	width: 20%;
+	margin-top: 20px;
+}
+
+.menus {
+	list-style: none;
+}
+
+.menus li {
+	display: inline-block;
+	padding: 5px;
+}
+
+.menus a {
+	display: inline;
+	padding: 6px 6px 8px;
+	color: rgb(155,85,20);
+	text-decoration: none;
+}
+
+.menus a:hover {
+	color: white;
+	background-color: rgba(175,100,50,1);
+}
+
+#menus {
+	background: rgba(200,145,90,0.8);
+}
+
+nav {
+	background: rgba(200,145,90,0.8);	
+}
+
+nav .current {
+	display: none;
+}
+
+nav ul {
+	margin-right: 10px;
+	text-align: center;
+}
+
+nav ul li {
+	display: inline-block;
+	padding: 5px;
+	margin: 1px;
+}
+
+nav ul li a {
+	text-decoration: none;
+	border: 1px solid #c99464;
+	color: rgb(155,85,20);
+	outline: none;
+	padding: 5px 10px 5px 10px;
+}
+
+nav ul li a:hover {
+	color: white;
+	background-color: rgba(175,100,50,1);
+	border: 1px solid white;
+	border-radius: 15px;
+	box-shadow: 0px 0px 10px white;
+}
+
+#usuarios {
+	width: 98%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#usuarios td {
+	vertical-align: middle;
+	text-align: center;
+	padding: 0.3em;
+	font-size: 1em;
+}
+
+#usuarios td a.button {
+	display: inline-block;
+	color: white;
+}
+
+
+.imageProfile {
+	width: 3%;
+}
+
+div.imageProfile {
+	display: inline-block;	
+}
+
+#pCantidad, #pDescripcion, #pCreaMarcas {
+	color: rgba(255,255,255,0.5);
+}
+
+.success p{
+	animation-name: fadeOut;
+	animation-duration: 3s;
+	animation-delay: 4s;
+	animation-fill-mode: forwards;
+	font-family: ubuntuItalic;
+	text-align: center; 
+	background: green;
+	color: white;
+	width: 70%;	
+	margin-top: 10px;
+	margin-right: auto;
+	margin-left: auto;
+	padding: 10px;
+}
+
+.error_log_ajax {
+	text-align: center;
+	width: 10%;
+	margin: 3px auto;
+}
+
+.error p {
+	animation-name: fadeOut;
+	animation-duration: 3s;
+	animation-delay: 4s;
+	animation-fill-mode: forwards;
+	font-family: ubuntuItalic;
+	text-align: center; 
+	background: red;
+	color: white;
+	width: 70%;	
+	margin-top: 10px;
+	margin-right: auto;
+	margin-left: auto;
+	padding: 10px;
+}
+
+.formAjax {
+	width: 50%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 5px;
+}
+
+.formAjaxControles {
+	width: 50%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 5px;
+	text-align: center;
+	border: none;
+}
+
+.formSeleccionaConsulta {
+	width: 50%;
+	margin-top: 15px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 5px;
+}
+
+.formSeleccionaConsultaControles {
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 5px;
+	width: 40%;
+	text-align: center;
+	border:none;
+}
+
+img.fotoUsuarioPeq {
+	width: 35px;
+}
+
+img {
+	max-width: 100%;	
+}
+
+#diskette {
+	width: 22px; 
+	height: 22px;
+	margin-top: 10px;
+}
+
+label {
+	display: inline-block;
+	width: 100px;
+	text-align: right;
+	margin-top: 10px;
+	font-size: 16px;
+}
+
+#createUser label.error {
+	color: red;
+	width: 200px;
+	display: inline;
+}
+
+#pedidosTaller {
+	margin-top: 5px;
+}
+
+#pedidosForm label.error, #numPedido label.error {
+	color: white;
+	width: 200px;
+	display: inline;
+	margin-left: 10px;
+}
+
+input[type="text"]:focus, [type="email"]:focus, [type="password"]:focus, [type="tel"]:focus, textarea:focus {
+	background-color: #e8d854;
+	border: 2px solid rgba(175, 100, 50, 1);
+}
+
+input[type="text"], [type="password"], [type="date"], [type="email"], [type="number"], [type="tel"]  {
+	font-family: ubuntuRegular;
+	/*font-size: 16px;*/
+	padding: 0.5em;
+	border-radius: 5px;
+}
+
+input[type="email"], #cliente_nombreVia {
+	width: 60%;
+}
+
+input[type="submit"], input[type="button"], input[type="reset"], .button {
+	border: 1px solid white;
+	font-family: ubuntuRegular;
+	font-size: 16px;
+	outline: none;
+	text-decoration: none;
+	border-radius: 5px;
+	margin: 5px 0px;
+	padding: 0.4em;
+	background: rgb(175,100,50);
+	background: linear-gradient(rgb(200,147,97), rgb(175,100,50));
+	color: white;
+	transition: transform .5s;
+}
+
+input[type="submit"]:hover, input[type="button"]:hover, input[type="reset"]:hover, .button:hover {
+	border: 1px solid rgba(175, 100, 50, 1);
+	box-shadow: 0 0 4px white;
+	transform: scale(1);
+	color: white;
+}
+
+input[type="radio"] {
+	vertical-align: middle;
+}
+
+section {
+	display: block;
+	min-height: 650px;
+	max-height: auto;	
+}
+
+select {
+	font-family: ubuntuRegular;
+	border-radius: 5px;
+	padding: 0.5em;
+	background-color: #f2f1f0;	
+}
+
+.showUserEdit {
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 5px;
+	width: 80%;
+	text-align: center;
+	border:none;
+}
+
+span {
+	margin-left: 5px;
+	color: white;
+}
+
+hr {
+	clear: both;
+}
+
+.botonesPaginacion li {
+	display: inline-block;
+	text-align: center;
+}
+
+.paginar {
+	padding: 5px;
+	display: inline-block;
+}
+
+p {
+	margin-left: 15px;
+	margin-right: 15px;
+	text-align: justify;
+}
+
+p.error{
+	font-family: ubuntuItalic;
+	color: white;
+}
+
+.showError {
+	float: right;
+	margin-right: 15px;
+	margin-left: 15px;
+	margin-bottom: 15px;
+}
+
+footer {
+	clear: both;
+	padding: 10px;
+	border-top: 1px solid black;
+	background: rgba(175,100,50,1);
+}
+
+.footer {
+	text-align: center;
+}
+
+.numPedido {
+	width: 46%;
+	border: none;
+}
+
+.numPedidoSubmit {
+	width: 50%;
+	text-align: center;
+	border: none;
+}
+
+table {
+	border-collapse: collapse
+}
+
+input[type="file"] {
+	font-size: 90%;
+}
+
+#tableajax {
+	height: 600px;
+}
+
+.formListadoAcotado {
+	width: 25%;
+}
+
+.formListadoAcotado legend {
+	padding: 5px;
+	font-size: 1.1em;
+	font-style: italic;
+}
+
+.alert {
+	background: red;
+	color: white;
+	text-align: center;
+	padding: 0.5em;
+	font-style: italic;
+	width: 80%;
+	margin: 0 auto;
+	animation-name: fadeOut;
+	animation-duration: 3s;
+	animation-delay: 4s;
+	animation-fill-mode: forwards;
+}
+
+.table-showUser {
+	border: 1px solid white;
+	margin: 1em auto;	
+	width: 80%;
+}
+
+.table-showUser tbody {
+	display: inline-block;
+	padding: 1em;
+	width: 100%;
+}
+.table-showUser tr {
+	width: 100%;
+	display: block;
+}
+
+.table-showUser th{	
+	width: 20%;
+	border: none;
+	text-align: right;
+	background: darkslategrey;
+	display: inline-block;
+	margin-bottom: 0.5em;
+	padding: 0.2em 0.2em;
+}
+
+.table-showUser td {
+	padding-left: 1em;
+	display: inline-block;
+	width: 70%;	
+}
+
+.validaForm {
+	background: seagreen;
+	text-align: center;
+	width: 90%;
+	margin: 0 auto;
+	color: white;
+}
+
+.showUserControls {
+	width: 80%;
+	margin: 0 auto;
+	padding: 0.7em 0em;
+	text-align: center;
+}
+
+.showUserControls form {
+	width: 6%;
+	padding: 0;
+	float: left;
+}
+
+.showUserControls form button {
+	margin: 0;
+}
+
+#createUser fieldset.showUserControls {
+	/*width: 20%;*/
+	float: left;
+	padding: 0.5em 0;
+	text-align: left;
+	border: none;
+	margin-left: 5%;
+}
+
+.showPhotoProfile {
+	width: 80%;
+	margin: 0 auto;
+}
+
+#datos {
+	width: 100%;	
+	position: absolute;
+	margin-top: 10em;
+	display: block;
+}
+
+.clienteForm, .pedidoCallForm  {
+	float: left;	
+}
+
+.buscar {
+	text-align: left;
+	width: 100%;
+	padding: 0.5em 0 0 0.5em;
+}
+
+.flash-notice {
+	background: rgba(20, 116, 7, 0.8);
+	color: white;
+	text-align: center;
+	width: 80%;
+	margin: 0 auto;
+	padding: 0.5em;
+	animation-name: fadeOut;
+	animation-duration: 3s;
+	animation-delay: 4s;
+	animation-fill-mode: forwards;
+}
+
+.flash-warning {
+	background: firebrick;
+	color: white;
+	text-align: center;
+	width: 80%;
+	margin: 0 auto;
+	padding: 0.5em;
+	animation-name: fadeOut;
+	animation-duration: 3s;
+	animation-delay: 4s;
+	animation-fill-mode: forwards;
+}
+
+.flash-error {
+	background: red;
+	color: white;
+	text-align: center;
+	width: 80%;
+	margin: 0 auto;
+	padding: 0.5em;
+	animation-name: fadeOut;
+	animation-duration: 3s;
+	animation-delay: 4s;
+	animation-fill-mode: forwards;
+}
+
+img.listado {
+	width: 75%;
+}
+
+.tdActions {
+	width: 8%;
+}
+
+.clienteForm textarea, .pedidoCallForm textarea {
+	width: 80%;
+	resize: none;
+	padding: 0 0.5em;
+	margin-top: 1em;
+}
+
+.logoMarcaShow {
+	width: 7%;
+	vertical-align: middle;
+	text-align: center;
+}
+
+.logoMarcaOrderShow {
+	width: 7%;
+	vertical-align: middle;
+	text-align: center;
+}
+
+.logoMarcaNew {
+	width: 25%;
+	vertical-align: middle;
+}
+
+th.logoMarcaShow {
+	background: initial;
+}
+
+.float-right {
+	float: right;
+	text-align: center;
+}
+
+label.pedidoItemsCallForm {
+	text-align: center;
+	width: 100%;
+	margin: 0;	
+}
+
+.pedidoCallForm input:nth-child(1) {
+	width: 100%;
+}
+
+.createUser:nth-child(4) {
+	border-top: none;	
+}
+
+.totalesPedido {	
+	text-align: right;
+}
+
+.totalesPedido input[type="text"] {
+	text-align: center;
+}
+
+.navbar-nav {
+	width: 100%;
+	display: inline-block;
+}
+
+tbody, td, tfoot, th, thead, tr {
+	border-color: inherit;
+	border-style: none;
+	border-width: 0;
+}
+
+dl, ol,ul{
+	margin: 0;
+}
+
+.table-showUser td.justify {
+	text-align: justify;
+}
+
+.print_pdf {
+	width: 3em;
+}
+
+.print_pdf:hover {
+	transform: scale(1.5);
+}
+
+/************************************************************************
+*					Configuración para móviles							*
+************************************************************************/
+@media (max-width:480px) {	
+	body {
+		margin-left: auto;
+		margin-right: auto;
+		font-size: 100%;
+	}	
+
+	#contenedor {
+		width: 100%;	
+		margin-left: auto;
+		margin-right: auto;
+		font-size: 0.7em;
+	}
+
+	header {		
+		background-image: linear-gradient(
+	   30deg, white 0%, #af6432 30%, #af6432 50%, #af6432 80%, white 100%);		
+	}
+
+	#actualiza {
+		font-size: 10px;
+	}
+
+	.botonesPaginacion {
+		width: 100%;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		text-align: center;
+	}
+
+	#contador {
+		margin-top: 20px;
+	}
+
+	#createUser .datosUsuario {
+		border: none;
+		width: 99%;
+		margin-left: 0px;
+		margin-right: 0px;
+		margin-bottom: 5px;
+	}
+
+	.createUser {
+		border: none;
+		width: 100%;
+		margin-left: 0px;
+		font-size: 1.5em;
+	}
+
+	#createUser fieldset {
+		margin-top: 10px;
+		width: 100%;
+	}	
+
+	.createUser legend {
+		display: none;
+	}
+
+	#createUser .datosUsuario label {
+		display: inline-block;
+		padding-left: 3px;
+		width: 70px;
+		text-align: left;
+		margin-right: 3px;
+		margin-left: 10px;
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}	
+
+	.eliminaFoto {		
+		width: 96%;		
+	}
+
+	.eliminaFoto input[type="submit"] {
+		margin-right: 10%;
+	}	
+
+	form {
+		margin-top: 0px;
+		margin-bottom: 0px;
+		width: 100%;
+	}
+
+	.formAjax {
+		width: 100%;
+		border: none;
+	}
+
+	.formAjax label {
+		width: 100px;
+		text-align: right;
+		margin-left: 10px;
+	}
+
+	.formAjaxControles {
+		width: 100%;
+		border: none;
+	}
+
+	.formSeleccionaConsulta {
+		width: 100%;
+		border: none;
+	}
+
+	.formSeleccionaConsulta label {
+		margin-left: 30px;
+		width: 100px;
+	}
+
+	.formSeleccionaConsultaControles {
+		width: 100%;
+		border: none;
+	}
+
+	.foto {
+		width: 20%;
+		height: 60px;
+		margin: 10px auto 0px;
+		float: initial;
+	}
+
+	#gifmovil {
+		width: 5em;
+		height: 5em;
+	}
+
+	label.hidde {
+		display: none;
+	}
+
+	h1 {
+		color: white;
+	}
+
+	input[type="text"], input[type="password"], input[type="button"], input[type="reset"], input[type="submit"]{
+		font-size: 95%;
+	}
+
+	input[type="file"] {
+		font-size: 1.7em;
+		width: 85%;
+		border-radius: 2px;
+	}			
+
+	label {
+		font-size: 90%;
+	}	
+
+	nav ul li a {
+		display: inline-block;
+		border: none;
+		margin-left: 0%;
+		padding-left: 0px;
+		padding-top: 5px;
+		width: 100%;
+		font-size: 1.1em;
+	}
+
+	nav ul li a:hover {
+		box-shadow: none;
+		border: none;
+		background: none;
+		color: white;
+	}	
+	
+	.navbar-light .navbar-toggler-icon {
+		background-image: url("../images/menu-icon.png");
+	}
+	
+	.navbar-light .navbar-toggler {
+		color: rgba(255,255,255,.55);
+		border-color: rgba(255,255,255,.9);
+	}
+	
+	.nav-item {
+		width: 100%;
+	}
+
+	select {
+		font-size: 1.6em;
+	}
+
+	section {
+		display: block;
+		min-height: 650px;
+		max-height: auto;
+	}
+
+	#showUser {
+		width: 100%;
+	}
+
+	.showUserEdit {
+		margin-bottom: 5px;
+		border: none;
+	}
+
+	ul li {
+		font-size: 1.3em;		
+	}
+
+	#listado th p {
+		color: rgba(255,255,255,1);
+		font-weight: bold;
+	}
+
+	form label {
+		width: 100px;
+		margin-left: 0px;
+	}
+
+	.numPedido {
+		width: 100%;
+	}
+
+	#marcas td p {
+		width: 100%;
+	}
+
+	.formSeleccionaConsulta	label{
+		margin-left: 9%;
+	}
+
+	nav ul li:hover {
+		background-color: rgba(175,100,50,1);
+	}
+
+	nav ul li:hover a {
+		color: white;
+	}
+
+	nav ul li.current {
+		background: none;
+	}
+
+	#tableajax {
+		height: 400px;
+	}
+
+	.formListadoAcotado {
+		width: 50%;
+	}
+	
+	.menuRecambios li a, .menuClientes li a, .menuVisitas li a , .menuTaller li a{
+		width: 100%;
+	}
+	
+	.btn {
+		font-size: initial;
+	}
+	
+	.button {
+		margin: 0px;
+	}
+	
+	.col-sm-3, .col-sm-5, .col-sm-6, .col-sm-4, .col-sm-25, .col-sm-35, .col-sm-8 {
+		/*width: inherit;*/
+		text-align: center;
+	}		
+	
+	/*.col-sm-5, .pedidoCallForm {
+		float: none;
+	}	*/	
+	
+	.createUser label {		
+		font-size: 1.5em;
+		text-align: center;
+		width: 100%;
+		margin: 0px;
+	}
+	
+	/*.col-sm-3 label, .col-sm-5 label, .col-sm-4 label, .col-sm-6 label, .col-sm-10 label, .col-sm-25 label, .col-sm-35 label,
+	.col-sm-8 label {
+		width: 100%;
+		text-align: center;
+	}	*/	
+	
+	input[type="text"], input[type="tel"], input[type="email"], input[type="password"], textarea, #cliente_nombreVia {
+		width: 80%;
+		font-size: 1.5em;
+	}
+	
+	.col-sm-10 textarea {
+		height: 13em;
+	}
+	
+	#cliente_tipoVia, #cliente_numVia, #cliente_puerta {
+		width: initial;
+	}			
+	
+	#createUser fieldset.showUserControls {
+		width: inherit;
+		float: inherit;
+		padding: inherit;
+		text-align: center;
+		margin: inherit;
+		font-size: 1.5em;
+	}
+	
+	select, .clienteForm select {
+		width: 13em;
+	}
+	
+	.logoMarcaNew {
+		width: initial;
+		margin-top: 2em;
+	}
+	
+	.float-right {
+		margin: 0 auto;
+	}
+	
+	.hidde {
+		display: none;
+	}
+	
+	.pedidoCallForm input.cantidad {
+		width: 6em;
+		margin-top: 0.5em;
+	}
+	
+	/*.col-sm-2 {
+		width: 100%;
+	}*/	
+	
+	.pedidoCallForm img {
+		width: 30%;
+	}
+	
+	#navbarNavDropdown, #menus, .menuRecambios, .menuTaller, .menuVisitas, .menuClientes {
+		font-size: 1.1em;
+	}
+	
+	#menus li {
+		margin: 0;
+	}
+	
+	h2 {
+		margin-top: 1em;
+	}
+	
+	.table-showUser {
+		margin: inherit;
+		width: 100%;
+		border: white;
+		font-size: 1.5em;
+	}
+	
+	tbody, td, tfoot, th, thead, tr {
+		border-color: inherit;
+		border-style: solid;
+		border-width: 0;
+	}
+	
+	.table-showUser th {
+		width: 100%;
+		text-align: center;
+	}
+	
+	.table-showUser td {
+		text-align: center;
+		width: 100%;
+	}
+	
+	.menus {
+		padding-left: 0px;
+	}
+	
+	#menus {
+		text-align: center;
+	}
+	
+	#listado td a.hidde {
+		display: none;
+	}
+	
+	.logoMarcaShow {
+		width: 20%;
+	}
+	
+	.showUserControls form {
+		width: 25%;
+		display: inline-block;
+		float: initial;
+	}
+	
+	.clienteForm textarea, .pedidoCallForm textarea {
+		width: 100%;
+		margin-top: initial;
+	}
+	
+	dl, ol,ul{
+		margin: 0;
+	}
+	
+	.clienteForm, .clienteForm label {
+		text-align: center;
+	}
+	
+	#usuarios td a.hidde {
+		display: none;
+	}
+	
+	#abrevia_abrev {
+		margin-bottom: 0.5em;
+		text-align: center;
+		/*width: 28%*/
+	}
+	
+	#cliente_id {
+		width: 20em;
+	}
+	
+	select, .buscar {
+		text-align: center;
+	}
+	
+	/*.showUserControls a, .showUserControls .button {
+		font-size: 0.5em;
+	}*/
+	
+	.logoMarcaOrderShow {
+		width: 20%
+	}
+	
+	td.logoMarcaShow {
+		margin-bottom: 1em;
+	}
+	
+	.table-showUser th.hidde {
+		display: none;
+	}
+	
+	.index a.btn {
+		font-size: 1.3em;
+		display: block;
+		margin-bottom: 0.5em;
+	}
+	
+	#listado td a.button {
+		font-size: 1em;
+	}
+	
+	.showUserControls form {
+		display: block;
+		width: 100%;
+		float: none;
+	}
+	
+	.showUserControls form button {
+		width: 100%;
+		margin-top: 0.5em;
+	}		
+	
+	.totalesPedido {
+		text-align: center;
+	}
+	
+	#pedido_intro_cif_cuentaCliente {
+		width: 50%;
+	}
+	
+	#pedido_call_center_comentario {
+		height: 10em;
+	}		
+}
+
+/************************************************************************
+*			iphone 6/7/8 horizontal														*
+************************************************************************/
+@media (min-width:481px) and (max-width: 668px) {
+	#createUser fieldset.showUserControls {
+		width: 100%;
+	}
+
+	footer {
+		font-size: 0.6em;
+	}
+	
+	.navbar-light .navbar-toggler-icon {
+		background-image: url("../images/menu-icon.png");
+	}
+	
+	#pedido_intro_cif_cuentaCliente {
+		width: 50%;
+	}						
+}
+
+/************************************************************************
+*			Configuración para tablets portrait (retrato)						*
+************************************************************************/
+@media (min-width:481px) and (max-width: 767px) {
+	body {
+		width: 99%;
+		/*max-width: 660px;*/
+		margin: 0 auto;
+		font-size: 100%;
+	}
+
+	header {		
+		background-image: linear-gradient(
+	   30deg, #af6432 0%, #af6432 30%, white 50%, #af6432 80%, #af6432 100%);		
+	}	
+
+	.hidden {
+		display:none;
+	}
+
+	#createUser .datosUsuario {
+		border: white;
+		width: 90%;
+		margin-left: auto;
+		margin-right: auto;
+		margin-bottom: 5px;
+	}
+
+	#contenedor {
+		font-size: 1.1em;
+	}
+
+	.eliminaFoto {			
+		width: 98%;		
+	}
+
+	.eliminaFoto input[type="submit"] {
+		margin-right: 10px;
+	}	
+
+	form {
+		margin-top: 0px;
+		margin-bottom: 0px;
+	}
+
+	form label {
+		display: inline-block;
+		padding-left: 3px;	
+		text-align: left;
+		margin-right: 3px;
+		margin-left: 0px;
+		margin-top: 10px;
+		margin-bottom: 10px;		
+	}
+
+	.foto {
+		width: 50px;
+		height: 60px;
+		margin-top: 10px;
+	}
+
+	#fotoUsuario {
+		float: right;
+	}
+
+	#gifmovil {
+		width: 30px;
+		height: 30px;
+	}
+
+	/*h2 {
+		font-size: 120%;
+	}
+
+	input[type="text"], input[type="password"], input[type="button"], input[type="reset"], input[type="submit"]{
+		font-size: 75%;
+	}*/
+
+	input[type="file"], input[type="submit"] {
+		font-size: 80%;
+	}
+		
+	input[type="file"].subir {
+		color: white;
+	}
+
+	nav li {
+		font-size: 85%;
+	}
+
+	section {
+		display: block;
+		min-height: 400px;
+		max-height: auto;
+		font-size: 85%;
+	}
+
+	#showUser {
+		width: 100%;
+	}
+
+	.showUserEdit {
+		margin-bottom: 5px;
+		border: none;
+	}
+
+	#listado th p {
+		color: rgba(255,255,255,1);
+		font-weight: bold;
+	}
+	
+	label {
+		font-size: 85%;
+	}
+
+	select {
+		font-size: 85%;
+	}
+	
+	.formSeleccionaConsulta {
+		width: 70%;
+	}
+
+	#marcas td p {
+		width: 100%;
+	}
+
+	img.fotoUsuarioPeq {
+		width: 20px;
+	}
+	
+	.navbar-light .navbar-toggler-icon {
+		background-image: url("../images/menu-icon.png");
+	}		
+	
+	.menuRecambios li a {
+		width: 50%;
+	}
+	
+	.clienteForm {
+		/*width: 100%;*/
+	}
+	
+	#createUser fieldset.showUserControls {
+		width: 96%;	
+		float: none;
+		margin: 0 auto;	
+	}
+	
+	#createUser label {
+		width: 150px;
+		margin-right: 3px;
+		margin-left: 0px;
+	}
+	
+	/*.col-sm-8 {
+		width: 100%;
+	}*/
+	
+	.hiddenHorizontal {
+		display: none;
+	}
+	
+	.table {
+		width: 96%;
+	}
+	
+	.table-showUser th {
+		width: 21%;		
+	}
+	
+	.showUserControls {
+		width: 96%;		
+	}
+	
+	.clienteForm select {
+		width: initial;
+	}
+	
+	.tdActions {
+		width: 14%;
+	}
+	
+	.tdActions a {
+		vertical-align: -moz-middle-with-baseline;
+	}		
+	
+	.clienteForm textarea, .pedidoCallForm textarea {
+		width: 75%;		
+	}		
+	
+	.logoMarcaNew {
+		width: 15%;		
+	}
+	
+	#createUser label.hiddenHorizontal {
+		display: none;
+	}				
+	
+	.logoMarcaOrderShow {
+		width: 15%;		
+	}
+	
+	form fieldset {		
+		padding: 0.4em;		
+	}
+	
+	.showPhotoProfile {
+		width: 96%;		
+	}
+	
+	.foto {
+		width: 10%;
+		height: 11%;		
+	}
+	
+	#createUser fieldset {
+		width: 96%;		
+	}
+	
+	#cliente_razonSocial {
+		width: 60%;
+	}
+	
+	#pedido_call_center_nombreCliente, #pedido_call_center_comentario {
+		width: 60%;
+	}
+	
+	.hidde {
+		display: none;
+	}
+	
+	
+	#pedido_intro_cif_cuentaCliente {
+		width: 50%;
+	}
+	
+	.pedidoCallForm input:nth-child(1) {
+		width: 75%;
+	}
+	
+	.ajaxMenu {
+		width: 30%;
+	}		
+}
+
+/***************************************************************
+*		Configuración para tablets landscape (horizontal)	   *
+***************************************************************/
+@media (min-width: 768px) and (max-width: 1050px) {
+	form fieldset.formSeleccionaConsulta {
+		width: 71.9%;
+	}
+
+	input[type="file"] {
+		font-size: 90%;
+	}
+
+	
+	#marcas td p {
+		width: 100%;
+	}
+
+	img.fotoUsuarioPeq {
+		width: 20px;
+	}
+	
+	.navbar-light .navbar-toggler-icon {
+		background-image: url("../images/menu-icon.png");
+	}
+	
+	.foto {
+		width: 15%;
+		height: 8em;
+	}
+	
+	.showUserControls form {
+		width: 12%;
+	}
+	
+	.showUserControls a.btn {
+		margin: 0; 
+		padding: 0.4em;
+		/*display: block;*/
+		width: 17%;
+		/*float: left;*/
+		margin-right: 0.5em;
+	}
+	
+	.showUserControls button.delete {
+		width: 100%;	
+	}
+	
+	#createUser fieldset.showUserControls {
+		width: 92%;
+		float: none;
+		margin: 0 auto;
+	}
+	
+	.showUserControls button {
+		width: 15%;
+		margin: 0;
+	}
+	
+	.tdActions {
+		width: 13%;
+	}
+	
+	.tdActions img {
+		width: 25%;
+		vertical-align: -moz-middle-with-baseline;
+	}
+	
+	.hiddenHorizontal {
+		display: none;
+	}
+	
+	.showUserControls {
+		width: 92%;
+	}
+	
+	/*.col-sm-8, .col-sm-4 {
+		width: 100%;
+	}*/
+	
+	.table {
+		width: 92%;
+	}		
+	
+	.menuRecambios li a {
+		width: 40%;
+	}
+	
+	.ajaxMenu {
+		width: 40%;
+	}
+	
+	.logoMarcaOrderShow {
+		width: 10%
+	}
+	
+	.table-showUser th {
+		width: 26%;	
+	}	
+	
+	/*.col-sm-35, .col-sm-3, .col-sm-25 {
+		width: 90%;
+	}*/
+	
+	.clienteForm textarea, .pedidoCallForm textarea {
+		width: 74%;
+	}
+	
+	#gifmovil {
+		width: 4em;
+	}
+	
+	fieldset {
+		width: 80%;
+	}
+	
+	#datos {
+		margin-top: 190px;
+	}
+	
+	/*.col-sm-15 {
+		width: 15%;
+	}
+	
+	.col-sm-25 {
+		width: 45%;
+	}*/
+	
+	#createUser label.hiddenHorizontal {
+		display: none;
+	}
+	
+	/*.col-sm-05 {
+		width: 10%;
+	}*/	
+	
+	#logoMarca {
+		width: 100%;
+		margin-top: 1em;
+	}
+	
+	.logoMarcaNew {
+		width: 10%;
+	}
+	
+	/*#cliente_razonSocial, #cliente_nombreVia {
+		width: 50%;
+	}*/
+	
+	/*.col-sm-6, .col-sm-35 {
+		width: 100%;
+	}*/	
+	
+	/*.col-sm-2 {
+		width: 50%;
+	}*/
+	
+	#cliente_codigoPostal {
+		width: 15%;
+	}
+	
+	.showUserControls form .delete {
+		margin-left: 0.3em;
+	}
+	
+	.clienteForm select {
+		width: 20%;
+	}
+	
+	.index a.btn {
+		display: inline-block;
+		float: none;	
+	}
+	
+	.createUser label {
+		width: 150px;
+	}
+	
+	.showPhotoProfile {
+		width: 92%;		
+	}
+	
+	#cliente_razonSocial {
+		width: 60%;
+	}
+	
+	.marca label {
+		width: 20%;
+	}		
+	
+	.estado label {
+		width: 20%;
+	}
+	
+	#pedido_call_center_localidad {
+		width: 60%;
+	}		
+}
+
+/***************************************************************
+*			 Configuración para KINDLE FIRE								*
+***************************************************************/
+@media (min-width: 1051px) and (max-width: 1280px) {
+	form fieldset.formSeleccionaConsulta {
+		width: 65%;
+	}
+	
+	.logoMarcaNew {
+		width: 10%;
+	}
+	
+	#pedido_call_center_localidad {
+		width: 60%;
+	}
+		
+}
+
+/***************************************************************
+*			 Configuración para portátiles							*
+***************************************************************/
+@media (min-width: 1281px) and (max-width: 1399px) {		
+	.logoMarcaNew {
+		width: 10%;
+	}
+	
+	#pedido_call_center_localidad {
+		width: 60%;
+	}
+}
+
+/***************************************************************
+*			 Configuración para escritorio							*
+***************************************************************/
+@media (min-width: 1400px) {		
+	.marca label {
+		width: 20%;
+	}		
+	
+	.estado label {
+		width: 20%;
+	}
+	
+	input[type="email"], #pedido_call_center_localidad {
+		width: 40%;
+	}
+}
+

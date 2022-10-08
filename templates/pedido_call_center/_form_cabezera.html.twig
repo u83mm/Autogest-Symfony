@@ -1,0 +1,20 @@
+{{ form_start(form, {'attr': {'id': 'createUser'}}) }}
+	<div class="text-center" style="color:red">
+		{% if errors is defined %}
+			{% for error in errors %}
+				 <p class="validaForm">{{ error.message }}</p>
+			{% endfor %}
+		{% endif %}		
+	</div>
+	<fieldset class="createUser">
+		<legend>Introdución de datos</legend>		
+		<div class="clienteForm text-center col-12 col-sm-6">
+			{{ form_label(form.cuentaCliente, 'C.I.F') }}
+			{{ form_widget(form.cuentaCliente, { 'attr': { 'size': '10', 'autofocus': 'true', 'maxlength': 9 }}) }}			
+		</div>				   	
+    </fieldset>
+    <fieldset class="showUserControls">
+    	<button class="btn button">{{ button_label|default('Aceptar') }}</button>
+    	<a class="btn button" href="{{ path('pedido_call_center_index') }}">Ir a Listado</a>
+    </fieldset>
+{{ form_end(form) }}
