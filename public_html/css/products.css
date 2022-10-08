@@ -1,0 +1,776 @@
+@font-face{
+	font-family: ubuntuRegular;
+	src: url('../ttf/Ubuntu-R.ttf') format('truetype');
+	}
+
+	@font-face{
+	font-family: ubuntuBold;
+	src: url('../ttf/Ubuntu-B.ttf') format('truetype');
+	}
+
+	@font-face{
+	font-family: ubuntuBoldItalic;
+	src: url('../ttf/Ubuntu-BI.ttf') format('truetype');
+	}
+
+	@font-face{
+	font-family: ubuntuItalic;
+	src: url('../ttf/Ubuntu-I.ttf') format('truetype');
+	}
+
+	/*Animación barra errores*/ 
+	@keyframes fadeOut {
+		from {
+			opacity: 1;
+		}
+		to {
+			opacity: 0;
+		}
+	}
+
+	* {
+		margin: 0px;
+		padding: 0px;
+		outline: none;
+		text-decoration: none;
+	}
+
+	#contenedor {
+		min-height: 830px;
+		background: rgba(200,145,90,0.8);
+		margin-top: 0px;
+		padding-top: 10px;
+	}
+
+	#pedidosForm label.error {
+		text-align: left;
+		color: white;
+		width: 200px;
+		display: inline;
+		margin-left: 5px;
+	}
+
+	body {
+		font-family: ubuntuRegular;
+	}
+
+	#cantidad {
+		//width: 69px;
+	}
+
+	#referencia {
+		width: 95px;
+	}
+
+	.show_label {
+		color: blue;
+		text-align: left;
+		width: 150px;
+		padding-left: 5px;
+	}
+
+	.show_label_proveedor {
+		color: blue;
+		text-align: left;
+		width: 250px;
+		padding-left: 5px;
+	}
+
+	.success p{
+		animation-name: fadeOut;
+		animation-duration: 3s;
+		animation-delay: 4s;
+		animation-fill-mode: forwards;
+		font-family: ubuntuItalic;
+		text-align: center; 
+		background: green;
+		color: white;
+		width: 70%;	
+		margin-top: 10px;
+		margin-right: auto;
+		margin-left: auto;
+		padding: 10px;
+	}
+
+	.error p {
+		animation-name: fadeOut;
+		animation-duration: 3s;
+		animation-delay: 4s;
+		animation-fill-mode: forwards;
+		font-family: ubuntuItalic;
+		text-align: center; 
+		background: red;
+		color: white;
+		width: 70%;	
+		margin-top: 10px;
+		margin-right: auto;
+		margin-left: auto;
+		padding: 10px;
+	}
+
+	form {
+		margin-bottom: 15px;
+	}
+
+	input[type="checkbox"] {
+		margin-left: 40px;
+	}
+
+	input:focus {
+		background-color: #e8d854;
+		border-radius: 5px;
+	} 
+
+	input[type="text"], [type="password"], [type="date"], [type="email"] {
+		margin-bottom: 10px;
+		font-family: ubuntuRegular;
+		font-size: 16px;
+		padding: 2px;
+		border-radius: 5px;
+	}
+
+	input[type="submit"], [type="button"], [type="reset"], .button {
+		font-family: ubuntuRegular;
+		font-size: 16px;
+		outline: none;
+		text-decoration: none;
+		border-radius: 5px;
+		border: 1px solid white;
+		margin: 5px;
+		padding: 3px;
+		//background-color: white;
+		background: rgb(175,100,50);
+		background: linear-gradient(rgb(200,147,97), rgb(175,100,50));
+		color: white;
+		transition: transform .5s;
+	}
+
+	input[type="submit"]:hover, [type="button"]:hover, [type="reset"]:hover, .button:hover {
+		border: 1px solid rgba(175, 100, 50, 1);
+		box-shadow: 0 0 4px white;
+		transform: scale(1.1);
+	}
+
+	footer {
+		clear: both;
+		padding: 10px;
+		background: rgba(175,100,50,1);
+		margin-top: 440px;
+	}
+
+	.footer {
+		text-align: center;
+	}
+	
+	.margen {
+		margin-left: 4px;
+	}
+
+	#messages {
+		margin-bottom: 15px;
+	}
+
+	label {
+		display: inline-block;
+		width: 150px;
+		text-align: right;
+	}
+
+	label.label1 {
+		width: 100px;
+	}
+
+	label.label1bis {
+		margin-left: 13px;
+		width: 100px;
+	}
+
+	label.label2 {
+		width: 70px;
+	}
+	
+	label.label3 {
+		margin-left: 13px;
+		width: 70px;
+	}
+
+	h1 {
+		font-size: 2em;
+		text-align: center;
+		margin-top: 15px;
+		margin-bottom: 20px;
+	}
+
+	h2 {
+		font-size: 1.5em;
+	}
+
+	h3 {
+		font-size: 1.17em;
+		text-align: center;
+		font-style: oblique;
+	}
+
+	h4 {
+		font-size: 1em;
+	}
+
+	h5 {
+		font-size: .83em;
+	}
+
+	h6 {
+		font-size: .67em;
+	}
+
+	hr {
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}
+
+	fieldset {
+		margin-top: 20px;
+		margin-left: auto;
+		margin-right: auto;
+		width: 50%;
+		text-align: center;
+		border: none;
+	}
+
+	.pdf {
+		transition: transform .5s;
+	}
+
+	.pdf:hover {
+		transform: scale(1.2);	
+		box-shadow: 3px 3px 6px 1px rgba(0,0,0,0.6);
+		border-radius: 0 25px 0 0;
+	}
+
+	#precio {
+		width: 68px;
+	}
+
+	select {
+		font-family: ubuntuRegular;
+		font-size: 16px;
+		border-radius: 5px;
+		padding: 2px;
+		background-color: #f2f1f0;
+		margin-bottom: 10px;
+	}
+
+	.error_validation {
+		color: white;
+		font-style: oblique;
+		margin-left: 5px;
+		width: 220px;
+		text-align: left;
+		margin-bottom: 10px;
+	}
+
+	.error_narrow {
+		color: white;
+		font-style: oblique;
+		text-align: left;
+		margin-left: 5px;
+	}
+
+	span.error_narrow {
+		margin-left: 5px;
+	}
+
+	#stock {
+		width: 70px;
+		margin-left: 1100px;
+		margin-bottom: 5px;
+		padding: 5px;
+		text-align: center;
+		border-radius: 5px;
+	}
+	
+	/*formatea la tabla y el div de inputs.php y outputs.php*/
+	.registros {
+		overflow: scroll;
+		border: 1px solid black;
+		background-color: white;
+		margin: 0px 40px;
+		height: 300px;
+	}
+
+	.registros th {
+		padding: 1px 2px;
+	}
+
+	.registros td {
+		height: 20px;
+	}
+
+	.registros tr:nth-child(even) {
+		background-color: #dcd9d7;
+	}
+
+	.registros .marca {			
+		width: 29px;	
+	}
+
+	.registros .ref {				
+		width: 199px;	
+	}
+
+	.registros .descr {				
+		width: 299px;	
+	}
+
+	.registros .cantidad {				
+		width: 49px;	
+	}
+
+	.registros .dto {				
+		width: 44px;	
+	}
+
+	.registros .pvp {				
+		width: 89px;	
+	}
+
+	.registros .p_compra {				
+		width: 89px;	
+	}
+
+	.registros .total {				
+		width: 89px;	
+	}
+
+	.registros input[type="text"] {
+		border-radius: 0px;
+		border: none;
+		margin: 0px;
+		padding: 0px;
+		height: 26px;	
+		text-align: center;
+	}
+
+	.registros_entradas th:first-child, td:first-child {
+		width: 30px;
+		border: 1px solid black;
+	}
+
+	.registros_entradas th:nth-child(2), td:nth-child(2) {
+		width: 200px;
+		border: 1px solid black;
+	}
+
+	.registros_entradas th:nth-child(3), td:nth-child(3) {
+		width: 300px;
+		border: 1px solid black;
+	}
+	
+	.registros_entradas th:nth-child(4), td:nth-child(4) {
+		width: 50px;
+		border: 1px solid black;
+	}
+
+	.registros_entradas th:nth-child(5), td:nth-child(5) {
+		width: 45px;
+		border: 1px solid black;
+	}
+
+	.registros_entradas th:nth-child(6), td:nth-child(6) {
+		width: 90px;
+		border: 1px solid black;
+	}
+
+	.registros_entradas th:nth-child(7), td:nth-child(7) {
+		width: 90px;
+		border: 1px solid black;
+	}
+
+	.registros_entradas th:nth-child(8), td:nth-child(8) {
+		width: 90px;
+		border: 1px solid black;
+	}
+
+	.table_head {		
+		background: gray;
+		width: 94%;
+		text-align: center;
+		margin: 0px 40px;
+		padding-left: 1px;
+	}
+
+	.table_head th {
+		padding: 1px 2px;
+		border: none;
+	}
+
+	/******** MODAL **************/
+	.modal {
+		position: fixed;
+		z-index: 1;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		overflow: auto;	
+		background-color: rgba(153, 153, 153, 0.7);
+		border-radius: 5px;	
+	}
+
+	.modal-content {
+		background-color: white;
+		margin: 15% auto;
+		padding: 20px;
+		width: 40%;
+		border: 1px solid black;
+		border-radius: 10px;
+		box-shadow: 5px 10px 8px 10px rgba(73, 18, 18, 1);
+		position: relative;
+		animation-name: animatetop;
+  		animation-duration: 0.4s
+	}
+
+	.close {
+		color: #aaa;
+		float: right;
+	 	font-size: 28px;
+	 	font-weight: bold;
+	}
+
+	.close:hover, .close:focus {
+	  color: black;
+	  text-decoration: none;
+	  cursor: pointer;
+	}
+
+	@keyframes animatetop {
+	  from {top: -300px; opacity: 0}
+	  to {top: 0; opacity: 1}
+	}
+	/******** Fin del modal ************/
+
+	.movil {
+		display: none;
+	}
+
+	.selectCallcenter {
+		margin-bottom: 10px;
+	}
+
+	
+	#description {
+		width: 20%;
+	}
+
+/************************************************************************
+*					Configuración para móviles											*
+************************************************************************/
+@media (max-width:480px) {
+	#contenedor {
+		font-size: .87em;
+		height: 560px;
+		min-height: 0px;
+		background: rgba(200,145,90,0.8);
+		padding-top: 20px;
+		width: 100%;
+	}
+
+	h1 {
+		font-size: 1.3em;
+	}
+
+	input[type="text"], input[type="button"], input[type="submit"], select, button[type="button"], button[type="submit"], .button {
+		font-size: .9em;
+	}
+
+	#description {
+		width: 60%;
+	}
+
+	fieldset {
+		width: 80%;
+		text-align: center;
+		margin-top: 10px;
+	}
+
+	.error_validation {
+		margin-left: 28%;
+	}
+
+	.error_narrow {
+		//margin-right: 45px;
+		width: 145px;
+	}
+
+	footer {
+		margin-top: 0px;
+	}
+
+	fieldset {
+		margin-top: 35px;
+	}
+
+	#contenido {
+		width: 100%;
+		height: 480px;
+		//background: rgba(200,145,90,0.6);
+	}
+}
+
+
+/************************************************************************
+*			iphone 6/7/8 horizontal														*
+************************************************************************/
+@media (min-width:481px) and (max-width: 667px) {
+	
+
+	/*
+
+	input[type="checkbox"] {
+		vertical-align: middle;
+	}
+
+	
+	input[type="submit"], .button {
+		font-size: 1em;
+	}
+
+	form .label1 {
+		margin-left: 0px;
+		width: 64px;
+	}
+
+	label.label3 {
+		width: 45px;
+	}
+
+	.icon_search {			
+		width: 15px;
+		height: 11px;			
+	}
+
+	.error_narrow {
+		width: 28%;
+	}
+
+	.error_validation {
+		margin-left: 0%;
+		text-align: left;
+		width: 19%;
+	}*/
+	
+}
+
+/************************************************************************
+*			Configuración para tablets portrait (retrato)						*
+************************************************************************/
+@media (min-width:481px) and (max-width: 768px) {
+	#contenedor {
+		font-size: .8em;
+		background: rgba(200,145,90,0.8);
+		padding-top: 20px;
+	}
+
+	h1 {
+		font-size: 1.4em;
+	}
+
+	input[type="text"], input[type="button"], input[type="submit"], select, button[type="button"], button[type="submit"], .button {
+		font-size: .8em;
+	}
+
+	#description {
+		width: 33.2%;
+	}
+
+	.error_validation {
+		//margin-left: 5px;
+		margin-right: 95px;
+	}
+
+	.label1 {
+		width: 50px;
+	}
+
+	label.error_narrow {
+		margin-right: 0px;
+	}
+
+	fieldset {
+		text-align: center;
+	}
+
+	
+}
+
+/***************************************************************
+*			 Configuración para tablets landscape (horizontal)		*
+***************************************************************/
+/*@media (min-width: 769px) and (max-width: 1050px) {
+	#contenedor {
+		font-size: .8em;
+	}
+
+	input[type="text"], input[type="email"], input[type="button"], input[type="submit"], select, button[type="button"], button[type="submit"], .button, [type="tel"] {
+		font-size: .8em;
+	}
+}*/
+
+/***************************************************************
+*			 Configuración para Iphone X/XS								*
+***************************************************************/
+/*@media (min-width: 769px) and (max-width: 812px) {
+	#contenedor {
+		font-size: .6em;
+	}
+
+	input[type="text"], input[type="email"], input[type="button"], input[type="submit"], select, button[type="button"], button[type="submit"], .button, [type="tel"] {
+		font-size: .6em;
+	}
+
+	.icon_search {
+		width: 15px;
+		height: 11px;
+	}
+}*/
+
+/***************************************************************
+*			 Configuración para KINDLE FIRE								*
+***************************************************************/
+/*@media (min-width: 769px) and (max-width: 800px) {
+	#contenedor {
+		font-size: .67em;
+	}
+
+	input[type="text"], input[type="email"], input[type="button"], input[type="submit"], select, button[type="button"], button[type="submit"], .button, [type="tel"] {
+		font-size: .67em;
+	}
+
+	.icon_search {
+		width: 15px;
+		height: 11px;
+	}
+}*/
+
+
+/***************************************************************
+*			 Configuración S9 horizontal									*
+***************************************************************/
+/*@media (min-width:668px) and (max-width: 740px) {
+	#contenedor {
+		font-size: .7em;
+	}
+
+	input[type="text"], input[type="email"], input[type="button"], input[type="submit"], select, button[type="button"], button[type="submit"], .button, [type="tel"] {
+		font-size: .7em;
+	}
+}*/
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 480px) {
+	
+
+	/*.label1 {
+		width: 15%;
+	}	
+	
+	select {
+		margin-bottom: 8px;
+	}
+
+	.table_head {
+		background: linear-gradient(rgb(200,147,97), rgb(175,100,50));
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.registros {
+		width: 94%;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.totalAlbaran {
+		width: 94%;
+		text-align: right;
+	}
+
+	.registros input[type="text"] {
+		height: 17px;
+		font-size: .5em;
+		vertical-align: middle;
+	}
+
+	.registros td {
+		height: 8px;
+		
+	}
+
+	.registros .marca {			
+		width: 15px;
+	}
+
+	.registros .ref {				
+		width: 73px;	
+	}
+
+	.registros .descr {				
+		width: 84px;	
+	}
+
+	.registros .cantidad {				
+		width: 34px;	
+	}
+
+	.registros .dto {				
+		width: 17px;	
+	}
+
+	.registros .pvp {				
+		width: 34px;	
+	}
+
+	.registros .p_compra {				
+		width: 35px;	
+	}
+
+	.registros .total {				
+		width: 35px;	
+	}
+
+	.modal-content {
+		width: 60%;
+		margin-top: 45%;
+	}
+
+	.modal-content button {
+		font-size: 60%;
+		margin-top: 10px;
+	}
+
+	footer {
+		margin-top: 250px;
+	}*/	
+} 
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen (min-width:668px) and (max-width: 768px) {
+	
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+
+} 
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+	
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {...} 
+
+
+
+ 

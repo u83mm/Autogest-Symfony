@@ -1,0 +1,29 @@
+{% extends 'main_menu/base.html.twig' %}
+
+{% block title %}Marca - Show{% endblock %}
+
+{% block body %}
+    <h2>Marca</h2>
+
+    <table class="table table-showUser">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ marca.id }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ marca.nombre|upper }}</td>
+            </tr>
+            <tr>
+                <th>Logo</th>
+                <td><image class="logoMarcaShow" src={{ asset('uploads/logo_marca/') ~ marca.logo }} alt="logo marca"></td>
+            </tr>
+        </tbody>
+    </table>
+	<fieldset class="showUserControls"> 
+		<a class="btn button" href="{{ path('marca_index') }}">Ir a listado</a>
+		<a class="btn button" href="{{ path('marca_edit', {'id': marca.id}) }}">Editar</a>
+		{{ include('marca/_delete_form.html.twig') }}
+    </fieldset>   
+{% endblock %}

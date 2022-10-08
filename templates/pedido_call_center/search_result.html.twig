@@ -1,0 +1,67 @@
+{% extends 'main_menu/base.html.twig' %}
+
+{% block title %}Pedidos - Listado{% endblock %}
+
+{% block body %}
+    <h2>Listado de Pedidos</h2>
+	<div id="datos">				
+		<div id="gif">
+							
+		</div>
+	</div>
+    <table id="listado" class="table table-hover">
+        <thead>
+            <tr>
+                <th class="hidde">Id</th>
+                <th>Fecha</th>
+                <th class="hidde">Nº Cliente</th>
+                <th>Nombre Cliente</th>
+                <th class="hidde">Pers. Contacto</th>
+                <th class="hidde">Tfno.</th>
+                <th>Estado</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for pedido in pedidos %}
+            <tr>
+                <td class="hidde">{{ pedido.id }}</td> 
+                <td>{{ pedido.fecha ? pedido.fecha|date('d-m-y') : '' }}</td>                                   
+                <td class="hidde"><a href="{{ path('pedido_call_center_show', {'id': pedido.id}) }}">{{ pedido.cuentaCliente }}</a></td>
+                <td><a href="{{ path('pedido_call_center_show', {'id': pedido.id}) }}">{{ pedido.nombreCliente }}</a></td>
+                <td class="hidde">{{ pedido.contacto|upper }}</td>
+                <td class="hidde"{{ pedido.telefono }}</td>
+                {% for estado in estados %}
+	            	{% if pedido.estado == estado.id %}
+	            		<td>{{ estado.estado }}</td>
+	            	{% endif %}
+	            {% endfor %}                                           
+                <td class="tdActions">
+                    <a class="button" href="{{ path('pedido_call_center_show', {'id': pedido.id}) }}">show</a>                                   
+                    <a class="hidde" href="{{ path('pedido_call_center_edit', {'id': pedido.id}) }}"><img class="fotoUsuarioPeq" src="{{ asset('images/pen_write_edit.png') }}"></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <fieldset class="buscar">
+    	<a class="btn button" href="{{ path('pedido_search') }}">Buscar Pedido</a>
+    </fieldset>
+    <p class="center">Mostrando del <strong>{{ desde }}</strong> al <strong>{{ next }}</strong> de <strong>{{ pedidos|length }}</strong> Pedidos</p>
+    <fieldset class="showUserControls index">
+    {% if previous >= 1 %}
+    	<a href="{{ path('pedido_search_results', {offset: 0, campo: campo, valor: valor}) }}" class="btn button">Primero</a>
+    {% endif %} 
+	{% if previous >= 0 %}
+		<a href="{{ path('pedido_search_results', {offset: previous, campo: campo, valor: valor}) }}" class="btn button">Anterior</a>
+	{% endif %}		
+	{% if next < pedidos|length %}
+		<a href="{{ path('pedido_search_results', {offset: next, campo: campo, valor: valor}) }}" class="btn button">Siguiente</a>
+		<a href="{{ path('pedido_search_results', {offset: last, campo: campo, valor: valor}) }}" class="btn button">Último</a>
+	{% endif %}
+	</fieldset>   
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'main_menu/base.html.twig' %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block body %}
+    <h2>Listado de usuarios</h2>
+	<div id="datos">				
+		<div id="gif">
+							
+		</div>
+	</div>
+    <table id="listado" class="table">
+        <thead>
+            <tr>
+                <th class="hidde hiddenHorizontal">Id</th>
+                <th class="hidde">Username</th>
+                <th class="hidde hiddenHorizontal">Roles</th>                
+                <th>Nombre</th>
+                <th>Apellidos</th>               
+                <th class="hidde">Email</th>
+                <th>Foto</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td class="hidde hiddenHorizontal">{{ user.id }}</td>
+                <td class="hidde">{{ user.username }}</td>
+                <td class="hidde hiddenHorizontal">{{ user.roles ? user.roles|json_encode : '' }}</td>               
+                <td><a href="{{ path('user_show', {'id': user.id}) }}">{{ user.nombre }}</a></td>
+                <td><a href="{{ path('user_show', {'id': user.id}) }}">{{ user.apellido1 }} {{ user.apellido2 }}</a></td>             
+                <td class="hidde"><a href="mailto:{{ user.email }}">{{ user.email }}</a></td>
+                <td class="imageProfile"><a href="{{ path('user_show', {'id': user.id}) }}"><img class="fotoUsuarioPeq" src="{{ asset('uploads/image_profile/' ~ user.foto) }}" alt="imagen de perfil"></a></td>
+                <td>                   
+                    <a href="{{ path('user_edit', {'id': user.id}) }}"><img class="fotoUsuarioPeq" src="{{ asset('images/pen_write_edit.png') }}"></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <fieldset class="buscar">
+    	<a class="btn button" href="{{ path('user_search') }}">Buscar usuario</a>
+    </fieldset>
+    <p class="center">Mostrando del <strong>{{ desde }}</strong> al <strong>{{ next }}</strong> de <strong>{{ users|length }}</strong> usuarios</p>
+    <fieldset class="showUserControls">
+    {% if previous >= 1 %}
+    	<a href="{{ path('user_search_results', {offset: 0, campo: campo, valor: valor}) }}" class="btn button">Primero</a>
+    {% endif %} 
+	{% if previous >= 0 %}
+		<a href="{{ path('user_search_results', {offset: previous, campo: campo, valor: valor}) }}" class="btn button">Anterior</a>
+	{% endif %}		
+	{% if next - users|length %}
+		<a href="{{ path('user_search_results', {offset: next, campo: campo, valor: valor}) }}" class="btn button">Siguiente</a>
+		<a href="{{ path('user_search_results', {offset: users|length -1, campo: campo, valor: valor}) }}" class="btn button">Último</a>
+	{% endif %}
+	</fieldset>
+    <!--<a href="{{ path('user_new') }}">Create new</a>-->
+{% endblock %}

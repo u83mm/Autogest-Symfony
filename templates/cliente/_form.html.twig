@@ -1,0 +1,92 @@
+{{ form_start(form, {'attr': {'id': 'createUser', 'enctype': 'multipart/form-data'}}) }}
+	<div class="text-center" style="color:red">
+		{% if errors is defined %}
+			{% for error in errors %}
+				 <p class="validaForm">{{ error.message }}</p>
+			{% endfor %}
+		{% endif %}		
+	</div>
+	<fieldset class="createUser">
+		<legend>Datos de Cliente</legend>		
+		<div class="row row-cols-2">
+			<div class="clienteForm col-12 col-sm-5 col-lg-4">
+				{{ form_label(form.id, 'Cuenta:') }}
+				{{ form_widget(form.id, { 'attr': { 'size': '6', 'readonly': 'true' }}) }}			
+			</div>
+			<div class="clienteForm col-12 col-sm-7 col-lg-6">
+				{{ form_label(form.fechaAlta, 'Fecha:') }}
+				{{ form_widget(form.fechaAlta, { 'attr': { 'size': '10', 'readonly': 'true'}}) }}
+			</div>
+			<div class="clienteForm col-12 col-xxl-4">
+				{{ form_label(form.cif, 'C.I.F ó D.N.I:') }}
+				{{ form_widget(form.cif, { 'attr': { 'maxlength': '9', 'autofocus': 'true', 'placeholder': 'ej. B96587435' }}) }}
+			</div>	
+			<div class="clienteForm col-12 col-xxl-8">
+				{{ form_label(form.razonSocial, 'Razón Social:') }}
+				{{ form_widget(form.razonSocial, { 'attr': { 'size': '50', 'placeholder': 'Razón Social, S.A' }}) }}
+			</div>
+		</div>
+		<div class="row row-cols-3">		
+			<div class="clienteForm col-12 col-sm-35 col-lg-12 col-xl-6 col-xxl-4">
+				{{ form_label(form.nombre, 'Nombre:') }}
+				{{ form_widget(form.nombre, { 'attr': { 'placeholder': 'Introduce un nombre' }}) }}
+			</div>
+			<div class="clienteForm col-12 col-sm-35 col-lg-12 col-xl-6 col-xxl-4">
+				{{ form_label(form.apellido1, '1º Apellido:') }}
+				{{ form_widget(form.apellido1, { 'attr': { 'placeholder': 'Primer apellido' }}) }}
+			</div>
+			<div class="clienteForm col-12 col-sm-35 col-lg-12 col-xl-6 col-xxl-4">
+				{{ form_label(form.apellido2, '2º Apellido:') }}
+				{{ form_widget(form.apellido2, { 'attr': { 'placeholder': 'Segundo apellido' }}) }}
+			</div>
+		</div>
+		<div class="row row-cols-2">		
+			<div class="clienteForm col-12 col-sm-35 col-lg-12 col-xl-6 col-xxl-4">
+				{{ form_label(form.tfno, 'Teléfono:') }}
+				{{ form_widget(form.tfno, { 'attr': { 'placeholder': 'ej. 917545388', 'maxlength': 9 }}) }}
+			</div>
+			<div class="clienteForm col-12 col-xxl-8">
+				{{ form_label(form.email, 'Email:') }}
+				{{ form_widget(form.email, { 'attr': { 'placeholder': 'ejemplo@email.com' }}) }}
+			</div>
+			<div class="clienteForm col-12 col-sm-8 col-lg-12 col-xl-5 col-xxl-4">
+				{{ form_label(form.tipoVia, 'Tipo de vía:') }}
+				{{ form_widget(abrev.abrev) }}
+				{{ form_widget(form.tipoVia, { 'attr': { 'size': '3', 'placeholder': 'CL, PZ, AV', 'readonly': 'true' }}) }}
+			</div>
+			<div class="clienteForm col-12 col-sm-35 col-md-12 col-lg-8">
+				{{ form_label(form.nombreVia, 'Nombre de vía:') }}
+				{{ form_widget(form.nombreVia, { 'attr': { 'placeholder': 'ej. Gran Vía' }}) }}
+			</div>
+		</div>
+		<div class="row row-cols-3">			
+			<div class="clienteForm col-6 col-sm-5 col-lg-4">
+				{{ form_label(form.numVia, 'Núm. de vía:') }}
+				{{ form_widget(form.numVia, { 'attr': { 'size': '3', 'placeholder': 'ej. 60' }}) }}
+			</div>
+			<div class="clienteForm col-6 col-sm-5 col-lg-4 col-xxl-3">
+				{{ form_label(form.puerta, 'Puerta:') }}
+				{{ form_widget(form.puerta, { 'attr': { 'size': '3', 'placeholder': 'ej. 12' }}) }}
+			</div>
+			<div class="clienteForm col-12 col-xl-6 col-xxl-4">
+				{{ form_label(form.codigoPostal, 'Código Postal:') }}
+				{{ form_widget(form.codigoPostal, { 'attr': { 'size': '15', 'placeholder': 'ej. 46080' }}) }}
+			</div>	
+		</div>
+		<div class="row row-cols-2">		
+			<div class="clienteForm col-12 col-sm-35 col-lg-6 col-xxl-4">
+				{{ form_label(form.localidad, 'Localidad:') }}
+				{{ form_widget(form.localidad, { 'attr': { 'placeholder': 'ej. Alcobendas' }}) }}
+			</div>
+			<div class="clienteForm col-12 col-sm-35 col-lg-6 col-xxl-4">
+				{{ form_label(form.provincia, 'Provincia:') }}
+				{{ form_widget(form.provincia, { 'attr': { 'placeholder': 'ej. Madrid' }}) }}
+			</div>
+		</div>							
+	</fieldset>
+    {{ form_widget(form) }}
+	<fieldset class="showUserControls">
+		<button class="btn button">{{ button_label|default('Crear') }}</button>
+		<a class="btn button" href="{{ path('cliente_index') }}">Ir a listado</a>
+	</fieldset>    
+{{ form_end(form) }}

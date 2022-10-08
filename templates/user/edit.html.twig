@@ -1,0 +1,17 @@
+{% extends 'main_menu/base.html.twig' %}
+
+{% block title %}Edit User{% endblock %}
+
+{% block body %}
+    <h2>Modificar datos de {{ user.nombre }}</h2>
+    <div id="datos">				
+		<div id="gif">
+							
+		</div>
+	</div>
+
+    {{ include('user/_form.html.twig', {'button_label': 'Actualizar'}) }}
+    <fieldset class="showUserControls">   	
+		{{ include('user/_delete_form.html.twig') }}
+    </fieldset>   
+{% endblock %}

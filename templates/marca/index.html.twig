@@ -1,0 +1,43 @@
+{% extends 'main_menu/base.html.twig' %}
+
+{% block title %}Marca - Listado{% endblock %}
+
+{% block body %}
+    <h2>Listado de Marcas</h2>
+    <div id="datos">				
+		<div id="gif">
+							
+		</div>
+	</div>
+
+    <table id="listado" class="table">
+        <thead>
+            <tr>
+                <th class="hidde">Id</th>
+                <th>Nombre</th>
+                <th>Logo</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for marca in marcas %}
+            <tr>
+                <td class="hidde">{{ marca.id }}</td>
+                <td>{{ marca.nombre|upper }}</td>
+                <td class="imageProfile"><a href="{{ path('marca_show', {'id': marca.id}) }}"><image src={{ asset('uploads/logo_marca/') ~ marca.logo }} alt="logo marca"></a></td>
+                <td class="tdActions">
+                    <a class="button hidde" href="{{ path('marca_show', {'id': marca.id}) }}">show</a>
+                    <a  href="{{ path('marca_edit', {'id': marca.id}) }}"><img class="fotoUsuarioPeq" src="{{ asset('images/pen_write_edit.png') }}"></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+	<fieldset class="showUserControls">
+    	<a class="btn button" href="{{ path('marca_new') }}">Create new</a>
+    </fieldset>
+{% endblock %}

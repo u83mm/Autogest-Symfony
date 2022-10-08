@@ -1,0 +1,17 @@
+{% extends 'main_menu/base.html.twig' %}
+
+{% block title %}Clientes - Editar{% endblock %}
+
+{% block body %}
+    <h2>Edita Cliente</h2>
+    <div id="datos">				
+		<div id="gif">
+							
+		</div>
+	</div>
+
+    {{ include('cliente/_form.html.twig', {'button_label': 'Actualiza'}) }}   
+	<fieldset class="showUserControls"> 
+    	{{ include('cliente/_delete_form.html.twig') }}
+    </fieldset>
+{% endblock %}

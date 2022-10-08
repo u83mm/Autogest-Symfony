@@ -1,0 +1,38 @@
+{{ form_start(form,  {'attr': {'id': 'createUser'}}) }}
+	<div class="text-center" style="color:red">
+		{% if errors is defined %}
+			{% for error in errors %}
+				 <p class="validaForm">{{ error.message }}</p>
+			{% endfor %}
+		{% endif %}		
+	</div>
+	<fieldset class="createUser">
+		<legend>Datos del Producto</legend>
+		<div class="clienteForm col-sm-10">
+			{{ form_label(form.referencia, 'Referencia:') }}
+			{{ form_widget(form.referencia) }}			
+		</div>
+		<div class="clienteForm col-sm-10">
+			{{ form_label(form.descripcion, 'Descripción:') }}
+			{{ form_widget(form.descripcion, { 'attr': { 'size': 35 }}) }}			
+		</div>
+		<div class="clienteForm col-12 col-sm-10">
+			{{ form_label(form.familia, 'Familia:') }}
+			{{ form_widget(form.familia) }}			
+		</div>
+		<div class="clienteForm col-12 col-sm-10">
+			{{ form_label(form.pvp, 'P.V.P:') }}
+			{{ form_widget(form.pvp, { 'attr': { 'size': 5 }}) }}			
+		</div>
+		<div class="clienteForm col-sm-10">
+			{{ form_label(form.marca, 'Marca:') }}
+			{{ form_widget(form.marca) }}			
+		</div>
+		{# {{ form_widget(form) }} #}
+	</fieldset>
+    <fieldset class="showUserControls">
+    	<button class="btn button">{{ button_label|default('Crear') }}</button>
+    	<a class="btn button" href="{{ path('producto_index') }}">Ir a listado</a>    	
+    </fieldset>
+    
+{{ form_end(form) }}

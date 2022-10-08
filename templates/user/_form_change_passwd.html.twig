@@ -1,0 +1,25 @@
+{{ form_start(form, {'attr': {'id': 'createUser'}}) }}
+	<div class="text-center" style="color:red">
+		{% if errors is defined %}
+			{% for error in errors %}
+				 <p class="validaForm">{{ error.message }}</p>
+			{% endfor %}
+		{% endif %}		
+	</div>
+	<fieldset class="createUser">
+		<legend>Cambiar contraseña</legend>
+		
+		<div class="col-sm-8">			
+			{{ form_label(form.password, 'Password:') }}
+			{{ form_widget(form.password, { 'attr': { 'placeholder': 'Escribe una contraseña' }}) }}
+		</div>	
+		<div class="col-sm-8">
+			{{ form_label(form.confirm_password, 'Repite Password:') }}
+			{{ form_widget(form.confirm_password, { 'attr': { 'placeholder': 'Repite la contraseña' }}) }}			
+		</div>								
+    </fieldset>
+    <fieldset class="showUserControls">
+		<button class="btn button">{{ button_label|default('Enviar') }}</button>
+		<a class="btn button" href="{{ path('user_edit', {'id': user.id}) }}">Volver</a>	
+	</fieldset>
+{{ form_end(form) }}

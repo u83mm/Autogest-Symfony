@@ -1,0 +1,14 @@
+{% extends 'main_menu/base.html.twig' %}
+
+{% block title %}Autogest- Buscar Artículo{% endblock %}
+
+{% block body %}
+    <h2>Búsqueda de Producto</h2>
+    <div id="datos">				
+		<div id="gif">
+							
+		</div>
+	</div>
+
+    {{ include('producto/_form_search.html.twig', {'button_label': 'Buscar'}) }}
+{% endblock %}

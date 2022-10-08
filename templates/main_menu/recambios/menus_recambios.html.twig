@@ -1,0 +1,34 @@
+<ul class="menuRecambios">
+	{% if is_granted('ROLE_ADMIN') or is_granted('ROLE_RECAMBIOS') %}		
+		<li>
+			<a id="consultar_pedido" class="menusRecambios ajaxMenu" href="#" onclick="showMenus(this.id, this.innerHTML)">Consultar Pedidos</a>
+		</li>
+		<li>
+			<a class="menusRecambios ajaxMenu" href="{{ path('pedido_call_center') }}" onclick="menuConsultaPedidos()">Crear Pedido Call Center</a>
+		</li>		
+		<li>
+			<a class="menusRecambios ajaxMenu" href="#">Crear Pedido Taller</a>
+		</li>
+		<li>
+			<a id="consultar_pedido" class="menusRecambios ajaxMenu" href="#" onclick="showMenus(this.id, this.innerHTML)">Referencias</a>
+		</li>
+		<li>
+			<a class="menusRecambios ajaxMenu" href="#">Salidas Almacén</a>
+		</li>
+		<li>
+			<a class="menusRecambios ajaxMenu" href="#">Entradas Almacén</a>
+		</li>
+		<li>
+			<a class="menusRecambios ajaxMenu" href="#">Almacenes</a>
+		</li>
+	{% endif %}
+	
+	{% if is_granted('ROLE_COMERCIAL') %}
+		<li>
+			<a id="consultar_pedido" class="menusRecambios ajaxMenu" href="#" onclick="showMenus(this.id, this.innerHTML)">Consultar Pedidos</a>
+		</li>
+		<li>
+			<a class="menusRecambios ajaxMenu" href="{{ path('pedido_call_center') }}" onclick="menuConsultaPedidos()">Crear Pedido Call Center</a>
+		</li>
+	{% endif %}								
+</ul>

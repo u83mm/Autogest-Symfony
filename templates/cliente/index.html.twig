@@ -1,0 +1,69 @@
+{% extends 'main_menu/base.html.twig' %}
+
+{% block title %}Clientes - Listado{% endblock %}
+
+{% block body %}
+    <h2>Listado de clientes</h2>
+    <div id="datos">				
+		<div id="gif">
+							
+		</div>
+	</div>
+
+    <table id="usuarios" class="table table-hover">
+        <thead>
+            <tr>
+                <th class="hidde hiddenHorizontal">Id</th>
+                <th>Razón Soc.</th>
+                <th>Nombre</th>
+                <th>Apellidos</th>                               
+                <th class="hidde">Localidad</th>
+                <th class="hidde">Provincia</th>               
+                <th class="hidde hiddenHorizontal">Email</th>               
+                <th class="hidde hiddenHorizontal">FechaAlta</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% if clientes|length >= 1 %}
+		    {% for cliente in clientes %}
+		        <tr>
+		            <td class="hidde hiddenHorizontal">{{ cliente.id }}</td>
+		            <td><a href="{{ path('cliente_show', {'id': cliente.id}) }}">{{ cliente.razonSocial }}</a></td>
+		            <td><a href="{{ path('cliente_show', {'id': cliente.id}) }}">{{ cliente.nombre|upper }}</a></td>
+		            <td><a href="{{ path('cliente_show', {'id': cliente.id}) }}">{{ cliente.apellido1 }} {{ cliente.apellido2 }}</a></td>                              
+		            <td class="hidde">{{ cliente.localidad }}</td>
+		            <td class="hidde">{{ cliente.provincia }}</td>                
+		            <td class="email hidde hiddenHorizontal"><a href="mailto:{{ cliente.email }}">{{ cliente.email }}</a></td>               
+		            <td class="hidde hiddenHorizontal">{{ cliente.fechaAlta ? cliente.fechaAlta|date('d/m/Y') : '' }}</td>
+		            <td>
+		                <a class="button" href="{{ path('cliente_show', {'id': cliente.id}) }}">show</a>
+		                <a class="button hidde" href="{{ path('cliente_edit', {'id': cliente.id}) }}">edit</a>                    
+		            </td>
+		        </tr>        
+		    {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="17">no records found</td>
+            </tr>
+        {% endif %}
+        </tbody>
+    </table>
+    <fieldset class="buscar">
+    	<a class="btn button" href="{{ path('cliente_new') }}">Nuevo Cliente</a>
+    	<a class="btn button" href="{{ path('client_search') }}">Buscar Cliente</a>
+    </fieldset>
+    <p class="center">Mostrando del <strong>{{ desde }}</strong> al <strong>{{ next }}</strong> de <strong>{{ clientes|length }}</strong> clientes</p>
+    <fieldset class="showUserControls index">
+    {% if previous >= 1 %}
+    	<a href="{{ path('cliente_index', {offset: 0}) }}" class="btn button">Primero</a>
+    {% endif %}
+	{% if previous >= 0 %}	
+		<a href="{{ path('cliente_index', {offset: previous}) }}" class="btn button">Anterior</a>		
+	{% endif %}		
+	{% if next - clientes|length %}
+		<a href="{{ path('cliente_index', {offset: next}) }}" class="btn button">Siguiente</a>
+		<a href="{{ path('cliente_index', {offset: last}) }}" class="btn button">Último</a>
+	{% endif %}
+		
+{% endblock %}

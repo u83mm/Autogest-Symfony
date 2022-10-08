@@ -1,0 +1,12 @@
+{% extends 'main_menu/base.html.twig' %}
+
+{% block title %}Edit Producto{% endblock %}
+
+{% block body %}
+    <h1>Edit Producto</h1>
+
+    {{ include('producto/_form.html.twig', {'button_label': 'Actualizar'}) }}  
+	<fieldset class="showUserControls">
+    	{{ include('producto/_delete_form.html.twig') }}
+    </fieldset>
+{% endblock %}
