@@ -1362,12 +1362,12 @@ window.onload = function(){
 	}
 	
 	// Añade evento onclick a los botones con atributo class="button"
-	var botonSubmit = document.getElementsByClassName('button');
+	/*var botonSubmit = document.getElementsByClassName('button');
 	if(botonSubmit) {		
 		for(var i = 0; i < botonSubmit.length; i++) {					
 			botonSubmit[i].onclick = consultaPedidos;
 		}
-	}
+	}*/
 	
 	// Añade evento onclick a los menus principales
 	var principal = document.getElementsByClassName('principal');
