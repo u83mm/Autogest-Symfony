@@ -47,13 +47,14 @@ class MarcaController extends AbstractController
     #[Route('/new', name: 'marca_new', methods: ['GET','POST'])]
     public function new(Request $request, ValidatorInterface $validator, SluggerInterface $slugger): Response
     {
+		$marca = new Marca();
+
     	// Crea restricción si no se es administrador
     	if(!$this->security->isGranted('ROLE_ADMIN')) {
 			$this->addFlash('warning', 'Debes ser administrador para editar el perfil.');
 			return $this->redirectToRoute('marca_show', ['id' => $marca->getId()]);
 		}
-		
-        $marca = new Marca();
+		        
         $form = $this->createForm(MarcaType::class, $marca);
         $form->handleRequest($request);
         
@@ -213,7 +214,7 @@ class MarcaController extends AbstractController
         			// Move the file to the directory where image profile are stored
 					try {										
 		                $logoFilename->move($this->getParameter('logo_marca_directory'), $newFilename);
-		                $this->imageOptimizer->resize($this->getParameter('logo_marca_directory'). "/" . $newFilename); 
+		                //$this->imageOptimizer->resize($this->getParameter('logo_marca_directory'). "/" . $newFilename); 
 		            } catch (FileException $e) {
 		                // ... handle exception if something happens during file upload
 		                echo "No se ha podido subir la imagen";
