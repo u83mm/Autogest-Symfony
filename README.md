@@ -22,3 +22,38 @@
 
 <h3 align="left">Languages and Tools:</h3>
 <p align="left"> <a href="https://www.w3schools.com/css/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3" width="40" height="40"/> </a> <a href="https://git-scm.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="40" height="40"/> </a> <a href="https://www.w3.org/html/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="40" height="40"/> </a> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="40" height="40"/> </a> <a href="https://www.linux.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" alt="linux" width="40" height="40"/> </a> <a href="https://mariadb.org/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/mariadb/mariadb-icon.svg" alt="mariadb" width="40" height="40"/> </a> <a href="https://www.php.net" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/php/php-original.svg" alt="php" width="40" height="40"/> </a> <a href="https://symfony.com" target="_blank" rel="noreferrer"> <img src="https://symfony.com/logos/symfony_black_03.svg" alt="symfony" width="40" height="40"/> </a> </p>
+<br><br>
+<h3 align="center">TEST THE PROJECT</h3>
+<li>Clone the repository:</li>    
+
+    git clone "git-repo" project-name
+    cd /project-name
+
+
+<li>Build</li>
+
+    mkdir log log/apache log/db log/php
+    docker compose build  
+    docker compose up -d
+    docker exec -it php bash
+    composer install
+    exit
+
+
+<li>Import SQL file "my_database.sql"</li>
+
+    I do it accessing to phpMyAdmin in local host:
+        http://localhost:8080/
+        user: admin
+        passw: admin
+
+        Import "autogest.sql" file from MariaDB directory.
+
+<li>Accessing the application</li>
+
+    type "http://localhost " in the url in the browser
+
+<li>Login as admin user</li>
+
+    user: admin
+    passw: adminadmin

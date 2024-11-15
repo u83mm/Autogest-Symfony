@@ -1,10 +1,8 @@
-version: '3.1'
-
 services:
 
   db:
     build: ./MariaDB/
-    container_name: autogest_db
+    container_name: db
     restart: always
     ports:
       - 3306:3306
@@ -13,16 +11,16 @@ services:
     environment:
       MARIADB_ROOT_PASSWORD: cantinflas
       MARIADB_DATABASE: autogest
-      MARIADB_USER: pepe
-      MARIADB_PASSWORD: cantinflas
+      MARIADB_USER: admin
+      MARIADB_PASSWORD: admin
       
     volumes: 
-        - "./db_vol:/var/lib/mysql"
+        - db_vol:/var/lib/mysql
         - "./log/db:/var/log"
 
   phpmyadmin:
     image: phpmyadmin:latest
-    container_name: autogest_myadmin
+    container_name: phpmyadmin
     restart: always
     ports:
       - 8080:80
@@ -31,14 +29,19 @@ services:
       
   web:      
       build: .
-      container_name: autogest_app
+      container_name: php
       ports:
       - "80:80"
+      extra_hosts:
+        - "host.docker.internal:host-gateway"
       tty: true
       volumes: 
-        - "../Autogest:/var/www"
+        - "./:/var/www"
         - "./log/apache:/var/log/apache2"
         - "./log/php:/srv/var/log"
+
+volumes:
+  db_vol: 
 
 ###> doctrine/doctrine-bundle ###
   #database:
