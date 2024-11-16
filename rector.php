@@ -19,7 +19,7 @@ return RectorConfig::configure()
     ->withAttributesSets(symfony: true, doctrine: true)
     ->withSymfonyContainerXml(__DIR__ . '/var/cache/dev/App_KernelDevDebugContainer.xml')
     ->withSets([
-        SymfonySetList::SYMFONY_60,
+        SymfonySetList::SYMFONY_64,
         SymfonySetList::SYMFONY_CODE_QUALITY,
         SymfonySetList::SYMFONY_CONSTRUCTOR_INJECTION,
     ]);
