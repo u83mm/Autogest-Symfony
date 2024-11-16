@@ -26,3 +26,7 @@
 ###> my files to ignore ###
 /log/
 ###< my files to ignore ###
+
+###> phpstan/phpstan ###
+phpstan.neon
+###< phpstan/phpstan ###
