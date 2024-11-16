@@ -283,11 +283,9 @@ class PedidoCallCenter
 
     public function removePedidoItem(PedidoItems $pedidoItem): self
     {
-        if ($this->pedidoItems->removeElement($pedidoItem)) {
-            // set the owning side to null (unless already changed)
-            if ($pedidoItem->getPedidoCallCenter() === $this) {
-                $pedidoItem->setPedidoCallCenter(null);
-            }
+        // set the owning side to null (unless already changed)
+        if ($this->pedidoItems->removeElement($pedidoItem) && $pedidoItem->getPedidoCallCenter() === $this) {
+            $pedidoItem->setPedidoCallCenter(null);
         }
 
         return $this;

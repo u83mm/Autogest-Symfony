@@ -35,7 +35,7 @@ class PedidoItemsRepository extends ServiceEntityRepository
         ;
     }
     */
-    
+
     public function findByPedidoCallCenter($value)
     {
         return $this->createQueryBuilder('p')
@@ -46,7 +46,7 @@ class PedidoItemsRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-        
+
     public function findOneByPedidoId($value): ?PedidoItems
     {
         return $this->createQueryBuilder('p')

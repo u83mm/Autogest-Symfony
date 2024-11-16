@@ -12,19 +12,17 @@ use Symfony\Component\HttpKernel\KernelEvents;
 
 class MyExceptionSubscriber implements EventSubscriberInterface
 {
-	private $router;
-	private $twig;	
+	private $router;	
 	
-	public function __construct(RouterInterface $router, Environment $twig) {
-		$this->router = $router;
-		$this->twig = $twig;		
+	public function __construct(RouterInterface $router) {
+		$this->router = $router;		
 	}	    
     
     public function ShowExceptionEvent(ExceptionEvent $event): void
     {    	
         //dd($event);
         $exception = $event->getThrowable();                       
-        $message = $exception->getMessage();       
+        $exception->getMessage();       
         
         //dd($this->twig);         
         

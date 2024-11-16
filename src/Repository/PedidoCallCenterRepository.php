@@ -16,12 +16,12 @@ use Doctrine\ORM\Tools\Pagination\Paginator;
 class PedidoCallCenterRepository extends ServiceEntityRepository
 {
 	public const PAGINATOR_PER_PAGE = 6;	
-	
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, PedidoCallCenter::class);
     }
-    
+
     /**
      * @return paginator
      */
@@ -33,18 +33,18 @@ class PedidoCallCenterRepository extends ServiceEntityRepository
             ->setFirstResult($offset)
             ->getQuery()
         ;
-        
+
         return new Paginator($query);                      												                                
 	}
-	
+
 	/**
      * @return Pedido[] Returns an array of Pedido objects
      */
-    
+
     public function findByFieldValue(int $offset, string $value1, string $value2): Paginator
     {    	
     	$value2 = "%{$value2}%";
-    	    	
+
         $qb = $this->createQueryBuilder('p');      
         $query = $qb        	  	
         	->where($qb->expr()->like('p.' . $value1, '?1'))         	        	                    
@@ -54,10 +54,10 @@ class PedidoCallCenterRepository extends ServiceEntityRepository
             ->setParameter(1, $value2)
             ->getQuery()            
         ;                                     
-        
+
         return new Paginator($query);
     }
-    
+
     /**
      * @return last value for paginator
      */
@@ -69,7 +69,7 @@ class PedidoCallCenterRepository extends ServiceEntityRepository
     	else {
     		$last = (floor(count($paginator) / self::PAGINATOR_PER_PAGE) * self::PAGINATOR_PER_PAGE);	
     	}
-    	
+
     	return $last;
      }   
 

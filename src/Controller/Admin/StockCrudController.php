@@ -12,7 +12,7 @@ class StockCrudController extends AbstractCrudController
     {
         return Stock::class;
     }       
-    
+
     public function configureFilters(Filters $filters): Filters
     {
         return $filters

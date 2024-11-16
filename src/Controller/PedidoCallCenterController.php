@@ -140,10 +140,12 @@ class PedidoCallCenterController extends AbstractController
         	}        	        	
         	
         	// Calcula el nº del último pedido
-			$pedidos = $pedidoCallCenterRepository->findAll();												     	        	
+			$pedidos = $pedidoCallCenterRepository->findAll();
+   // guarda los datos en la tabla pedido_items
+   $counter = count($descripcion);												     	        	
         	
         	// guarda los datos en la tabla pedido_items
-        	for($i = 0; $i < count($descripcion); $i++) {        	
+        	for($i = 0; $i < $counter; $i++) {        	
         		$pedido = new PedidoItems();        		        		                                            
 				
 				// Si es el primer pedido de la base de datos inicializamos la propiedad PedidoId a 1
@@ -321,8 +323,9 @@ class PedidoCallCenterController extends AbstractController
 	    	$stock[] = $pedidoItemsForm->get('stock')->getData();
 	    	$dto[] = $pedidoItemsForm->get('dto')->getData();
 	    	$neto[] = $pedidoItemsForm->get('neto')->getData();
+      $counter = count($pedidoItemsArray);
 	    	
-	    	for($i = 1; $i < count($pedidoItemsArray); $i++) {        						        		
+	    	for($i = 1; $i < $counter; $i++) {        						        		
 				$descripcion[] = $pedidoItemsForm->get('descripcion' . $i)->getData();
 				$cantidad[] = $pedidoItemsForm->get('cantidad' . $i)->getData();
 				$precio[] = $pedidoItemsForm->get('precio' . $i)->getData();
@@ -331,8 +334,9 @@ class PedidoCallCenterController extends AbstractController
 				$dto[] = $pedidoItemsForm->get('dto' . $i)->getData();
 				$neto[] = $pedidoItemsForm->get('neto' . $i)->getData();        		        		        	
     		}
+      $counter = count($pedidoItemsArray);
     		
-    		for($i = 0; $i < count($pedidoItemsArray); $i++) {    			
+    		for($i = 0; $i < $counter; $i++) {    			
     			$pedidoItems = $pedidoItemsArray[$i];
     			
     			$pedidoItems->setTotalPvp($pedidoItemsForm->get('totalPvp')->getData());
@@ -361,9 +365,10 @@ class PedidoCallCenterController extends AbstractController
             'form' => $form,
             'logo' => $logoMarca,
             //'pedidoItems' => $pedidoItemsForm,
-        ];               
+        ];
+        $counter = count($pedidoItemsArray);               
         
-        for($i = 0; $i < count($pedidoItemsArray); $i++) {
+        for($i = 0; $i < $counter; $i++) {
         	$pedidoItemsForm[$i] = $this->createForm(PedidoItemsType::class);
         	$pedidoItemsForm[$i]->handleRequest($request);
         	$variables['pedidoItems'.$i] = $pedidoItemsForm[$i];

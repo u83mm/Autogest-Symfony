@@ -26,7 +26,7 @@ class UserType extends AbstractType
 	 */
 	public function __construct(DepartamentosRepository $departamentosRepository) {
 		$result = $departamentosRepository->findAll();
-		$departamentosSelect = array('- Selecciona -' => '');
+		$departamentosSelect = ['- Selecciona -' => ''];
 		
 		foreach($result as $departamento) {
 			$departamentosSelect[$departamento->getNombreDepartamento()] = $departamento->getNombreDepartamento();

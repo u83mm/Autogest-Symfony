@@ -19,14 +19,7 @@ class BuscaPedidoCallCenterType extends AbstractType
 	 * "builder" como tercer parámetro y ver dichos valores en el desplegable correspondiente.
 	 */
 	public function __construct() {								
-		$campoSelect = array(
-			'- Selecciona -' => '',
-			'C.I.F' => 'cif',
-			'Nombre' => 'nombreCliente',
-			'Contacto' => 'contacto',			
-			'Localidad' => 'localidad',
-			'Estado' => 'estado',						
-		);				
+		$campoSelect = ['- Selecciona -' => '', 'C.I.F' => 'cif', 'Nombre' => 'nombreCliente', 'Contacto' => 'contacto', 'Localidad' => 'localidad', 'Estado' => 'estado'];				
 		
 		$this->options = $campoSelect;
 		

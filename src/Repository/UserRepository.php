@@ -19,7 +19,7 @@ use Doctrine\ORM\Tools\Pagination\Paginator;
 class UserRepository extends ServiceEntityRepository implements PasswordUpgraderInterface
 {
 	public const PAGINATOR_PER_PAGE = 6;		
-	
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, User::class);
@@ -38,7 +38,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->_em->persist($user);
         $this->_em->flush();
     }
-    
+
     /**
      * @return paginator
      */
@@ -50,18 +50,18 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->setFirstResult($offset)
             ->getQuery()
         ;
-        
+
         return new Paginator($query);
 	}
-	
+
 	/**
      * @return User[] Returns an array of User objects
      */
-    
+
     public function findByFieldValue(int $offset, string $value1, string $value2)
     {    	
     	$value2 = "%{$value2}%";
-    	    	
+
         $qb = $this->createQueryBuilder('u');      
         $query = $qb        	  	
         	->where($qb->expr()->like('u.' . $value1, '?1'))         	        	                    
@@ -71,10 +71,10 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->setParameter(1, $value2)
             ->getQuery()            
         ;                                     
-        
+
         return new Paginator($query);
     }
-    
+
     /**
      * @return last value for paginator
      */
@@ -86,7 +86,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     	else {
     		$last = (floor(count($paginator) / self::PAGINATOR_PER_PAGE) * self::PAGINATOR_PER_PAGE);	
     	}
-    	
+
     	return $last;
      }  
 

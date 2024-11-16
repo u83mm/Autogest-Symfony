@@ -28,8 +28,8 @@ class PedidoCallCenterType extends AbstractType
 		$result = $marcaRepository->findAll();
 		$estadoResult = $tipoEstado->findAll();
 		
-		$marcaSelect = array('- Selecciona -' => '');
-		$estadoSelect = array('- Selecciona -' => '');		
+		$marcaSelect = ['- Selecciona -' => ''];
+		$estadoSelect = ['- Selecciona -' => ''];		
 		
 		foreach($result as $marca) {
 			$marcaSelect[$marca->getNombre()] = $marca->getId();

@@ -18,13 +18,7 @@ class BuscaProductoType extends AbstractType
 	 * "builder" como tercer parámetro y ver dichos valores en el desplegable correspondiente.
 	 */
 	public function __construct() {								
-		$campoSelect = array(
-			'- Selecciona -' => '',
-			'Referencia' => 'referencia',			
-			'Descripción' => 'descripcion',
-			'Familia' => 'familia',
-			'Marca' => 'marca',		
-		);				
+		$campoSelect = ['- Selecciona -' => '', 'Referencia' => 'referencia', 'Descripción' => 'descripcion', 'Familia' => 'familia', 'Marca' => 'marca'];				
 		
 		$this->options = $campoSelect;
 		

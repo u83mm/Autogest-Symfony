@@ -21,10 +21,10 @@ class ProductoType extends AbstractType
 	 */
 	public function __construct(FamiliaRepository $familiaRepository, MarcaRepository $marcaRepository) {
 		$result = $familiaRepository->findAll();
-		$familiaSelect = array('- Selecciona -' => '');
+		$familiaSelect = ['- Selecciona -' => ''];
 		
 		$marcaResult = $marcaRepository->findAll();
-		$marcaSelect = array('- Selecciona -' => '');
+		$marcaSelect = ['- Selecciona -' => ''];
 		
 		foreach($result as $familia) {
 			$familiaSelect[$familia->getNombreFamilia()] = $familia->getNombreFamilia();
