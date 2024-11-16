@@ -1,6 +1,6 @@
 FROM php:8.2-apache
 
-ARG TIMEZONE
+ARG TIMEZONE="Europe/Madrid"
 
 ARG USER_ID=1000
 ARG GROUP_ID=1000
@@ -19,6 +19,9 @@ RUN adduser --disabled-password --gecos '' --uid ${USER_ID} --gid ${GROUP_ID} ma
 # Install system dependencies
 RUN apt update && apt install -y libicu-dev && rm -rf /var/lib/apt/lists/*
 RUN apt-get update && apt-get install -y git unzip zlib1g-dev libpng-dev
+
+# Install Xdebug
+RUN pecl install xdebug
 
 # Install PHP extensions Type docker-php-ext-install to see available extensions
 RUN docker-php-ext-install pdo_mysql intl gd
