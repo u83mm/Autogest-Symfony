@@ -13,7 +13,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
@@ -21,7 +20,8 @@ use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Security\Core\Security;
 use App\Service\ImageOptimizer;
-	
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 #[Route('/user')]
 class UserController extends AbstractController
@@ -61,7 +61,7 @@ class UserController extends AbstractController
     }
 
     #[Route('/new', name: 'user_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, UserRepository $userRepository, DepartamentosRepository $departmentsRepository, UserPasswordEncoderInterface $passwordEncoder, SluggerInterface $slugger, ValidatorInterface $validator): Response
+    public function new(Request $request, UserRepository $userRepository, DepartamentosRepository $departmentsRepository, UserPasswordHasherInterface $passwordEncoder, SluggerInterface $slugger, ValidatorInterface $validator): Response
     {
     	// Crea restricción si no se es administrador
     	if(!$this->security->isGranted('ROLE_ADMIN')) {
@@ -112,7 +112,7 @@ class UserController extends AbstractController
         			return $this->render('user/new.html.twig', [					
 						'errors' => $errorsValidation,
 						'user' => $user,
-						'form_dep' => $form_dep,					
+						//'form_dep' => $form_dep,					
 						'form' => $form->createView(),					
 					]);										
         		}
@@ -133,7 +133,7 @@ class UserController extends AbstractController
         	
         	// encode the plain password
         	$user->setPassword(
-        		$passwordEncoder->encodePassword(
+        		$passwordEncoder->hashPassword(
         			$user,
         			$form->get('password')->getData()
         		)
@@ -275,7 +275,7 @@ class UserController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'user_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, User $user, DepartamentosRepository $departmentsRepository, SluggerInterface $slugger, UserPasswordEncoderInterface $passwordEncoder, ValidatorInterface $validator): Response
+    public function edit(Request $request, User $user, DepartamentosRepository $departmentsRepository, SluggerInterface $slugger, UserPasswordHasherInterface $passwordEncoder, ValidatorInterface $validator): Response
     {
     	// Crea restricción si no se es administrador
     	if(!$this->security->isGranted('ROLE_ADMIN')) {
@@ -408,7 +408,7 @@ class UserController extends AbstractController
     }
     
     #[Route('/{id}/passwd', name: 'user_change_passwd', methods: ['GET', 'POST'])]
-    public function changePassword(Request $request, User $user, SluggerInterface $slugger, UserPasswordEncoderInterface $passwordEncoder, ValidatorInterface $validator): Response
+    public function changePassword(Request $request, User $user, SluggerInterface $slugger, UserPasswordHasherInterface $passwordEncoder, ValidatorInterface $validator): Response
     {
     	// Crea restricción si no se es administrador
     	if(!$this->security->isGranted('ROLE_ADMIN')) {
@@ -436,7 +436,7 @@ class UserController extends AbstractController
 		if ($form->isSubmitted() && $form->isValid()) {
 			// encode the plain password
         	$user->setPassword(
-        		$passwordEncoder->encodePassword(
+        		$passwordEncoder->hashPassword(
         			$user,
         			$form->get('password')->getData()
         		)
