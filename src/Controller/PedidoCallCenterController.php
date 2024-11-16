@@ -27,6 +27,14 @@ use App\Service\Pdf;
 #[Route('/pedido/call/center')]
 class PedidoCallCenterController extends AbstractController
 {
+    /**
+     * @var \Doctrine\Persistence\ManagerRegistry
+     */
+    private $managerRegistry;
+    public function __construct(\Doctrine\Persistence\ManagerRegistry $managerRegistry)
+    {
+        $this->managerRegistry = $managerRegistry;
+    }
     #[Route('/', name: 'pedido_call_center_index', methods: ['GET'])]
     public function index(PedidoCallCenterRepository $pedidoCallCenterRepository, Request $request, TipoEstadoRepository $tipoEstadoRepository): Response
     {
@@ -103,7 +111,7 @@ class PedidoCallCenterController extends AbstractController
         }                                                                                                                                     
 
         if ($form->isSubmitted() && $form->isValid()) {        	        	       	        	        			           	
-            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager = $this->managerRegistry->getManager();
             $entityManager->persist($pedidoCallCenter);                                                                                                  
 
             //return $this->redirectToRoute('pedido_call_center_index', [], Response::HTTP_SEE_OTHER);            
@@ -140,10 +148,12 @@ class PedidoCallCenterController extends AbstractController
         	}        	        	
         	
         	// Calcula el nº del último pedido
-			$pedidos = $pedidoCallCenterRepository->findAll();												     	        	
+			$pedidos = $pedidoCallCenterRepository->findAll();
+   // guarda los datos en la tabla pedido_items
+   $counter = count($descripcion);												     	        	
         	
         	// guarda los datos en la tabla pedido_items
-        	for($i = 0; $i < count($descripcion); $i++) {        	
+        	for($i = 0; $i < $counter; $i++) {        	
         		$pedido = new PedidoItems();        		        		                                            
 				
 				// Si es el primer pedido de la base de datos inicializamos la propiedad PedidoId a 1
@@ -321,8 +331,9 @@ class PedidoCallCenterController extends AbstractController
 	    	$stock[] = $pedidoItemsForm->get('stock')->getData();
 	    	$dto[] = $pedidoItemsForm->get('dto')->getData();
 	    	$neto[] = $pedidoItemsForm->get('neto')->getData();
+      $counter = count($pedidoItemsArray);
 	    	
-	    	for($i = 1; $i < count($pedidoItemsArray); $i++) {        						        		
+	    	for($i = 1; $i < $counter; $i++) {        						        		
 				$descripcion[] = $pedidoItemsForm->get('descripcion' . $i)->getData();
 				$cantidad[] = $pedidoItemsForm->get('cantidad' . $i)->getData();
 				$precio[] = $pedidoItemsForm->get('precio' . $i)->getData();
@@ -331,8 +342,9 @@ class PedidoCallCenterController extends AbstractController
 				$dto[] = $pedidoItemsForm->get('dto' . $i)->getData();
 				$neto[] = $pedidoItemsForm->get('neto' . $i)->getData();        		        		        	
     		}
+      $counter = count($pedidoItemsArray);
     		
-    		for($i = 0; $i < count($pedidoItemsArray); $i++) {    			
+    		for($i = 0; $i < $counter; $i++) {    			
     			$pedidoItems = $pedidoItemsArray[$i];
     			
     			$pedidoItems->setTotalPvp($pedidoItemsForm->get('totalPvp')->getData());
@@ -350,7 +362,7 @@ class PedidoCallCenterController extends AbstractController
 	    		$pedidoItems->setNeto($neto[$i]);		    				    		            						 
     		}        		
     		
-    		$this->getDoctrine()->getManager()->flush();
+    		$this->managerRegistry->getManager()->flush();
     		$this->addFlash('notice', 'El pedido ' . $pedidoCallCenter->getId() . ' se ha actualizado.');
         	return $this->redirectToRoute('pedido_call_center_show', ['id' => $pedidoCallCenter->getId()], Response::HTTP_SEE_OTHER);               	
         }                    				                       
@@ -361,9 +373,10 @@ class PedidoCallCenterController extends AbstractController
             'form' => $form,
             'logo' => $logoMarca,
             //'pedidoItems' => $pedidoItemsForm,
-        ];               
+        ];
+        $counter = count($pedidoItemsArray);               
         
-        for($i = 0; $i < count($pedidoItemsArray); $i++) {
+        for($i = 0; $i < $counter; $i++) {
         	$pedidoItemsForm[$i] = $this->createForm(PedidoItemsType::class);
         	$pedidoItemsForm[$i]->handleRequest($request);
         	$variables['pedidoItems'.$i] = $pedidoItemsForm[$i];
@@ -377,7 +390,7 @@ class PedidoCallCenterController extends AbstractController
     public function delete(Request $request, PedidoCallCenter $pedidoCallCenter): Response
     {
         if ($this->isCsrfTokenValid('delete'.$pedidoCallCenter->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager = $this->managerRegistry->getManager();
             $entityManager->remove($pedidoCallCenter);
             $entityManager->flush();
         }

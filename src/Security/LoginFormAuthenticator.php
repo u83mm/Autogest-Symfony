@@ -29,7 +29,7 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
         $this->urlGenerator = $urlGenerator;
     }
 
-    public function authenticate(Request $request): PassportInterface
+    public function authenticate(Request $request): \Symfony\Component\Security\Http\Authenticator\Passport\Passport
     {
         $username = $request->request->get('username', '');
 

@@ -18,7 +18,7 @@ class TipoEstadoRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, TipoEstado::class);
     }
-    
+
     public function findOneById($value): ?TipoEstado
     {
         return $this->createQueryBuilder('t')
@@ -28,15 +28,15 @@ class TipoEstadoRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }
-    
+
     /**
      * @return TipoEstado[] Returns an array of TipoEstado objects
      */
-    
+
     public function findByFieldValue(string $value1, string $value2)
     {    	
     	$value2 = "%{$value2}%";
-    	    	
+
         $qb = $this->createQueryBuilder('e');      
         $query = $qb        	  	
         	->where($qb->expr()->like('e.' . $value1, '?1'))         	        	                    
@@ -44,7 +44,7 @@ class TipoEstadoRepository extends ServiceEntityRepository
             ->setParameter(1, $value2)
             ->getQuery()            
         ;                                     
-        
+
         return $query->getResult();
     }
 

@@ -313,11 +313,9 @@ class Cliente
 
     public function removePedidoCallCenter(PedidoCallCenter $pedidoCallCenter): self
     {
-        if ($this->pedidoCallCenters->removeElement($pedidoCallCenter)) {
-            // set the owning side to null (unless already changed)
-            if ($pedidoCallCenter->getCliente() === $this) {
-                $pedidoCallCenter->setCliente(null);
-            }
+        // set the owning side to null (unless already changed)
+        if ($this->pedidoCallCenters->removeElement($pedidoCallCenter) && $pedidoCallCenter->getCliente() === $this) {
+            $pedidoCallCenter->setCliente(null);
         }
 
         return $this;

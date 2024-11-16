@@ -14,14 +14,14 @@ class EndPointStockController extends AbstractController
     public function index(Stock $stock): Response
     {
     	// Crea JSON de stock para consultarlo a través de AJAX        
-    	        
+
         $result[] = [
         	'referencia' => $stock->getReferencia(),
         	'stock' => number_format($stock->getCantidad(), 0),         	
         ];                                   
-        
+
         return $response = new JsonResponse($result);
-        
+
         /*return $this->render('end_point_stock/index.html.twig', [
             'controller_name' => 'EndPointStockController',
         ]);*/

@@ -12,19 +12,17 @@ use Symfony\Component\HttpKernel\KernelEvents;
 
 class MyExceptionSubscriber implements EventSubscriberInterface
 {
-	private $router;
-	private $twig;	
+	private $router;	
 	
-	public function __construct(RouterInterface $router, Environment $twig) {
-		$this->router = $router;
-		$this->twig = $twig;		
+	public function __construct(RouterInterface $router) {
+		$this->router = $router;		
 	}	    
     
     public function ShowExceptionEvent(ExceptionEvent $event): void
     {    	
         //dd($event);
         $exception = $event->getThrowable();                       
-        $message = $exception->getMessage();       
+        $exception->getMessage();       
         
         //dd($this->twig);         
         
@@ -37,7 +35,14 @@ class MyExceptionSubscriber implements EventSubscriberInterface
         }                
     }
 
-    public static function getSubscribedEvents()
+    /**
+     * The function `getSubscribedEvents` returns an array mapping the `KernelEvents::EXCEPTION` event
+     * to the `ShowExceptionEvent` method with priority 0.
+     * 
+     * @return An array is being returned with the event `KernelEvents::EXCEPTION` subscribed to the
+     * method `ShowExceptionEvent` with a priority of 0.
+     */
+    public static function getSubscribedEvents(): array
     {
         return [
             //ExceptionEvent::class =>  

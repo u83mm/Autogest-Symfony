@@ -16,12 +16,12 @@ use Doctrine\ORM\Tools\Pagination\Paginator;
 class ProductoRepository extends ServiceEntityRepository
 {
 	public const PAGINATOR_PER_PAGE = 6;
-	
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Producto::class);
     }
-    
+
     /**
      * @return paginator
      */
@@ -33,18 +33,18 @@ class ProductoRepository extends ServiceEntityRepository
             ->setFirstResult($offset)
             ->getQuery()
         ;
-        
+
         return new Paginator($query);
 	}
-	
+
 	/**
      * @return Product[] Returns an array of Product objects
      */
-    
+
     public function findByFieldValue(int $offset, string $value1, string $value2)
     {    	
     	$value2 = "%{$value2}%";
-    	    	
+
         $qb = $this->createQueryBuilder('p');      
         $query = $qb        	  	
         	->where($qb->expr()->like('p.' . $value1, '?1'))         	        	                    
@@ -54,7 +54,7 @@ class ProductoRepository extends ServiceEntityRepository
             ->setParameter(1, $value2)
             ->getQuery()            
         ;                                     
-        
+
         return new Paginator($query);
     }
 

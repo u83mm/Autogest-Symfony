@@ -15,13 +15,13 @@ class LogoMarcaController extends AbstractController
     {
     	// Crea JSON de marcas para consultarlo a través de AJAX
         $marcaQuery = $marcaRepository->findAll();                
-        
+
         foreach($marcaQuery as $logoMarca) {
         	$result[] = ['id' => $logoMarca->getId(), 'logo' => $logoMarca->getLogo()];    
         }                                  
-        
+
         return $response = new JsonResponse($result);              
-        
+
         /*return $this->render('logo_marca/index.html.twig', [
             'controller_name' => 'LogoMarcaController',
         ]);*/

@@ -32,7 +32,7 @@ class Pdf extends Fpdf
         $this->SetFont('');							
 		$this->Cell(20, 8, $this->fecha, 0, 0, 'c');
 		$this->Ln();
-		
+
 		// Datos del cliente
 		$this->SetFont('Arial', 'B', 12);
 		$this->Cell(40, 10, 'Datos del cliente', 0, 0, 'l');		

@@ -13,6 +13,14 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/familia')]
 class FamiliaController extends AbstractController
 {
+    /**
+     * @var \Doctrine\Persistence\ManagerRegistry
+     */
+    private $managerRegistry;
+    public function __construct(\Doctrine\Persistence\ManagerRegistry $managerRegistry)
+    {
+        $this->managerRegistry = $managerRegistry;
+    }
     #[Route('/', name: 'familia_index', methods: ['GET'])]
     public function index(FamiliaRepository $familiaRepository): Response
     {
@@ -29,7 +37,7 @@ class FamiliaController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager = $this->managerRegistry->getManager();
             $entityManager->persist($familium);
             $entityManager->flush();
 
@@ -57,7 +65,7 @@ class FamiliaController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $this->managerRegistry->getManager()->flush();
 
             return $this->redirectToRoute('familia_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -72,7 +80,7 @@ class FamiliaController extends AbstractController
     public function delete(Request $request, Familia $familium): Response
     {
         if ($this->isCsrfTokenValid('delete'.$familium->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager = $this->managerRegistry->getManager();
             $entityManager->remove($familium);
             $entityManager->flush();
         }

@@ -13,6 +13,14 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/stock')]
 class StockController extends AbstractController
 {
+    /**
+     * @var \Doctrine\Persistence\ManagerRegistry
+     */
+    private $managerRegistry;
+    public function __construct(\Doctrine\Persistence\ManagerRegistry $managerRegistry)
+    {
+        $this->managerRegistry = $managerRegistry;
+    }
     #[Route('/', name: 'stock_index', methods: ['GET'])]
     public function index(StockRepository $stockRepository): Response
     {
@@ -29,7 +37,7 @@ class StockController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager = $this->managerRegistry->getManager();
             $entityManager->persist($stock);
             $entityManager->flush();
 
@@ -57,7 +65,7 @@ class StockController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $this->managerRegistry->getManager()->flush();
 
             return $this->redirectToRoute('stock_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -72,7 +80,7 @@ class StockController extends AbstractController
     public function delete(Request $request, Stock $stock): Response
     {
         if ($this->isCsrfTokenValid('delete'.$stock->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager = $this->managerRegistry->getManager();
             $entityManager->remove($stock);
             $entityManager->flush();
         }

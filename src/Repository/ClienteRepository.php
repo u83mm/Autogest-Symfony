@@ -16,12 +16,12 @@ use Doctrine\ORM\Tools\Pagination\Paginator;
 class ClienteRepository extends ServiceEntityRepository
 {
 	public const PAGINATOR_PER_PAGE = 6;	
-	
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Cliente::class);
     }
-    
+
     /**
      * @return paginator
      */
@@ -33,18 +33,18 @@ class ClienteRepository extends ServiceEntityRepository
             ->setFirstResult($offset)
             ->getQuery()
         ;
-        
+
         return new Paginator($query);
 	}
-	
+
 	/**
      * @return Client[] Returns an array of Client objects
      */
-    
+
     public function findByFieldValue(int $offset, string $value1, string $value2)
     {    	
     	$value2 = "%{$value2}%";
-    	    	
+
         $qb = $this->createQueryBuilder('c');      
         $query = $qb        	  	
         	->where($qb->expr()->like('c.' . $value1, '?1'))         	        	                    
@@ -54,10 +54,10 @@ class ClienteRepository extends ServiceEntityRepository
             ->setParameter(1, $value2)
             ->getQuery()            
         ;                                     
-        
+
         return new Paginator($query);
     }
-    
+
     /**
      * @return last value for paginator
      */
@@ -69,11 +69,11 @@ class ClienteRepository extends ServiceEntityRepository
     	else {
     		$last = (floor(count($paginator) / self::PAGINATOR_PER_PAGE) * self::PAGINATOR_PER_PAGE);	
     	}
-    	
+
     	return $last;
      }
-     
-    
+
+
 	public function findOneById($value): ?Cliente
 		{
 		return $this->createQueryBuilder('c')
@@ -83,7 +83,7 @@ class ClienteRepository extends ServiceEntityRepository
 			->getOneOrNullResult()
 		;
 	}
-            
+
 
     // /**
     //  * @return Cliente[] Returns an array of Cliente objects

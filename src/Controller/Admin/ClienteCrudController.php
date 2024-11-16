@@ -13,7 +13,7 @@ class ClienteCrudController extends AbstractCrudController
     {
         return Cliente::class;
     }
-    
+
     public function configureFields(string $pageName): iterable
     {
         return [
@@ -34,7 +34,7 @@ class ClienteCrudController extends AbstractCrudController
             DateField::new('fecha_alta'),
         ];
     }
-    
+
     public function configureFilters(Filters $filters): Filters
     {
         return $filters

@@ -28,11 +28,16 @@ class UserController extends AbstractController
 {
 	private $security;
 	private $imageOptimizer;
+ /**
+  * @var \Doctrine\Persistence\ManagerRegistry
+  */
+ private $managerRegistry;
 
-	public function __construct(Security $security, ImageOptimizer $imageOptimizer)
+	public function __construct(Security $security, ImageOptimizer $imageOptimizer, \Doctrine\Persistence\ManagerRegistry $managerRegistry)
 	{       
 	  $this->security = $security;
 	  $this->imageOptimizer = $imageOptimizer;
+   $this->managerRegistry = $managerRegistry;
 	}	
 	
     #[Route('/', name: 'user_index', methods: ['GET'])]
@@ -158,7 +163,7 @@ class UserController extends AbstractController
         		$user->setRoles($role);
         	}        	        	        	        	        	        	
         	
-            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager = $this->managerRegistry->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
             
@@ -267,7 +272,7 @@ class UserController extends AbstractController
     } 
 
     #[Route('/{id}', name: 'user_show', methods: ['GET'])]
-    public function show(User $user, Request $request): Response
+    public function show(User $user): Response
     {    		   	   	
         return $this->render('user/show.html.twig', [
             'user' => $user,            
@@ -373,7 +378,7 @@ class UserController extends AbstractController
         		$user->setRoles($role);
         	}        	        	
         	        	          	
-            $this->getDoctrine()->getManager()->flush();
+            $this->managerRegistry->getManager()->flush();
             
             $this->addFlash(
 		        'notice',
@@ -399,7 +404,7 @@ class UserController extends AbstractController
 		}
 		
         if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager = $this->managerRegistry->getManager();
             $entityManager->remove($user);
             $entityManager->flush();
         }
@@ -448,7 +453,7 @@ class UserController extends AbstractController
 		        'Contraseña actualizada!'
 		    );        	        	
         	
-        	$this->getDoctrine()->getManager()->flush();
+        	$this->managerRegistry->getManager()->flush();
 
              return $this->redirectToRoute('user_show', ['id' => $user->getId()], Response::HTTP_SEE_OTHER);
 		}

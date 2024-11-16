@@ -1,6 +1,9 @@
-FROM php:8.1-apache
+FROM php:8.2-apache
 
-ARG TIMEZONE
+ARG TIMEZONE="Europe/Madrid"
+
+ARG USER_ID=1000
+ARG GROUP_ID=1000
 
 COPY / /var/www/
 
@@ -9,12 +12,16 @@ RUN ln -snf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime && echo ${TIMEZONE} >
 RUN printf '[PHP]\ndate.timezone = "%s"\n', ${TIMEZONE} > /usr/local/etc/php/conf.d/tzone.ini
 RUN "date"
 
-# Change permission to public directory
-# RUN chown www-data:www-data -R /var/www/public
+# Asigna grupo y usuario en contenedor para no tener que estar cambiando propietario a los archivos creados desde el contenedor
+RUN addgroup --gid ${GROUP_ID} mario
+RUN adduser --disabled-password --gecos '' --uid ${USER_ID} --gid ${GROUP_ID} mario
 
 # Install system dependencies
 RUN apt update && apt install -y libicu-dev && rm -rf /var/lib/apt/lists/*
 RUN apt-get update && apt-get install -y git unzip zlib1g-dev libpng-dev
+
+# Install Xdebug
+RUN pecl install xdebug
 
 # Install PHP extensions Type docker-php-ext-install to see available extensions
 RUN docker-php-ext-install pdo_mysql intl gd
@@ -34,3 +41,5 @@ COPY default-ssl.conf /etc/apache2/sites-available/default-ssl.conf
 
 # Set working directory
 WORKDIR /var/www
+
+USER 1000

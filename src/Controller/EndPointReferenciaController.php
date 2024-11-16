@@ -14,16 +14,16 @@ class EndPointReferenciaController extends AbstractController
     public function index(Producto $producto): Response
     {
     	// Crea JSON de referencias para consultarlo a través de AJAX        
-    	        
+
         $result[] = [
         	'referencia' => $producto->getReferencia(), 
         	'descripcion' => $producto->getDescripcion(),
         	'pvp' => number_format($producto->getPvp(), 2),
         	'dto' => number_format(0, 2),
         ];                                   
-        
+
         return $response = new JsonResponse($result);   
-        
+
         /*return $this->render('referencia/index.html.twig', [
             'controller_name' => 'ReferenciaController',
         ]);*/
