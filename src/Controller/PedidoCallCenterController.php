@@ -27,6 +27,14 @@ use App\Service\Pdf;
 #[Route('/pedido/call/center')]
 class PedidoCallCenterController extends AbstractController
 {
+    /**
+     * @var \Doctrine\Persistence\ManagerRegistry
+     */
+    private $managerRegistry;
+    public function __construct(\Doctrine\Persistence\ManagerRegistry $managerRegistry)
+    {
+        $this->managerRegistry = $managerRegistry;
+    }
     #[Route('/', name: 'pedido_call_center_index', methods: ['GET'])]
     public function index(PedidoCallCenterRepository $pedidoCallCenterRepository, Request $request, TipoEstadoRepository $tipoEstadoRepository): Response
     {
@@ -103,7 +111,7 @@ class PedidoCallCenterController extends AbstractController
         }                                                                                                                                     
 
         if ($form->isSubmitted() && $form->isValid()) {        	        	       	        	        			           	
-            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager = $this->managerRegistry->getManager();
             $entityManager->persist($pedidoCallCenter);                                                                                                  
 
             //return $this->redirectToRoute('pedido_call_center_index', [], Response::HTTP_SEE_OTHER);            
@@ -354,7 +362,7 @@ class PedidoCallCenterController extends AbstractController
 	    		$pedidoItems->setNeto($neto[$i]);		    				    		            						 
     		}        		
     		
-    		$this->getDoctrine()->getManager()->flush();
+    		$this->managerRegistry->getManager()->flush();
     		$this->addFlash('notice', 'El pedido ' . $pedidoCallCenter->getId() . ' se ha actualizado.');
         	return $this->redirectToRoute('pedido_call_center_show', ['id' => $pedidoCallCenter->getId()], Response::HTTP_SEE_OTHER);               	
         }                    				                       
@@ -382,7 +390,7 @@ class PedidoCallCenterController extends AbstractController
     public function delete(Request $request, PedidoCallCenter $pedidoCallCenter): Response
     {
         if ($this->isCsrfTokenValid('delete'.$pedidoCallCenter->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager = $this->managerRegistry->getManager();
             $entityManager->remove($pedidoCallCenter);
             $entityManager->flush();
         }

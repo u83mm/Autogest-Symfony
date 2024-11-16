@@ -13,6 +13,14 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/tipo/estado')]
 class TipoEstadoController extends AbstractController
 {
+    /**
+     * @var \Doctrine\Persistence\ManagerRegistry
+     */
+    private $managerRegistry;
+    public function __construct(\Doctrine\Persistence\ManagerRegistry $managerRegistry)
+    {
+        $this->managerRegistry = $managerRegistry;
+    }
     #[Route('/', name: 'tipo_estado_index', methods: ['GET'])]
     public function index(TipoEstadoRepository $tipoEstadoRepository): Response
     {
@@ -29,7 +37,7 @@ class TipoEstadoController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager = $this->managerRegistry->getManager();
             $entityManager->persist($tipoEstado);
             $entityManager->flush();
 
@@ -57,7 +65,7 @@ class TipoEstadoController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $this->managerRegistry->getManager()->flush();
 
             return $this->redirectToRoute('tipo_estado_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -72,7 +80,7 @@ class TipoEstadoController extends AbstractController
     public function delete(Request $request, TipoEstado $tipoEstado): Response
     {
         if ($this->isCsrfTokenValid('delete'.$tipoEstado->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager = $this->managerRegistry->getManager();
             $entityManager->remove($tipoEstado);
             $entityManager->flush();
         }

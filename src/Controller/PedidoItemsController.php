@@ -14,6 +14,14 @@ use App\Entity\PedidoCallCenter;
 #[Route('/pedido/items')]
 class PedidoItemsController extends AbstractController
 {
+    /**
+     * @var \Doctrine\Persistence\ManagerRegistry
+     */
+    private $managerRegistry;
+    public function __construct(\Doctrine\Persistence\ManagerRegistry $managerRegistry)
+    {
+        $this->managerRegistry = $managerRegistry;
+    }
     #[Route('/', name: 'pedido_items_index', methods: ['GET'])]
     public function index(PedidoItemsRepository $pedidoItemsRepository): Response
     {
@@ -32,7 +40,7 @@ class PedidoItemsController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
         	//$pedidoItem->setPedidoCallCenter($pedidoCallCenter);
-            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager = $this->managerRegistry->getManager();
             $entityManager->persist($pedidoItem);
             $entityManager->persist($pedidoCallCenter);
             $entityManager->flush();
@@ -61,7 +69,7 @@ class PedidoItemsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $this->managerRegistry->getManager()->flush();
 
             return $this->redirectToRoute('pedido_items_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -76,7 +84,7 @@ class PedidoItemsController extends AbstractController
     public function delete(Request $request, PedidoItems $pedidoItem): Response
     {
         if ($this->isCsrfTokenValid('delete'.$pedidoItem->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager = $this->managerRegistry->getManager();
             $entityManager->remove($pedidoItem);
             $entityManager->flush();
         }

@@ -23,11 +23,16 @@ class MarcaController extends AbstractController
 {
 	private $security;
 	private $imageOptimizer;
+ /**
+  * @var \Doctrine\Persistence\ManagerRegistry
+  */
+ private $managerRegistry;
 
-	public function __construct(Security $security, ImageOptimizer $imageOptimizer)
+	public function __construct(Security $security, ImageOptimizer $imageOptimizer, \Doctrine\Persistence\ManagerRegistry $managerRegistry)
 	{       
 	  $this->security = $security;
 	  $this->imageOptimizer = $imageOptimizer;
+   $this->managerRegistry = $managerRegistry;
 	}
 	
     #[Route('/', name: 'marca_index', methods: ['GET'])]
@@ -125,7 +130,7 @@ class MarcaController extends AbstractController
                 $marca->setLogo($newFilename);
         	}
         	        	
-            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager = $this->managerRegistry->getManager();
             $entityManager->persist($marca);
             $entityManager->flush();
             
@@ -227,7 +232,7 @@ class MarcaController extends AbstractController
                 $marca->setLogo($newFilename);
         	}    
         	
-            $this->getDoctrine()->getManager()->flush();
+            $this->managerRegistry->getManager()->flush();
 
             return $this->redirectToRoute('marca_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -248,7 +253,7 @@ class MarcaController extends AbstractController
 		}
 		
         if ($this->isCsrfTokenValid('delete'.$marca->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager = $this->managerRegistry->getManager();
             $entityManager->remove($marca);
             $entityManager->flush();
         }

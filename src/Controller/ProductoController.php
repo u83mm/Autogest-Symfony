@@ -19,6 +19,14 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 #[Route('/producto')]
 class ProductoController extends AbstractController
 {
+    /**
+     * @var \Doctrine\Persistence\ManagerRegistry
+     */
+    private $managerRegistry;
+    public function __construct(\Doctrine\Persistence\ManagerRegistry $managerRegistry)
+    {
+        $this->managerRegistry = $managerRegistry;
+    }
     #[Route('/', name: 'producto_index', methods: ['GET'])]
     public function index(ProductoRepository $productoRepository, MarcaRepository $marcaRepository, Request $request): Response
     {
@@ -56,7 +64,7 @@ class ProductoController extends AbstractController
         	$stock->setProducto($producto);
         	
         	// guarda los objetos
-            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager = $this->managerRegistry->getManager();
             $entityManager->persist($producto);
             $entityManager->persist($stock);
             $entityManager->flush();
@@ -182,7 +190,7 @@ class ProductoController extends AbstractController
         	$stock->setCantidad(0);
         	$stock->setProducto($producto);
         	
-            $this->getDoctrine()->getManager()->flush();
+            $this->managerRegistry->getManager()->flush();
             
             $this->addFlash(
 		        'notice',
@@ -202,7 +210,7 @@ class ProductoController extends AbstractController
     public function delete(Request $request, Producto $producto): Response
     {
         if ($this->isCsrfTokenValid('delete'.$producto->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager = $this->managerRegistry->getManager();
             $entityManager->remove($producto);
             $entityManager->flush();
         }

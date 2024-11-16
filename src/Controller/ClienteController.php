@@ -19,10 +19,15 @@ use Symfony\Component\Security\Core\Security;
 class ClienteController extends AbstractController
 {
 	private $security;
+ /**
+  * @var \Doctrine\Persistence\ManagerRegistry
+  */
+ private $managerRegistry;
 
-	public function __construct(Security $security)
+	public function __construct(Security $security, \Doctrine\Persistence\ManagerRegistry $managerRegistry)
 	{       
 	  $this->security = $security;
+   $this->managerRegistry = $managerRegistry;
 	}
 	
     #[Route('/', name: 'cliente_index', methods: ['GET'])]
@@ -76,7 +81,7 @@ class ClienteController extends AbstractController
         }                                 
 
         if ($form->isSubmitted() && $form->isValid()) {        	         	      	                              	     	     	
-            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager = $this->managerRegistry->getManager();
             $entityManager->persist($cliente);
             $entityManager->flush();
             
@@ -215,7 +220,7 @@ class ClienteController extends AbstractController
         }                                         
 
         if ($form->isSubmitted() && $form->isValid()) {            	     	     	        	
-            $this->getDoctrine()->getManager()->flush();
+            $this->managerRegistry->getManager()->flush();
             
             // muestra mensaje
         	$this->addFlash(
@@ -243,7 +248,7 @@ class ClienteController extends AbstractController
 		}
 		
         if ($this->isCsrfTokenValid('delete'.$cliente->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager = $this->managerRegistry->getManager();
             $entityManager->remove($cliente);
             $entityManager->flush();
         }
