@@ -37,6 +37,13 @@ class MyExceptionSubscriber implements EventSubscriberInterface
         }                
     }
 
+    /**
+     * The function `getSubscribedEvents` returns an array mapping the `KernelEvents::EXCEPTION` event
+     * to the `ShowExceptionEvent` method with priority 0.
+     * 
+     * @return An array is being returned with the event `KernelEvents::EXCEPTION` subscribed to the
+     * method `ShowExceptionEvent` with a priority of 0.
+     */
     public static function getSubscribedEvents()
     {
         return [
