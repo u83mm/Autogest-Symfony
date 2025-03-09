@@ -139,7 +139,7 @@ class MarcaController extends AbstractController
             return $this->redirectToRoute('marca_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('marca/new.html.twig', [
+        return $this->render('marca/new.html.twig', [
             'marca' => $marca,
             'form' => $form,
         ]);
@@ -237,7 +237,7 @@ class MarcaController extends AbstractController
             return $this->redirectToRoute('marca_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('marca/edit.html.twig', [
+        return $this->render('marca/edit.html.twig', [
             'marca' => $marca,
             'form' => $form,
         ]);
