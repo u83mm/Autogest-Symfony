@@ -72,7 +72,7 @@ class ClienteController extends AbstractController
         if (count($errors) > 0) {
         		$errorsString = (string) $errors;
         		
-				return $this->renderForm('cliente/new.html.twig', [
+				return $this->render('cliente/new.html.twig', [
 					'errors' => $errors,
 					'cliente' => $cliente,
 					'form' => $form->createView(),
@@ -94,7 +94,7 @@ class ClienteController extends AbstractController
             return $this->redirectToRoute('cliente_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('cliente/new.html.twig', [
+        return $this->render('cliente/new.html.twig', [
             'cliente' 	=> $cliente,
             'form' 		=> $form,
             'abrev' 	=> $abrev,           
@@ -159,7 +159,7 @@ class ClienteController extends AbstractController
         	}
         }
         
-    	return $this->renderForm('cliente/search.html.twig', [           
+    	return $this->render('cliente/search.html.twig', [           
             'form' => $form,                 
         ]);                
     }
@@ -231,7 +231,7 @@ class ClienteController extends AbstractController
             return $this->redirectToRoute('cliente_show', ['id' => $cliente->getId()], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('cliente/edit.html.twig', [
+        return $this->render('cliente/edit.html.twig', [
             'cliente' 	=> $cliente,
             'form' 		=> $form,
             'abrev' 	=> $abrev,            

@@ -44,7 +44,7 @@ class StockController extends AbstractController
             return $this->redirectToRoute('stock_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('stock/new.html.twig', [
+        return $this->render('stock/new.html.twig', [
             'stock' => $stock,
             'form' => $form,
         ]);
@@ -70,7 +70,7 @@ class StockController extends AbstractController
             return $this->redirectToRoute('stock_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('stock/edit.html.twig', [
+        return $this->render('stock/edit.html.twig', [
             'stock' => $stock,
             'form' => $form,
         ]);
