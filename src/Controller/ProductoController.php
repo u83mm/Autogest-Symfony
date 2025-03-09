@@ -72,7 +72,7 @@ class ProductoController extends AbstractController
             return $this->redirectToRoute('producto_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('producto/new.html.twig', [
+        return $this->render('producto/new.html.twig', [
             'producto' => $producto,
             'form' => $form,
         ]);
@@ -140,7 +140,7 @@ class ProductoController extends AbstractController
         	}
         }
         
-    	return $this->renderForm('producto/search.html.twig', [           
+    	return $this->render('producto/search.html.twig', [           
             'form' => $form,                 
         ]);                
     }
@@ -200,7 +200,7 @@ class ProductoController extends AbstractController
             return $this->redirectToRoute('producto_show', ['id' => $producto->getId()], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('producto/edit.html.twig', [
+        return $this->render('producto/edit.html.twig', [
             'producto' => $producto,
             'form' => $form,
         ]);

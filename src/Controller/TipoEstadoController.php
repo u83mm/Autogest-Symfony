@@ -44,7 +44,7 @@ class TipoEstadoController extends AbstractController
             return $this->redirectToRoute('tipo_estado_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('tipo_estado/new.html.twig', [
+        return $this->render('tipo_estado/new.html.twig', [
             'tipo_estado' => $tipoEstado,
             'form' => $form,
         ]);
@@ -70,7 +70,7 @@ class TipoEstadoController extends AbstractController
             return $this->redirectToRoute('tipo_estado_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('tipo_estado/edit.html.twig', [
+        return $this->render('tipo_estado/edit.html.twig', [
             'tipo_estado' => $tipoEstado,
             'form' => $form,
         ]);

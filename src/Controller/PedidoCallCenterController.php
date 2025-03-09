@@ -75,7 +75,7 @@ class PedidoCallCenterController extends AbstractController
            
         }
 
-        return $this->renderForm('pedido_call_center/cabezera.html.twig', [
+        return $this->render('pedido_call_center/cabezera.html.twig', [
             'pedido_call_center' => $pedidoCallCenter,
             'form' => $form,
         ]);
@@ -193,7 +193,7 @@ class PedidoCallCenterController extends AbstractController
         	return $this->redirectToRoute('pedido_call_center_index', [], Response::HTTP_SEE_OTHER);            
         }        
 
-        return $this->renderForm('pedido_call_center/new.html.twig', [
+        return $this->render('pedido_call_center/new.html.twig', [
             'pedido_call_center' => $pedidoCallCenter,
             'cliente' => $cliente,
             'form' => $form,
@@ -263,7 +263,7 @@ class PedidoCallCenterController extends AbstractController
         	}
         }
         
-    	return $this->renderForm('pedido_call_center/search.html.twig', [           
+    	return $this->render('pedido_call_center/search.html.twig', [           
             'form' => $form,                 
         ]);                
     }
@@ -383,7 +383,7 @@ class PedidoCallCenterController extends AbstractController
         	$variables['pedido_items'.$i] = $pedidoItemsArray[$i];        	
         }                        
                                
-        return $this->renderForm('pedido_call_center/edit.html.twig', $variables);
+        return $this->render('pedido_call_center/edit.html.twig', $variables);
     }
 
     #[Route('/{id}', name: 'pedido_call_center_delete', methods: ['POST'])]
@@ -399,7 +399,7 @@ class PedidoCallCenterController extends AbstractController
     }
 
 	#[Route('/{id}/print', name: 'pedido_call_center_print', methods: ['GET','POST'])]
-	public function print(Request $request, PedidoCallCenter $pedidoCallCenter, MarcaRepository $marcaRepository, PedidoItemsRepository $pedidoItemsRepository, Pdf $pdf): Response 
+	public function print(Request $request, PedidoCallCenter $pedidoCallCenter, MarcaRepository $marcaRepository, PedidoItemsRepository $pedidoItemsRepository, Pdf $pdf) : void 
 	{				
 		$pedidoItemsArray = $pedidoItemsRepository->findByPedidoCallCenter($pedidoCallCenter->getId());                                                                                                                                                                                          
         $logoMarca = $marcaRepository->findOneByid($pedidoCallCenter->getMarca());						

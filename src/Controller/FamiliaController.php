@@ -44,7 +44,7 @@ class FamiliaController extends AbstractController
             return $this->redirectToRoute('familia_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('familia/new.html.twig', [
+        return $this->render('familia/new.html.twig', [
             'familium' => $familium,
             'form' => $form,
         ]);
@@ -70,7 +70,7 @@ class FamiliaController extends AbstractController
             return $this->redirectToRoute('familia_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('familia/edit.html.twig', [
+        return $this->render('familia/edit.html.twig', [
             'familium' => $familium,
             'form' => $form,
         ]);
