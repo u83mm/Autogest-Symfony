@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: db
--- Tiempo de generación: 22-04-2022 a las 17:03:00
--- Versión del servidor: 10.6.4-MariaDB-1:10.6.4+maria~focal
--- Versión de PHP: 7.4.27
+-- Host: db
+-- Generation Time: Mar 11, 2025 at 06:48 PM
+-- Server version: 11.5.2-MariaDB-ubu2404
+-- PHP Version: 8.2.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,96 +18,96 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `autogest`
+-- Database: `autogest`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `busca_cliente`
+-- Table structure for table `busca_cliente`
 --
 
 CREATE TABLE `busca_cliente` (
   `id` int(11) NOT NULL,
-  `selecciona` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `valor` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `selecciona` varchar(50) DEFAULT NULL,
+  `valor` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `busca_pedido`
+-- Table structure for table `busca_pedido`
 --
 
 CREATE TABLE `busca_pedido` (
   `id` int(11) NOT NULL,
-  `selecciona` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `valor` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `selecciona` varchar(50) DEFAULT NULL,
+  `valor` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `busca_producto`
+-- Table structure for table `busca_producto`
 --
 
 CREATE TABLE `busca_producto` (
   `id` int(11) NOT NULL,
-  `selecciona` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `valor` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL
+  `selecciona` varchar(50) NOT NULL,
+  `valor` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `busca_usuario`
+-- Table structure for table `busca_usuario`
 --
 
 CREATE TABLE `busca_usuario` (
   `id` int(11) NOT NULL,
-  `selecciona` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `valor` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `selecciona` varchar(50) DEFAULT NULL,
+  `valor` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `cliente`
+-- Table structure for table `cliente`
 --
 
 CREATE TABLE `cliente` (
   `id` int(11) NOT NULL,
-  `razon_social` varchar(60) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `nombre` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `apellido1` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `apellido2` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `tipo_via` varchar(4) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `nombre_via` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `codigo_postal` varchar(5) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `num_via` varchar(5) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `puerta` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `localidad` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `provincia` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tfno` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `email` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `cif` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `razon_social` varchar(60) DEFAULT NULL,
+  `nombre` varchar(20) DEFAULT NULL,
+  `apellido1` varchar(20) DEFAULT NULL,
+  `apellido2` varchar(20) DEFAULT NULL,
+  `tipo_via` varchar(4) NOT NULL,
+  `nombre_via` varchar(60) NOT NULL,
+  `codigo_postal` varchar(5) NOT NULL,
+  `num_via` varchar(5) DEFAULT NULL,
+  `puerta` varchar(3) DEFAULT NULL,
+  `localidad` varchar(60) NOT NULL,
+  `provincia` varchar(60) NOT NULL,
+  `tfno` varchar(15) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `cif` varchar(10) NOT NULL,
   `fecha_alta` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `departamentos`
+-- Table structure for table `departamentos`
 --
 
 CREATE TABLE `departamentos` (
   `id` int(11) NOT NULL,
-  `nombre_departamento` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `role` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL
+  `nombre_departamento` varchar(30) NOT NULL,
+  `role` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Volcado de datos para la tabla `departamentos`
+-- Dumping data for table `departamentos`
 --
 
 INSERT INTO `departamentos` (`id`, `nombre_departamento`, `role`) VALUES
@@ -119,11 +119,11 @@ INSERT INTO `departamentos` (`id`, `nombre_departamento`, `role`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `doctrine_migration_versions`
+-- Table structure for table `doctrine_migration_versions`
 --
 
 CREATE TABLE `doctrine_migration_versions` (
-  `version` varchar(191) COLLATE utf8mb3_unicode_ci NOT NULL,
+  `version` varchar(191) NOT NULL,
   `executed_at` datetime DEFAULT NULL,
   `execution_time` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
@@ -131,17 +131,17 @@ CREATE TABLE `doctrine_migration_versions` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `familia`
+-- Table structure for table `familia`
 --
 
 CREATE TABLE `familia` (
   `id` int(11) NOT NULL,
-  `tipo_familia` varchar(3) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `nombre_familia` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL
+  `tipo_familia` varchar(3) NOT NULL,
+  `nombre_familia` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Volcado de datos para la tabla `familia`
+-- Dumping data for table `familia`
 --
 
 INSERT INTO `familia` (`id`, `tipo_familia`, `nombre_familia`) VALUES
@@ -154,53 +154,53 @@ INSERT INTO `familia` (`id`, `tipo_familia`, `nombre_familia`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `marca`
+-- Table structure for table `marca`
 --
 
 CREATE TABLE `marca` (
   `id` int(11) NOT NULL,
-  `nombre` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `logo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `nombre` varchar(20) NOT NULL,
+  `logo` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `pedido_call_center`
+-- Table structure for table `pedido_call_center`
 --
 
 CREATE TABLE `pedido_call_center` (
   `id` int(11) NOT NULL,
   `fecha` date NOT NULL,
-  `cuenta_cliente` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `nombre_cliente` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `contacto` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `cuenta_cliente` varchar(10) NOT NULL,
+  `nombre_cliente` varchar(50) NOT NULL,
+  `contacto` varchar(30) DEFAULT NULL,
   `telefono` int(11) DEFAULT NULL,
   `telefono1` int(11) DEFAULT NULL,
-  `cif` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `localidad` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `comentario` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `vin` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `marca` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `cif` varchar(10) NOT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `localidad` varchar(60) NOT NULL,
+  `comentario` longtext DEFAULT NULL,
+  `vin` varchar(30) NOT NULL,
+  `marca` varchar(20) NOT NULL,
   `estado` int(11) NOT NULL,
   `cliente_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- -------------------------------------------------------
+-- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `pedido_items`
+-- Table structure for table `pedido_items`
 --
 
 CREATE TABLE `pedido_items` (
   `id` int(11) NOT NULL,
   `pedido_call_center_id` int(11) NOT NULL,
   `pedido_id` int(11) NOT NULL,
-  `descripcion` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `cantidad` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `descripcion` varchar(60) NOT NULL,
+  `cantidad` varchar(255) NOT NULL,
   `precio` decimal(11,2) NOT NULL,
-  `referencia` varchar(13) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `referencia` varchar(13) DEFAULT NULL,
   `stock` smallint(6) NOT NULL,
   `dto` decimal(6,2) NOT NULL,
   `neto` decimal(11,2) NOT NULL,
@@ -214,15 +214,15 @@ CREATE TABLE `pedido_items` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `producto`
+-- Table structure for table `producto`
 --
 
 CREATE TABLE `producto` (
   `id` int(11) NOT NULL,
   `stock_id` int(11) NOT NULL,
-  `referencia` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `descripcion` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `familia` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `referencia` varchar(20) NOT NULL,
+  `descripcion` varchar(50) NOT NULL,
+  `familia` varchar(20) NOT NULL,
   `pvp` decimal(9,2) NOT NULL,
   `marca` smallint(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -230,31 +230,31 @@ CREATE TABLE `producto` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `stock`
+-- Table structure for table `stock`
 --
 
 CREATE TABLE `stock` (
   `id` int(11) NOT NULL,
   `almacen` smallint(6) NOT NULL,
   `marca` smallint(6) NOT NULL,
-  `referencia` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `referencia` varchar(20) NOT NULL,
   `cantidad` decimal(9,2) NOT NULL,
-  `ubicacion` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `ubicacion` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tipo_estado`
+-- Table structure for table `tipo_estado`
 --
 
 CREATE TABLE `tipo_estado` (
   `id` int(11) NOT NULL,
-  `estado` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL
+  `estado` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Volcado de datos para la tabla `tipo_estado`
+-- Dumping data for table `tipo_estado`
 --
 
 INSERT INTO `tipo_estado` (`id`, `estado`) VALUES
@@ -265,105 +265,105 @@ INSERT INTO `tipo_estado` (`id`, `estado`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
-  `username` varchar(180) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `roles` longtext COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '(DC2Type:json)',
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `nombre` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `apellido1` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `apellido2` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `foto` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `departamento` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `confirm_password` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `username` varchar(180) NOT NULL,
+  `roles` longtext NOT NULL COMMENT '(DC2Type:json)',
+  `password` varchar(255) NOT NULL,
+  `nombre` varchar(20) NOT NULL,
+  `apellido1` varchar(20) NOT NULL,
+  `apellido2` varchar(20) NOT NULL,
+  `email` varchar(30) NOT NULL,
+  `foto` varchar(255) DEFAULT NULL,
+  `departamento` varchar(30) DEFAULT NULL,
+  `confirm_password` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Volcado de datos para la tabla `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id`, `username`, `roles`, `password`, `nombre`, `apellido1`, `apellido2`, `email`, `foto`, `departamento`, `confirm_password`) VALUES
-(1, 'admin', '[\"ROLE_ADMIN\"]', '$2y$13$qxmnNr6VM1GJ9Uz/l0W3YeoH5Ix3JYYMxlWUJdjJE47jozr7K.1PK', 'administrador', 'administrador', 'administrador', 'admin@admin.com', 'administrador-62097d27d1da0.jpg', 'Administración', '$2y$13$qxmnNr6VM1GJ9Uz/l0W3YeoH5Ix3JYYMxlWUJdjJE47jozr7K.1PK');
+(1, 'admin', '[\"ROLE_ADMIN\"]', '$2y$13$2asESJlO74KAJhnRE0bjHeXX4EUnT0sVn3wVkJj8ZThOJFjqwhp1q', 'administrador', 'administrador', 'administrador', 'admin@admin.com', 'administrador-62097d27d1da0.jpg', 'Administración', '$2y$13$2asESJlO74KAJhnRE0bjHeXX4EUnT0sVn3wVkJj8ZThOJFjqwhp1q');
 
 --
--- Índices para tablas volcadas
+-- Indexes for dumped tables
 --
 
 --
--- Indices de la tabla `busca_cliente`
+-- Indexes for table `busca_cliente`
 --
 ALTER TABLE `busca_cliente`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `busca_pedido`
+-- Indexes for table `busca_pedido`
 --
 ALTER TABLE `busca_pedido`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `busca_producto`
+-- Indexes for table `busca_producto`
 --
 ALTER TABLE `busca_producto`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `busca_usuario`
+-- Indexes for table `busca_usuario`
 --
 ALTER TABLE `busca_usuario`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `cliente`
+-- Indexes for table `cliente`
 --
 ALTER TABLE `cliente`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `UNIQ_F41C9B25A53EB8E8` (`cif`);
 
 --
--- Indices de la tabla `departamentos`
+-- Indexes for table `departamentos`
 --
 ALTER TABLE `departamentos`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `doctrine_migration_versions`
+-- Indexes for table `doctrine_migration_versions`
 --
 ALTER TABLE `doctrine_migration_versions`
   ADD PRIMARY KEY (`version`);
 
 --
--- Indices de la tabla `familia`
+-- Indexes for table `familia`
 --
 ALTER TABLE `familia`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `marca`
+-- Indexes for table `marca`
 --
 ALTER TABLE `marca`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `pedido_call_center`
+-- Indexes for table `pedido_call_center`
 --
 ALTER TABLE `pedido_call_center`
   ADD PRIMARY KEY (`id`),
   ADD KEY `IDX_ECB632C5DE734E51` (`cliente_id`);
 
 --
--- Indices de la tabla `pedido_items`
+-- Indexes for table `pedido_items`
 --
 ALTER TABLE `pedido_items`
   ADD PRIMARY KEY (`id`),
   ADD KEY `IDX_A56BD82B3E57D3BF` (`pedido_call_center_id`);
 
 --
--- Indices de la tabla `producto`
+-- Indexes for table `producto`
 --
 ALTER TABLE `producto`
   ADD PRIMARY KEY (`id`),
@@ -371,131 +371,131 @@ ALTER TABLE `producto`
   ADD UNIQUE KEY `UNIQ_A7BB0615DCD6110` (`stock_id`);
 
 --
--- Indices de la tabla `stock`
+-- Indexes for table `stock`
 --
 ALTER TABLE `stock`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `UNIQ_4B365660C01213D8` (`referencia`);
 
 --
--- Indices de la tabla `tipo_estado`
+-- Indexes for table `tipo_estado`
 --
 ALTER TABLE `tipo_estado`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `user`
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `UNIQ_8D93D649F85E0677` (`username`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de la tabla `busca_cliente`
+-- AUTO_INCREMENT for table `busca_cliente`
 --
 ALTER TABLE `busca_cliente`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `busca_pedido`
+-- AUTO_INCREMENT for table `busca_pedido`
 --
 ALTER TABLE `busca_pedido`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `busca_producto`
+-- AUTO_INCREMENT for table `busca_producto`
 --
 ALTER TABLE `busca_producto`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `busca_usuario`
+-- AUTO_INCREMENT for table `busca_usuario`
 --
 ALTER TABLE `busca_usuario`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `cliente`
+-- AUTO_INCREMENT for table `cliente`
 --
 ALTER TABLE `cliente`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `departamentos`
+-- AUTO_INCREMENT for table `departamentos`
 --
 ALTER TABLE `departamentos`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT de la tabla `familia`
+-- AUTO_INCREMENT for table `familia`
 --
 ALTER TABLE `familia`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT de la tabla `marca`
+-- AUTO_INCREMENT for table `marca`
 --
 ALTER TABLE `marca`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `pedido_call_center`
+-- AUTO_INCREMENT for table `pedido_call_center`
 --
 ALTER TABLE `pedido_call_center`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `pedido_items`
+-- AUTO_INCREMENT for table `pedido_items`
 --
 ALTER TABLE `pedido_items`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `producto`
+-- AUTO_INCREMENT for table `producto`
 --
 ALTER TABLE `producto`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `stock`
+-- AUTO_INCREMENT for table `stock`
 --
 ALTER TABLE `stock`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `tipo_estado`
+-- AUTO_INCREMENT for table `tipo_estado`
 --
 ALTER TABLE `tipo_estado`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT de la tabla `user`
+-- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- Restricciones para tablas volcadas
+-- Constraints for dumped tables
 --
 
 --
--- Filtros para la tabla `pedido_call_center`
+-- Constraints for table `pedido_call_center`
 --
 ALTER TABLE `pedido_call_center`
   ADD CONSTRAINT `FK_ECB632C5DE734E51` FOREIGN KEY (`cliente_id`) REFERENCES `cliente` (`id`);
 
 --
--- Filtros para la tabla `pedido_items`
+-- Constraints for table `pedido_items`
 --
 ALTER TABLE `pedido_items`
   ADD CONSTRAINT `FK_A56BD82B3E57D3BF` FOREIGN KEY (`pedido_call_center_id`) REFERENCES `pedido_call_center` (`id`);
 
 --
--- Filtros para la tabla `producto`
+-- Constraints for table `producto`
 --
 ALTER TABLE `producto`
   ADD CONSTRAINT `FK_A7BB0615DCD6110` FOREIGN KEY (`stock_id`) REFERENCES `stock` (`id`);

@@ -30,9 +30,9 @@ class MarcaController extends AbstractController
 
 	public function __construct(Security $security, ImageOptimizer $imageOptimizer, \Doctrine\Persistence\ManagerRegistry $managerRegistry)
 	{       
-	  $this->security = $security;
-	  $this->imageOptimizer = $imageOptimizer;
-   $this->managerRegistry = $managerRegistry;
+	  	$this->security = $security;
+	  	$this->imageOptimizer = $imageOptimizer;
+		$this->managerRegistry = $managerRegistry;
 	}
 	
     #[Route('/', name: 'marca_index', methods: ['GET'])]
@@ -254,8 +254,23 @@ class MarcaController extends AbstractController
 		
         if ($this->isCsrfTokenValid('delete'.$marca->getId(), $request->request->get('_token'))) {
             $entityManager = $this->managerRegistry->getManager();
-            $entityManager->remove($marca);
-            $entityManager->flush();
+
+			try {
+				$filesystem = new Filesystem();
+
+				if(!$filesystem->exists('uploads/logo_marca/' . $marca->getLogo())) {
+					$this->addFlash('warning', 'No se ha encontrado la imagen de la marca.');
+					return $this->redirectToRoute('marca_index', [], Response::HTTP_SEE_OTHER);
+				}
+				
+				$filesystem->remove(['symlink', 'uploads/logo_marca/' . $marca->getLogo()]);
+				$entityManager->remove($marca);						
+				$entityManager->flush();
+				
+			} catch (\Throwable $th) {
+				$this->addFlash('warning', $th->getMessage());
+				return $this->redirectToRoute('marca_index', [], Response::HTTP_SEE_OTHER);
+			}            
         }
 
         return $this->redirectToRoute('marca_index', [], Response::HTTP_SEE_OTHER);
