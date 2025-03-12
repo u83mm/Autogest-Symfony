@@ -14,9 +14,9 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Doctrine\DBAL\Driver\PDO\Exception;
-use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Filesystem\Filesystem;
 use App\Service\ImageOptimizer;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/marca')]
 class MarcaController extends AbstractController
@@ -28,9 +28,8 @@ class MarcaController extends AbstractController
   */
  private $managerRegistry;
 
-	public function __construct(Security $security, ImageOptimizer $imageOptimizer, \Doctrine\Persistence\ManagerRegistry $managerRegistry)
-	{       
-	  	$this->security = $security;
+	public function __construct(ImageOptimizer $imageOptimizer, \Doctrine\Persistence\ManagerRegistry $managerRegistry)
+	{       	  	
 	  	$this->imageOptimizer = $imageOptimizer;
 		$this->managerRegistry = $managerRegistry;
 	}
@@ -39,7 +38,7 @@ class MarcaController extends AbstractController
     public function index(MarcaRepository $marcaRepository, ValidatorInterface $validator): Response
     {
     	// Crea restricción si no se es administrador
-    	if(!$this->security->isGranted('ROLE_ADMIN')) {
+    	if(!$this->isGranted('ROLE_ADMIN')) {
 			$this->addFlash('warning', 'Acceso denegado.');
 			return $this->redirectToRoute('main_menu');
 		}
@@ -51,15 +50,15 @@ class MarcaController extends AbstractController
 
     #[Route('/new', name: 'marca_new', methods: ['GET','POST'])]
     public function new(Request $request, ValidatorInterface $validator, SluggerInterface $slugger): Response
-    {
+    {		
 		$marca = new Marca();
 
     	// Crea restricción si no se es administrador
-    	if(!$this->security->isGranted('ROLE_ADMIN')) {
-			$this->addFlash('warning', 'Debes ser administrador para editar el perfil.');
-			return $this->redirectToRoute('marca_show', ['id' => $marca->getId()]);
+    	if(!$this->isGranted('ROLE_ADMIN')) {
+			$this->addFlash('warning', 'Acceso denegado.');
+			return $this->redirectToRoute('main_menu', []);
 		}
-		        
+				        
         $form = $this->createForm(MarcaType::class, $marca);
         $form->handleRequest($request);
         
@@ -148,6 +147,12 @@ class MarcaController extends AbstractController
     #[Route('/{id}', name: 'marca_show', methods: ['GET'])]
     public function show(Marca $marca): Response
     {
+		// Crea restricción si no se es administrador
+    	if(!$this->isGranted('ROLE_ADMIN')) {
+			$this->addFlash('warning', 'Acceso denegado.');
+			return $this->redirectToRoute('main_menu', []);
+		}
+
         return $this->render('marca/show.html.twig', [
             'marca' => $marca,
         ]);
@@ -157,9 +162,9 @@ class MarcaController extends AbstractController
     public function edit(Request $request, Marca $marca, ValidatorInterface $validator, SluggerInterface $slugger): Response
     {
     	// Crea restricción si no se es administrador
-    	if(!$this->security->isGranted('ROLE_ADMIN')) {
-			$this->addFlash('warning', 'Debes ser administrador para editar el perfil.');
-			return $this->redirectToRoute('marca_show', ['id' => $marca->getId()]);
+    	if(!$this->isGranted('ROLE_ADMIN')) {
+			$this->addFlash('warning', 'Acceso denegado.');
+			return $this->redirectToRoute('main_menu', []);
 		}
 		
         $form = $this->createForm(MarcaType::class, $marca);
@@ -247,9 +252,9 @@ class MarcaController extends AbstractController
     public function delete(Request $request, Marca $marca, ValidatorInterface $validator): Response
     {
     	// Crea restricción si no se es administrador
-    	if(!$this->security->isGranted('ROLE_ADMIN')) {
-			$this->addFlash('warning', 'Debes ser administrador para editar el perfil.');
-			return $this->redirectToRoute('marca_show', ['id' => $marca->getId()]);
+    	if(!$this->isGranted('ROLE_ADMIN')) {
+			$this->addFlash('warning', 'Acceso denegado.');
+			return $this->redirectToRoute('main_menu', []);
 		}
 		
         if ($this->isCsrfTokenValid('delete'.$marca->getId(), $request->request->get('_token'))) {
