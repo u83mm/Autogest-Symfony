@@ -66,20 +66,20 @@ html {
 	background-size: cover; 
 }
 
-body {
-	width: 80%;
-	margin: 0 auto;
-	max-width: 1350px;
-}
-
 header {
 	padding: 10px;
 	border-bottom: 1px solid black;
 }
 
 #contenedor {
+	margin: 0;
+  	position: absolute;
+  	top: 50%;
+  	left: 50%;
+  	transform: translate(-50%, -50%);
+	width: 60%;
 	border: 1px solid black;
-	margin: 10px;
+	margin: 0 auto;
 	height: auto;
 	background-color: rgba(175,215,230,0.6);
 	border-radius: 10px;
@@ -131,11 +131,17 @@ input[type="text"], [type="password"] {
 	margin-left: auto;
 	margin-right: auto;
 	height: 30px;
+	padding: 1em 0.5em;
+	border-radius: 0.5em;
+	-webkit-border-radius: 0.5em;
+	-moz-border-radius: 0.5em;
+	-ms-border-radius: 0.5em;
+	-o-border-radius: 0.5em;
 }
 
 input:focus {
 	background-color: #e8d854;
-	//border-radius: 5px;
+	/* border-radius: 5px; */
 }
 
 input[type="submit"],[type="button"] {
@@ -153,7 +159,7 @@ input[type="submit"],[type="button"] {
 
 input[type="submit"]:hover,[type="button"]:hover {
 	border: 1px solid darkslateblue;
-	background: khaki;
+	background: rgb(170, 170, 170);
 }
 
 legend {
@@ -196,21 +202,6 @@ h1 {
 	padding: 10px;
 }
 
-/* Descomentar este código para añadir opción de registro en el index
-#registro {
-	height: 40px;
-	text-align: center;
-	width: 40%;
-	margin-top: 5px;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-a.registro {
-	color: white;
-	outline: none;
-}*/
-
 footer {
 	padding: 10px;
 	border-top: 1px solid black;
@@ -222,7 +213,7 @@ footer {
 }
 
 input[type="text"] {
-	//height: 30px;
+	/* height: 30px; */
 }
 
 .alert {
@@ -240,7 +231,7 @@ input[type="text"] {
 }
 
 /************************************************************************
-*					Configuración para móviles											*
+*					Configuración para móviles							*
 ************************************************************************/
 @media (max-width:480px) {
 	html {
@@ -289,11 +280,11 @@ input[type="text"] {
 	input[type="text"]:focus {
 		background-color: #e8d854;
 		border-radius: 5px;
-		//font-size: 16px;
+		/* font-size: 16px; */
 	} 
 
 	input[type="text"],[type="password"] {
-		//font-size: 16px;
+		/* font-size: 16px; */
 		display: block;
 		margin-left: auto;
 		margin-right: auto;
@@ -305,7 +296,7 @@ input[type="text"] {
 }
 
 /************************************************************************
-*			Configuración para tablets portrait (retrato)						*
+*			Configuración para tablets portrait (retrato)				*
 ************************************************************************/
 @media (min-width:481px) and (max-width: 768px){
 	html {
@@ -345,11 +336,11 @@ input[type="text"] {
 	input[type="text"]:focus {
 		background-color: #e8d854;
 		border-radius: 5px;
-		//font-size: 16px;
+		/* font-size: 16px; */
 	} 
 
 	input[type="text"],[type="password"] {
-		//font-size: 16px;
+		/* font-size: 16px; */
 		display: block;
 		margin-left: auto;
 		margin-right: auto;
@@ -358,6 +349,26 @@ input[type="text"] {
 
 	footer {
 		font-size: 0.6em;
+	}	
+}
+
+/***************************************************************
+*		Configuración para tablets landscape (horizontal)	   *
+***************************************************************/
+@media (min-width: 769px) and (max-width: 1050px) {
+	#contenedor {
+		width: 80%;
 	}
+
+	#contenido {
+		height: auto;
+	}
+}
+
+/***************************************************************
+*			 Configuración para KINDLE FIRE					   *
+***************************************************************/
+@media (min-width: 1051px) and (max-width: 1280px) {
+	
 }
 
