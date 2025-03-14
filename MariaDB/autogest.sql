@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Generation Time: Mar 11, 2025 at 06:48 PM
+-- Generation Time: Mar 14, 2025 at 08:05 PM
 -- Server version: 11.5.2-MariaDB-ubu2404
 -- PHP Version: 8.2.23
 
@@ -163,6 +163,13 @@ CREATE TABLE `marca` (
   `logo` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `marca`
+--
+
+INSERT INTO `marca` (`id`, `nombre`, `logo`) VALUES
+(1, 'PEUGEOT', 'Peugeot-logo-67d475f942fb1.png');
+
 -- --------------------------------------------------------
 
 --
@@ -242,6 +249,14 @@ CREATE TABLE `stock` (
   `ubicacion` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `stock`
+--
+
+INSERT INTO `stock` (`id`, `almacen`, `marca`, `referencia`, `cantidad`, `ubicacion`) VALUES
+(1, 1, 1, '000001', 0.00, NULL),
+(2, 1, 1, '000002', 0.00, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -287,7 +302,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `roles`, `password`, `nombre`, `apellido1`, `apellido2`, `email`, `foto`, `departamento`, `confirm_password`) VALUES
-(1, 'admin', '[\"ROLE_ADMIN\"]', '$2y$13$2asESJlO74KAJhnRE0bjHeXX4EUnT0sVn3wVkJj8ZThOJFjqwhp1q', 'administrador', 'administrador', 'administrador', 'admin@admin.com', 'administrador-62097d27d1da0.jpg', 'Administración', '$2y$13$2asESJlO74KAJhnRE0bjHeXX4EUnT0sVn3wVkJj8ZThOJFjqwhp1q');
+(1, 'admin', '[\"ROLE_ADMIN\"]', '$2y$13$2asESJlO74KAJhnRE0bjHeXX4EUnT0sVn3wVkJj8ZThOJFjqwhp1q', 'administrador', 'administrador', 'administrador', 'admin@admin.com', 'administrador-62097d27d1da0.jpg', 'Administración', '$2y$13$2asESJlO74KAJhnRE0bjHeXX4EUnT0sVn3wVkJj8ZThOJFjqwhp1q'),
+(2, 'pepe', '[\"ROLE_COMERCIAL\"]', '$2y$13$IDj1BebUJC6Aowm9zsAJL.2bNi1J3vypmiiIZMgOGOTiKsFJuLbCu', 'pepe', 'pepe', 'pepe', 'pepe@pepe.com', NULL, 'Comercial', 'cantinflas');
 
 --
 -- Indexes for dumped tables
@@ -440,7 +456,7 @@ ALTER TABLE `familia`
 -- AUTO_INCREMENT for table `marca`
 --
 ALTER TABLE `marca`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `pedido_call_center`
@@ -464,7 +480,7 @@ ALTER TABLE `producto`
 -- AUTO_INCREMENT for table `stock`
 --
 ALTER TABLE `stock`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tipo_estado`
@@ -476,7 +492,7 @@ ALTER TABLE `tipo_estado`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
