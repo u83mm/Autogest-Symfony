@@ -15,7 +15,6 @@ use App\Repository\ClienteRepository;
 use App\Repository\MarcaRepository;
 use App\Repository\TipoEstadoRepository;
 use App\Repository\PedidoItemsRepository;
-use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -44,14 +43,13 @@ class PedidoCallCenterController extends AbstractController
     	// Obtiene todos los estados de la tabla "tipo_estado" para pasarlo al index.html.twig
     	$estados = $tipoEstadoRepository->findAll();    			        	    	    	    	    	
     	    	  	
-        return $this->render('pedido_call_center/index.html.twig', [
-            //'pedido_call_centers' => $pedidoCallCenterRepository->findAll(),
-            'pedidos' => $paginator,
-            'previous' => $offset - PedidoCallCenterRepository::PAGINATOR_PER_PAGE,
-            'next' => min(count($paginator), $offset + PedidoCallCenterRepository::PAGINATOR_PER_PAGE),
-            'desde' => $offset + 1,            
-            'last' => $pedidoCallCenterRepository->getLast($paginator),
-            'estados' => $estados,                   
+        return $this->render('pedido_call_center/index.html.twig', [            
+            'pedidos' 	=> $paginator,
+            'previous' 	=> $offset - PedidoCallCenterRepository::PAGINATOR_PER_PAGE,
+            'next' 		=> min(count($paginator), $offset + PedidoCallCenterRepository::PAGINATOR_PER_PAGE),
+            'desde' 	=> $offset + 1,            
+            'last' 		=> $pedidoCallCenterRepository->getLast($paginator),
+            'estados' 	=> $estados,                   
         ]);
     }
     
@@ -112,13 +110,11 @@ class PedidoCallCenterController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {        	        	       	        	        			           	
             $entityManager = $this->managerRegistry->getManager();
-            $entityManager->persist($pedidoCallCenter);                                                                                                  
-
-            //return $this->redirectToRoute('pedido_call_center_index', [], Response::HTTP_SEE_OTHER);            
+            $entityManager->persist($pedidoCallCenter);                                                                                                                  
         }
         
         if ($pedidoItemsForm->isSubmitted() && $pedidoItemsForm->isValid()) {
-        	// recoge los valores del formulario
+        	// Recoge los valores del formulario
         	$descripcion[] = $pedidoItemsForm->get('descripcion')->getData();
         	$cantidad[] = $pedidoItemsForm->get('cantidad')->getData();
         	$precio[] = $pedidoItemsForm->get('precio')->getData();
@@ -149,10 +145,10 @@ class PedidoCallCenterController extends AbstractController
         	
         	// Calcula el nº del último pedido
 			$pedidos = $pedidoCallCenterRepository->findAll();
-   // guarda los datos en la tabla pedido_items
-   $counter = count($descripcion);												     	        	
-        	
-        	// guarda los datos en la tabla pedido_items
+
+			// Guarda los datos en la tabla pedido_items
+			$counter = count($descripcion);												     	        	
+        	        	
         	for($i = 0; $i < $counter; $i++) {        	
         		$pedido = new PedidoItems();        		        		                                            
 				
@@ -197,8 +193,7 @@ class PedidoCallCenterController extends AbstractController
             'pedido_call_center' => $pedidoCallCenter,
             'cliente' => $cliente,
             'form' => $form,
-            'pedidoItems' => $pedidoItemsForm,
-            //'pedido_items' => $pedidoItems,                             
+            'pedidoItems' => $pedidoItemsForm,                                        
         ]);
     }
     
@@ -239,26 +234,26 @@ class PedidoCallCenterController extends AbstractController
         	
         	if(count($paginator) > 0) {        		       		        		        		
         		return $this->render('pedido_call_center/search_result.html.twig', [				  				   
-				    'pedidos' => $paginator,
-				    'previous' => $offset - PedidoCallCenterRepository::PAGINATOR_PER_PAGE,
-				    'next' => min(count($paginator), $offset + PedidoCallCenterRepository::PAGINATOR_PER_PAGE),
-				    'desde' => $offset + 1,
-				    'campo' => $campo,
-				    'valor' => $valor,
-				    'last' => $pedidoCallCenterRepository->getLast($paginator),
-				    'estados' => $estados,  
+				    'pedidos' 	=> $paginator,
+				    'previous' 	=> $offset - PedidoCallCenterRepository::PAGINATOR_PER_PAGE,
+				    'next' 		=> min(count($paginator), $offset + PedidoCallCenterRepository::PAGINATOR_PER_PAGE),
+				    'desde' 	=> $offset + 1,
+				    'campo' 	=> $campo,
+				    'valor' 	=> $valor,
+				    'last' 		=> $pedidoCallCenterRepository->getLast($paginator),
+				    'estados' 	=> $estados,  
 				]);
         	}
         	else {
         		return $this->render('pedido_call_center/search_result.html.twig', [				  				   
-				    'pedidos' => '',
-				    'previous' => $offset - PedidoCallCenterRepository::PAGINATOR_PER_PAGE,
-				    'next' => min(count($paginator), $offset + PedidoCallCenterRepository::PAGINATOR_PER_PAGE),
-				    'desde' => $offset + 1,
-				    'campo' => $campo,
-				    'valor' => $valor,
-				    'last' => $pedidoCallCenterRepository->getLast($paginator),
-				    'estados' => $estados,  
+				    'pedidos' 	=> '',
+				    'previous' 	=> $offset - PedidoCallCenterRepository::PAGINATOR_PER_PAGE,
+				    'next' 		=> min(count($paginator), $offset + PedidoCallCenterRepository::PAGINATOR_PER_PAGE),
+				    'desde' 	=> $offset + 1,
+				    'campo' 	=> $campo,
+				    'valor' 	=> $valor,
+				    'last' 		=> $pedidoCallCenterRepository->getLast($paginator),
+				    'estados' 	=> $estados,  
 				]);
         	}
         }
@@ -279,23 +274,23 @@ class PedidoCallCenterController extends AbstractController
     	$paginator = $pedidoCallCenterRepository->findByFieldValue($offset, $campo, $valor);    	    	
     	
         return $this->render('pedido_call_center/search_result.html.twig', [           
-            'pedidos' => $paginator,
-            'previous' => $offset - PedidoCallCenterRepository::PAGINATOR_PER_PAGE,
-            'next' => min(count($paginator), $offset + PedidoCallCenterRepository::PAGINATOR_PER_PAGE),
-            'desde' => $offset + 1,
-            'campo' => $campo,
-		    'valor' => $valor,
-		    'last' => $pedidoCallCenterRepository->getLast($paginator),
-		    'estados' => $estados, 		    
+            'pedidos' 	=> $paginator,
+            'previous' 	=> $offset - PedidoCallCenterRepository::PAGINATOR_PER_PAGE,
+            'next' 		=> min(count($paginator), $offset + PedidoCallCenterRepository::PAGINATOR_PER_PAGE),
+            'desde' 	=> $offset + 1,
+            'campo' 	=> $campo,
+		    'valor' 	=> $valor,
+		    'last' 		=> $pedidoCallCenterRepository->getLast($paginator),
+		    'estados' 	=> $estados, 		    
         ]);
     }
     
-    #[Route('/logoMarca', name: 'logoMarca', methods: ['GET', 'POST'])]
+    /* #[Route('/logoMarca', name: 'logoMarca', methods: ['GET', 'POST'])]
 	public function logoMarca(PedidoCallCenter $pedidoCallCenter): Response
     {
     	echo $pedidoCallCenter->getLogo();
     	exit();   	    	   	    	       
-    }  
+    }  */ 
 
     #[Route('/{id}', name: 'pedido_call_center_show', methods: ['GET'])]
     public function show(PedidoCallCenter $pedidoCallCenter, MarcaRepository $marcaRepository): Response
@@ -313,8 +308,7 @@ class PedidoCallCenterController extends AbstractController
     {    	    	
         $form = $this->createForm(PedidoCallCenterType::class, $pedidoCallCenter);
         $form->handleRequest($request);                
-        
-        //$pedidoItems = $pedidoItemsRepository->findOneByPedidoId($pedidoCallCenter->getId());
+                
         $pedidoItemsArray = $pedidoItemsRepository->findByPedidoCallCenter($pedidoCallCenter->getId());                                                                                                                                                                                  
         
         $logoMarca = $marcaRepository->findOneByid($pedidoCallCenter->getMarca());       
@@ -323,7 +317,7 @@ class PedidoCallCenterController extends AbstractController
     		$pedidoItemsForm = $this->createForm(PedidoItemsType::class);
     		$pedidoItemsForm->handleRequest($request);
     		
-    		// recoge los valores del formulario
+    		// Recoge los valores del formulario
 	    	$descripcion[] = $pedidoItemsForm->get('descripcion')->getData();
 	    	$cantidad[] = $pedidoItemsForm->get('cantidad')->getData();
 	    	$precio[] = $pedidoItemsForm->get('precio')->getData();
@@ -331,7 +325,7 @@ class PedidoCallCenterController extends AbstractController
 	    	$stock[] = $pedidoItemsForm->get('stock')->getData();
 	    	$dto[] = $pedidoItemsForm->get('dto')->getData();
 	    	$neto[] = $pedidoItemsForm->get('neto')->getData();
-      $counter = count($pedidoItemsArray);
+      		$counter = count($pedidoItemsArray);
 	    	
 	    	for($i = 1; $i < $counter; $i++) {        						        		
 				$descripcion[] = $pedidoItemsForm->get('descripcion' . $i)->getData();
@@ -342,7 +336,8 @@ class PedidoCallCenterController extends AbstractController
 				$dto[] = $pedidoItemsForm->get('dto' . $i)->getData();
 				$neto[] = $pedidoItemsForm->get('neto' . $i)->getData();        		        		        	
     		}
-      $counter = count($pedidoItemsArray);
+
+      		$counter = count($pedidoItemsArray);
     		
     		for($i = 0; $i < $counter; $i++) {    			
     			$pedidoItems = $pedidoItemsArray[$i];
@@ -367,13 +362,13 @@ class PedidoCallCenterController extends AbstractController
         	return $this->redirectToRoute('pedido_call_center_show', ['id' => $pedidoCallCenter->getId()], Response::HTTP_SEE_OTHER);               	
         }                    				                       
         
-        // crea un array de variables para pasarle al renderForm
+        // Crea un array de variables para pasarle al renderForm
         $variables = [
         	'pedido_call_center' => $pedidoCallCenter,
             'form' => $form,
-            'logo' => $logoMarca,
-            //'pedidoItems' => $pedidoItemsForm,
+            'logo' => $logoMarca,            
         ];
+
         $counter = count($pedidoItemsArray);               
         
         for($i = 0; $i < $counter; $i++) {
@@ -404,30 +399,7 @@ class PedidoCallCenterController extends AbstractController
 		$pedidoItemsArray = $pedidoItemsRepository->findByPedidoCallCenter($pedidoCallCenter->getId());                                                                                                                                                                                          
         $logoMarca = $marcaRepository->findOneByid($pedidoCallCenter->getMarca());						
 		
-		$totales = $pedidoItemsArray[0];
-				
-		// crea un array de variables para pasarle al renderView
-       /* $variables = [
-        	'pedido_call_center' => $pedidoCallCenter,			       
-            'logo' => $logoMarca,
-			'pedido_items' => $pedidoItemsArray,
-			'total_pvp' => $totales->getTotalPvp(),
-			'total_dto' => $totales->getTotalDto(),
-			'total_neto' => $totales->getTotalNeto(),
-			'total_iva' => $totales->getTotalIva(),
-			'total' => $totales->getTotal(),			       
-        ];
-
-		$html = $this->renderView('pedido_call_center/print_pdf.html.twig', $variables);
-		$knpSnappyPdf->setOption('enable-local-file-access', true);	
-		
-		//$filename = 'pedido.pdf';
-		
-		return new PdfResponse(
-			$knpSnappyPdf->getOutputFromHtml($html),
-			'pedido.pdf'
-		);*/		
-		//dd($pedidoItemsArray);
+		$totales = $pedidoItemsArray[0];						
 				
 		$pdf->fecha = $pedidoCallCenter->getFecha()->format('d-m-Y');
 		$pdf->nombreCliente = $pedidoCallCenter->getNombreCliente();
@@ -449,13 +421,14 @@ class PedidoCallCenterController extends AbstractController
 
 		// Relación de artículos
 		$pdf->SetFont('');
+		
 		foreach($pedidoItemsArray as $producto) {
 			$pdf->Cell(40, 6, iconv('UTF-8', 'ISO-8859-1', $producto->getReferencia()), 0, 0, 'L');
-			$pdf->Cell(77, 6, iconv('UTF-8', 'ISO-8859-1', $producto->getDescripcion()), 0, 0, 'L');
+			$pdf->Cell(77, 6, iconv('UTF-8', 'ISO-8859-1', ucfirst(strtolower($producto->getDescripcion()))), 0, 0, 'L');
 			$pdf->Cell(18, 6, iconv('UTF-8', 'ISO-8859-1', $producto->getCantidad()), 0, 0, 'C');
 			$pdf->Cell(20, 6, iconv('UTF-8', 'ISO-8859-1', $producto->getPrecio()), 0, 0, 'C');
 			$pdf->Cell(20, 6, iconv('UTF-8', 'ISO-8859-1', $producto->getDto()), 0, 0, 'C');
-			$pdf->Cell(18, 6, iconv('UTF-8', 'ISO-8859-1', $producto->getNeto()), 0, 0, 'C');
+			$pdf->Cell(18, 6, iconv('UTF-8', 'ISO-8859-1', $producto->getNeto()), 0, 0, 'R');
 			$pdf->Ln();
 		}
 

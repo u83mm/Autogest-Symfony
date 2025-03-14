@@ -93,7 +93,7 @@ body {
 	margin-right: auto;
 	margin-bottom: 10px;
 	text-align: center;
-	//background: yellow;
+	/* background: yellow; */
 }
 
 .center {
@@ -204,7 +204,7 @@ fieldset p {
 form {
 	margin-top: 30px;
 	margin-bottom: 30px;
-	//background: yellow;		
+	/* background: yellow; */		
 	margin: 0;
 	padding: 0.23em;
 }
@@ -262,7 +262,7 @@ h2 {
 header {
 	padding: 10px;
 	background: rgba(175,100,50,1);
-	//border-radius: 10px 10px 0px 0px;
+	/* border-radius: 10px 10px 0px 0px; */
 }
 
 legend {
@@ -299,7 +299,7 @@ legend {
 	border: 1px solid white;
 	padding: 5px 0px 4px 0px;
 	text-align: center;
-	//background: linear-gradient(rgb(200,147,97), rgb(175,100,50));
+	/* background: linear-gradient(rgb(200,147,97), rgb(175,100,50)); */
 	color: white;
 }
 
@@ -760,8 +760,7 @@ input[type="file"] {
 	margin: 0;
 }
 
-#createUser fieldset.showUserControls {
-	/*width: 20%;*/
+#createUser fieldset.showUserControls {	
 	float: left;
 	padding: 0.5em 0;
 	text-align: left;
@@ -918,6 +917,11 @@ dl, ol,ul{
 
 .print_pdf:hover {
 	transform: scale(1.5);
+}
+
+#cliente_id {
+	appearance: textfield;
+	
 }
 
 /************************************************************************

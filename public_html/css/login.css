@@ -157,7 +157,7 @@ input[type="submit"],[type="button"] {
 	border: 1px solid blanchedalmond;
 }
 
-input[type="submit"]:hover,[type="button"]:hover {
+input[type="submit"]:hover, input[type="button"]:hover, input[type="submit"]:focus {
 	border: 1px solid darkslateblue;
 	background: rgb(170, 170, 170);
 }

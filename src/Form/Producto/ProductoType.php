@@ -42,7 +42,9 @@ class ProductoType extends AbstractType
     {
         $builder
             ->add('referencia')
-            ->add('descripcion')
+			->add('descripcion', null, [
+				'attr' => ['maxlength' => 40]
+			])
             ->add('familia', ChoiceType::class, [
             	'choices' => $this->familia,            	
             ])
