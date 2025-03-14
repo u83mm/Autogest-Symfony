@@ -18,10 +18,6 @@
 .phpunit.result.cache
 ###< phpunit/phpunit ###
 
-###> public/uploads ###
-
-###< public/uploads ###
-
 ###> my files to ignore ###
 /log/
 ###< my files to ignore ###
