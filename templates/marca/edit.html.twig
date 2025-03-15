@@ -4,8 +4,6 @@
 
 {% block body %}
     <h2>Edita Marca</h2>
-	{{ include('marca/_form.html.twig', {'button_label': 'Actualizar'}) }}    
-	<fieldset class="showUserControls"> 
-		{{ include('marca/_delete_form.html.twig') }}
-	</fieldset>
+	{{ include('marca/_form.html.twig', {'button_label': 'Actualizar'}) }}
+	{{ include('marca/_delete_form.html.twig') }}	
 {% endblock %}
