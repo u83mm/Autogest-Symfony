@@ -1,4 +1,4 @@
-{{ form_start(form, {'attr': {'id': 'createUser'}}) }}
+{{ form_start(form, {'attr': {'id': 'tradeMark'}}) }}
 	<div class="text-center" style="color:red">
 		{% if errors is defined %}
 			{% for error in errors %}
@@ -6,21 +6,19 @@
 			{% endfor %}
 		{% endif %}		
 	</div>
-	<fieldset class="createUser">
-		
+	<fieldset>		
 		<legend>Datos de la Marca</legend>	
-    	<div class="clienteForm col-sm-4 col-md-12">
+    	<div class="clienteForm col-12 mb-2">
 			{{ form_label(form.nombre, 'Nombre:') }}
 			{{ form_widget(form.nombre, { 'attr': { 'autofocus': 'true', 'placeholder': 'Renault' }}) }}			
 		</div>
-		<div class="clienteForm col-sm-5 col-md-12">
+		<div class="clienteForm col-12">
 			{{ form_label(form.logo, 'Logo:') }}
 			{{ form_widget(form.logo) }}			
-		</div>
-		
+		</div>		
     </fieldset>
-    <fieldset class="showUserControls">
+    <fieldset class="showTrademarkControls">
     	<button class="btn button">{{ button_label|default('Guardar') }}</button>
-    	<a class="btn button" href="{{ path('marca_index') }}">Ir a la lista</a>    	
+    	<a class="btn button" href="{{ path('marca_index') }}">Ir a la lista</a>		    	
     </fieldset>
 {{ form_end(form) }}
