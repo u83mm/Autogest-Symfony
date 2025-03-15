@@ -177,8 +177,8 @@ class MarcaController extends AbstractController
     		$errorsString = (string) $errors;        		
 			return $this->render('marca/edit.html.twig', [					
 				'errors' => $errors,
-				'marca' => $marca,					
-				'form' => $form->createView(),					
+				'marca'  => $marca,					
+				'form' 	 => $form->createView(),					
 			]);								
         }
 
@@ -244,7 +244,7 @@ class MarcaController extends AbstractController
 
         return $this->render('marca/edit.html.twig', [
             'marca' => $marca,
-            'form' => $form,
+            'form' 	=> $form,
         ]);
     }
 
