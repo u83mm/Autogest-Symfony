@@ -295,7 +295,7 @@ legend {
 	width: 100%;
 }
 
-#listado td, th {
+#listado td, #listado th, #trade_mark td {
 	border: 1px solid white;
 	padding: 5px 0px 4px 0px;
 	text-align: center;
@@ -303,7 +303,7 @@ legend {
 	color: white;
 }
 
-#listado td {
+#listado td, #trade_mark td {
 	color: rgba(255,255,255,.7);
 	vertical-align: middle;
 	padding: 0.4em
@@ -322,15 +322,15 @@ legend {
 	color: white;
 }
 
-#listado tr:nth-of-type(even) {
+#listado tr:nth-of-type(even), #trade_mark tr:nth-of-type(even) {
 	background-color: rgba(155,75,20,.7);
 }
 
-#listado tbody tr:nth-of-type(odd) {
+#listado tbody tr:nth-of-type(odd), #trade_mark tbody tr:nth-of-type(odd) {
 	background-color: rgba(155,75,20,1);
 }
 
-#listado thead th, #usuarios thead th {
+#listado thead th, #usuarios thead th, #trade_mark thead th {
 	color: rgba(255,255,255,1);
 	font-weight: bold;
 	background: linear-gradient(rgb(200,147,97), rgb(175,100,50));
@@ -946,6 +946,22 @@ dl, ol,ul{
 	display: inline-block;
 }
 
+#trade_mark {
+	width: 50%;
+	margin: 0 auto;
+	border: 1px solid white;
+	border-spacing: 0;
+	text-align: center;
+}
+
+#trade_mark th {
+	border: 1px solid white;
+}
+
+#trade_mark .tdActions {
+	width: 8em;	
+}
+
 /************************************************************************
 *					Configuración para móviles							*
 ************************************************************************/
@@ -1422,6 +1438,10 @@ dl, ol,ul{
 		width: 90%;
 		margin: 0 auto;	
 	}
+
+	#trade_mark {
+		width: 90%;
+	}
 }
 
 /************************************************************************
@@ -1609,7 +1629,7 @@ dl, ol,ul{
 	}
 	
 	.tdActions {
-		width: 14%;
+		width: 7em;
 	}
 	
 	.tdActions a {
@@ -1837,7 +1857,23 @@ dl, ol,ul{
 	
 	#pedido_call_center_localidad {
 		width: 60%;
-	}		
+	}
+	
+	#trade_mark .tdActions {		
+		vertical-align: middle;
+	}
+
+	.tdActions img {
+		width: 2em;
+	}
+
+	.tdActions a {
+		display: inline-block;
+	}
+
+	.tdActions .edit {
+		vertical-align: middle;		
+	}
 }
 
 /***************************************************************
@@ -1854,6 +1890,10 @@ dl, ol,ul{
 	
 	#pedido_call_center_localidad {
 		width: 60%;
+	}
+
+	.tdActions {
+		width: 8em;
 	}
 		
 }

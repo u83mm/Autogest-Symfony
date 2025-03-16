@@ -10,13 +10,13 @@
 		</div>
 	</div>
 
-    <table id="listado" class="table">
+    <table id="trade_mark" class="table">
         <thead>
             <tr>
                 <th class="hidde">Id</th>
                 <th>Nombre</th>
                 <th>Logo</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -27,7 +27,7 @@
                 <td class="imageProfile"><a href="{{ path('marca_show', {'id': marca.id}) }}"><image src={{ asset('uploads/logo_marca/') ~ marca.logo }} alt="logo marca"></a></td>
                 <td class="tdActions">
                     <a class="button hidde" href="{{ path('marca_show', {'id': marca.id}) }}">show</a>
-                    <a  href="{{ path('marca_edit', {'id': marca.id}) }}"><img class="fotoUsuarioPeq" src="{{ asset('images/pen_write_edit.png') }}"></a>
+                    <a class="edit" href="{{ path('marca_edit', {'id': marca.id}) }}"><img class="fotoUsuarioPeq" src="{{ asset('images/pen_write_edit.png') }}"></a>
                 </td>
             </tr>
         {% else %}
