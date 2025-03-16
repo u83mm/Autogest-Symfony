@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Generation Time: Mar 14, 2025 at 08:05 PM
+-- Generation Time: Mar 16, 2025 at 09:42 AM
 -- Server version: 11.5.2-MariaDB-ubu2404
 -- PHP Version: 8.2.23
 
@@ -128,6 +128,13 @@ CREATE TABLE `doctrine_migration_versions` (
   `execution_time` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
+--
+-- Dumping data for table `doctrine_migration_versions`
+--
+
+INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
+('DoctrineMigrations\\Version20250316074339', '2025-03-16 08:44:34', 84);
+
 -- --------------------------------------------------------
 
 --
@@ -168,7 +175,8 @@ CREATE TABLE `marca` (
 --
 
 INSERT INTO `marca` (`id`, `nombre`, `logo`) VALUES
-(1, 'PEUGEOT', 'Peugeot-logo-67d475f942fb1.png');
+(1, 'PEUGEOT', 'Peugeot-logo-67d475f942fb1.png'),
+(2, 'CITRöEN', 'citroen-67d687775a174.png');
 
 -- --------------------------------------------------------
 
@@ -286,7 +294,7 @@ INSERT INTO `tipo_estado` (`id`, `estado`) VALUES
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
   `username` varchar(180) NOT NULL,
-  `roles` longtext NOT NULL COMMENT '(DC2Type:json)',
+  `roles` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL COMMENT '(DC2Type:json)' CHECK (json_valid(`roles`)),
   `password` varchar(255) NOT NULL,
   `nombre` varchar(20) NOT NULL,
   `apellido1` varchar(20) NOT NULL,
@@ -456,7 +464,7 @@ ALTER TABLE `familia`
 -- AUTO_INCREMENT for table `marca`
 --
 ALTER TABLE `marca`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `pedido_call_center`
