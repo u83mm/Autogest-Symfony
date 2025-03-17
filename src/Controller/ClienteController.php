@@ -43,9 +43,9 @@ class ClienteController extends AbstractController
             //'clientes' => $clienteRepository->findAll(),
             'clientes' => $paginator,
             'previous' => $offset - ClienteRepository::PAGINATOR_PER_PAGE,
-            'next' => min(count($paginator), $offset + ClienteRepository::PAGINATOR_PER_PAGE),
-            'desde' => $offset + 1,
-            'last' => $last,
+            'next'     => min(count($paginator), $offset + ClienteRepository::PAGINATOR_PER_PAGE),
+            'desde'    => $offset + 1,
+            'last'     => $last,
         ]);
     }
 
@@ -65,18 +65,17 @@ class ClienteController extends AbstractController
         $form->handleRequest($request); 
         $abrev->handleRequest($request);                
         
-        // maneja posibles errores
-        
+        // maneja posibles errores        
         $errors = $validator->validate($cliente);
         
         if (count($errors) > 0) {
         		$errorsString = (string) $errors;
         		
 				return $this->render('cliente/new.html.twig', [
-					'errors' => $errors,
+					'errors'  => $errors,
 					'cliente' => $cliente,
-					'form' => $form->createView(),
-					'abrev' 	=> $abrev, 
+					'form'    => $form->createView(),
+					'abrev'   => $abrev, 
 				]);								
         }                                 
 
@@ -95,9 +94,9 @@ class ClienteController extends AbstractController
         }
 
         return $this->render('cliente/new.html.twig', [
-            'cliente' 	=> $cliente,
-            'form' 		=> $form,
-            'abrev' 	=> $abrev,           
+            'cliente' => $cliente,
+            'form' 	  => $form,
+            'abrev'   => $abrev,           
         ]);
     }
     
@@ -127,7 +126,7 @@ class ClienteController extends AbstractController
 		    	$this->addFlash('warning', 'Debes rellenar los campos.');
 		    	return $this->render('cliente/search.html.twig', [										
 					'busca' => $buscaCliente,					
-					'form' => $form->createView(),					
+					'form'  => $form->createView(),					
 				]);	
 		    }
                 	        	
@@ -139,22 +138,22 @@ class ClienteController extends AbstractController
         	
         	if(count($paginator) > 0) {        		       		        		        		
         		return $this->render('cliente/search_result.html.twig', [				  				   
-				    'clients' => $paginator,
+				    'clients'  => $paginator,
 				    'previous' => $offset - ClienteRepository::PAGINATOR_PER_PAGE,
-				    'next' => min(count($paginator), $offset + ClienteRepository::PAGINATOR_PER_PAGE),
-				    'desde' => $offset + 1,
-				    'campo' => $campo,
-				    'valor' => $valor
+				    'next'     => min(count($paginator), $offset + ClienteRepository::PAGINATOR_PER_PAGE),
+				    'desde'    => $offset + 1,
+				    'campo'    => $campo,
+				    'valor'    => $valor
 				]);
         	}
         	else {
         		return $this->render('cliente/search_result.html.twig', [				  				   
-				    'clients' => '',
+				    'clients'  => '',
 				    'previous' => $offset - ClienteRepository::PAGINATOR_PER_PAGE,
-				    'next' => min(count($paginator), $offset + ClienteRepository::PAGINATOR_PER_PAGE),
-				    'desde' => $offset + 1,
-				    'campo' => $campo,
-				    'valor' => $valor
+				    'next'     => min(count($paginator), $offset + ClienteRepository::PAGINATOR_PER_PAGE),
+				    'desde'    => $offset + 1,
+				    'campo'    => $campo,
+				    'valor'    => $valor
 				]);
         	}
         }
@@ -174,12 +173,12 @@ class ClienteController extends AbstractController
     	$paginator = $clienteRepository->findByFieldValue($offset, $campo, $valor);
     	
         return $this->render('cliente/search_result.html.twig', [           
-            'clients' => $paginator,
+            'clients'  => $paginator,
             'previous' => $offset - ClienteRepository::PAGINATOR_PER_PAGE,
-            'next' => min(count($paginator), $offset + ClienteRepository::PAGINATOR_PER_PAGE),
-            'desde' => $offset + 1,
-            'campo' => $campo,
-		    'valor' => $valor
+            'next'     => min(count($paginator), $offset + ClienteRepository::PAGINATOR_PER_PAGE),
+            'desde'    => $offset + 1,
+            'campo'    => $campo,
+		    'valor'    => $valor
         ]);
     }  
 
@@ -205,17 +204,16 @@ class ClienteController extends AbstractController
         $abrev = $this->createForm(AbreviaType::class);
         $abrev->handleRequest($request);
         
-        // maneja posibles errores
-        
+        // maneja posibles errores        
         $errors = $validator->validate($cliente);
         
         if (count($errors) > 0) {
         		$errorsString = (string) $errors;
         		
 				return $this->render('cliente/new.html.twig', [
-					'errors' => $errors,
+					'errors'  => $errors,
 					'cliente' => $cliente,
-					'form' => $form->createView(),
+					'form'    => $form->createView(),
 				]);								
         }                                         
 
@@ -232,9 +230,9 @@ class ClienteController extends AbstractController
         }
 
         return $this->render('cliente/edit.html.twig', [
-            'cliente' 	=> $cliente,
-            'form' 		=> $form,
-            'abrev' 	=> $abrev,            
+            'cliente' => $cliente,
+            'form' 	  => $form,
+            'abrev'   => $abrev,            
         ]);
     }
 
