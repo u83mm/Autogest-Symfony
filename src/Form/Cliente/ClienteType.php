@@ -34,8 +34,9 @@ class ClienteType extends AbstractType
             ])
             ->add('cif')
             ->add('fechaAlta', DateType::class, [  
-            	'html5' => false,
-            	'widget' => 'single_text',             	            	     	       	            	           	
+            	'html5'  => false,
+            	'widget' => 'single_text',                
+                'format' => 'dd/MM/yyyy',           	            	     	       	            	           	
             ])
         ;
     }
