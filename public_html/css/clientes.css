@@ -52,9 +52,9 @@
 		font-size: 100%;
 	}	
 
-	#cantidad {
-		//width: 69px;
-	}
+	/* #cantidad {
+		width: 69px;
+	} */
 
 	#contenedor {
 		min-height: 630px;
@@ -93,7 +93,7 @@
 	}
 
 	form {
-		//margin-top: -15px;
+		/* margin-top: -15px; */
 		margin-bottom: 15px;
 	}
 
@@ -363,7 +363,7 @@
 
 	#lineas input[type="text"] {
 		margin: 0px;
-		//margin-bottom: 2px;
+		/* margin-bottom: 2px; */
 	}
 
 	/*CSS para cuando se agregan líneas al formulario de Pedidos de Cliente*/
@@ -448,7 +448,7 @@
 	.s7_portrait {
 		display: none;
 	}
-
+	
 
 /************************************************************************
 *					Configuración para móviles											*
@@ -479,7 +479,7 @@
 	form .label1, label.label3 {
 		margin-left: 0px;
 		width: 20%;
-		//font-size: 1.1em;
+		/* font-size: 1.1em; */
 	}
 		
 	.descripcion {	
@@ -703,7 +703,7 @@
 
 	.error_narrow {
 		width: 22%;
-		//margin-right: 280px;
+		/* margin-right: 280px; */
 	}
 
 	form p.nota {
@@ -796,7 +796,7 @@
 	}
 
 	.order_rows {
-		//text-align: center;
+		/* text-align: center; */
 		padding-left: 4%;
 	}
 
@@ -863,9 +863,9 @@
 		display: none;
 	}
 
-	form .stock {
+	/* form .stock {
 		//margin-left: 9%;
-	}
+	} */
 
 	.cantidad {
 		margin-right: 0px;
