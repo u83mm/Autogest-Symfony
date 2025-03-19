@@ -552,7 +552,7 @@ input[type="text"]:focus, [type="email"]:focus, [type="password"]:focus, [type="
 input[type="text"], [type="password"], [type="date"], [type="email"], [type="number"], [type="tel"]  {
 	font-family: ubuntuRegular;	
 	padding: 0.5em;
-	border-radius: 5px;
+	border-radius: 5px;	
 }
 
 input[type="email"], #cliente_nombreVia {
@@ -744,7 +744,7 @@ input[type="file"] {
 }
 
 .showUserControls {
-	width: 80%;
+	width: 90%;
 	margin: 0 auto;
 	padding: 0.7em 0em;
 	text-align: center;
@@ -960,6 +960,24 @@ dl, ol,ul{
 
 #trade_mark .tdActions {
 	width: 8em;	
+}
+
+.clientData {
+	width: 90%;	
+}
+
+/* .clientData input[type="text"] {
+	margin-bottom: 0.5em;
+} */
+
+.clientData div {
+	width: 30%;
+	display: inline-block;
+	padding: 0.4em;	
+}
+
+div.clienteDate, div.razonSocial{
+	width: 45%;
 }
 
 /************************************************************************
@@ -1442,6 +1460,20 @@ dl, ol,ul{
 	#trade_mark {
 		width: 90%;
 	}
+
+	.clientData div {
+		width: 100%;
+		text-align: center;		
+	}
+
+	.clientData label {
+		width: 100%;
+		text-align: center;
+	}
+
+	.clientData input[type="text"], .clientData input[type="tel"], .clientData input[type="email"], .clientData input[type="password"] {
+		width: 100%;		
+	}
 }
 
 /************************************************************************
@@ -1621,7 +1653,7 @@ dl, ol,ul{
 	}
 	
 	.showUserControls {
-		width: 96%;		
+		width: 90%;		
 	}
 	
 	.clienteForm select {
@@ -1693,7 +1725,19 @@ dl, ol,ul{
 	
 	.ajaxMenu {
 		width: 30%;
-	}		
+	}
+	
+	.clientData div {
+		width: 45%;
+	}
+
+	div.razonSocial, div.name, div.tfno, div.email, div.nombreVia, div.postalCode, div.city, div.state {
+		width: 100%;
+	}
+
+	div.razonSocial input[type="text"] {
+		width: 80%;
+	}
 }
 
 /***************************************************************
@@ -1766,7 +1810,7 @@ dl, ol,ul{
 	}
 	
 	.showUserControls {
-		width: 92%;
+		width: 90%;
 }	
 	
 	.table {
@@ -1874,6 +1918,22 @@ dl, ol,ul{
 	.tdActions .edit {
 		vertical-align: middle;		
 	}
+
+	.clientData div {
+		width: 46%;		
+	}
+
+	.clientData label {
+		width: 7em;		
+	}
+
+	div.razonSocial, div.name, div.tfno, div.email, div.tipoVia, div.nombreVia, div.postalCode, div.city, div.state {
+		width: 100%;
+	}
+
+	div.razonSocial input[type="text"] {
+		width: 65%;
+	}
 }
 
 /***************************************************************
@@ -1895,6 +1955,22 @@ dl, ol,ul{
 	.tdActions {
 		width: 8em;
 	}
+
+	.clientData div {
+		width: 47%;		
+	}
+
+	div.razonSocial, div.name, div.tfno, div.email, div.tipoVia, div.nombreVia, div.postalCode {
+		width: 100%;
+	}
+
+	div.razonSocial input[type="text"], div.nombreVia input[type="text"] {
+		width: 70%;
+	}
+
+	.clientData label {
+		width: 7em;		
+	}
 		
 }
 
@@ -1912,7 +1988,7 @@ dl, ol,ul{
 }
 
 /***************************************************************
-*			 Configuración para escritorio							*
+*			 Configuración para escritorio					   *
 ***************************************************************/
 @media (min-width: 1400px) {		
 	.marca label {
@@ -1925,6 +2001,18 @@ dl, ol,ul{
 	
 	input[type="email"], #pedido_call_center_localidad {
 		width: 40%;
+	}
+
+	div.razonSocial input[type="text"] {
+		width: 75%;
+	}
+
+	.clientData label {
+		width: 7em;		
+	}
+
+	div.email, div.nombreVia, div.nombreVia input[type="text"] {
+		width: 65%;
 	}
 }
 

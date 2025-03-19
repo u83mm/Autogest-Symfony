@@ -10,74 +10,81 @@
 		</div>
 	</div>
 
-    <table class="table table-showUser">
-        <tbody>
-            <tr>
-                <th>Id:</th>
-                <td>{{ cliente.id }}</td>
-            </tr>
-            <tr>
-                <th>Razón Social:</th>
-                <td>{{ cliente.razonSocial }}</td>
-            </tr>
-            <tr>
-                <th>Nombre:</th>
-                <td>{{ cliente.nombre|upper }}</td>
-            </tr>
-            <tr>
-                <th>1º Apellido:</th>
-                <td>{{ cliente.apellido1 }}</td>
-            </tr>
-            <tr>
-                <th>2º Apellido:</th>
-                <td>{{ cliente.apellido2 }}</td>
-            </tr>
-            <tr>
-                <th>Tipo de Vía:</th>
-                <td>{{ cliente.tipoVia }}</td>
-            </tr>
-            <tr>
-                <th>Nombre de la Vía:</th>
-                <td>{{ cliente.nombreVia }}</td>
-            </tr>
-            <tr>
-                <th>Código Postal:</th>
-                <td>{{ cliente.codigoPostal }}</td>
-            </tr>
-            <tr>
-                <th>Número:</th>
-                <td>{{ cliente.numVia }}</td>
-            </tr>
-            <tr>
-                <th>Puerta:</th>
-                <td>{{ cliente.puerta }}</td>
-            </tr>
-            <tr>
-                <th>Localidad:</th>
-                <td>{{ cliente.localidad }}</td>
-            </tr>
-            <tr>
-                <th>Provincia:</th>
-                <td>{{ cliente.provincia }}</td>
-            </tr>
-            <tr>
-                <th>Tfno:</th>
-                <td>{{ cliente.tfno }}</td>
-            </tr>
-            <tr>
-                <th>Email:</th>
-                <td>{{ cliente.email }}</td>
-            </tr>
-            <tr>
-                <th>C.I.F:</th>
-                <td>{{ cliente.cif }}</td>
-            </tr>
-            <tr>
-                <th>Fecha de Alta:</th>
-                <td>{{ cliente.fechaAlta ? cliente.fechaAlta|date('d-m-Y') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <section>
+        <form action="#">
+            <fieldset  class="clientData">
+                <legend>Datos de cliente</legend>
+                <div>
+                    <label for="id">Cuenta: </label>
+                    <input type="text" name="id" id="client_id" value="{{ cliente.id }}" size="2" readonly>                    
+                </div>
+                <div class="clienteDate">
+                    <label for="date">Fecha:</label>
+                    <input type="text" name="date" id="client_date" value="{{ cliente.fechaAlta|date("d/m/Y") }}" size="8" readonly>
+                </div>
+
+                <div>
+                    <label for="cif">Cif/dni: </label>
+                    <input type="text" name="cif" id="client_cif" value="{{ cliente.cif }}" size="8" readonly>                        
+                </div>
+                <div class="razonSocial">
+                    <label for="razonSocial">Razón Social:</label>
+                    <input type="text" name="razonSocial" id="client_social" value="{{ cliente.razonSocial }}" readonly>
+                </div>
+
+                <div class="name">
+                    <label for="name">Nombre:</label>
+                    <input type="text" name="name" id="client_name" value="{{ cliente.nombre }}" readonly>
+                </div>
+                <div class="name">
+                    <label for="first_name">1º Apellido</label>
+                    <input type="text" name="first_name" id="client_first_name" value="{{ cliente.apellido1 }}" readonly>
+                </div>
+                <div class="name">
+                    <label for="last_name">2º Apellido</label>
+                    <input type="text" name="last_name" id="cliente_last_name" value="{{ cliente.apellido2 }}" readonly>
+                </div>
+                <div class="tfno">
+                    <label for="tfno">Tfno.</label>
+                    <input type="tel" name="tfno" id="client_tfno" value="{{ cliente.tfno }}" readonly>
+                </div>
+                <div class="email">
+                    <label for="email">Email:</label>
+                    <input type="email" name="email" id="client_email" value="{{ cliente.email }}" readonly>
+                </div>
+                <div class="tipoVia">
+                    <label for="street">Tipo de via:</label>
+                    <input type="text" name="street" id="client_street" value="{{ cliente.tipoVia }}" size="1" readonly>
+                </div>
+                <div class="nombreVia">
+                    <label for="nombreVia">Nombre de vía:</label>
+                    <input type="text" name="nombreVia" id="client_street_name" value="{{ cliente.nombreVia }}" readonly>
+                </div>
+                <div>
+                    <label for="num_via">Num. de vía:</label>
+                    <input type="text" name="num_via" id="client_num_via" value="{{ cliente.numVia }}" size="1" readonly>
+                </div>
+                <div>
+                    <label for="door">Puerta:</label>
+                    <input type="text" name="door" id="client_door" value="{{ cliente.puerta }}"size="1" readonly>
+                </div>
+                <div class="postalCode">
+                    <label for="postal_code">Código Postal:</label>
+                    <input type="text" name="postal_code" id="client_postal_code" value="{{ cliente.codigoPostal }}" readonly>
+                </div>
+                <div class="city">
+                    <label for="city">Localidad:</label>
+                    <input type="text" name="city" id="client_city" value="{{ cliente.localidad }}" readonly>
+                </div>
+                <div class="state">
+                    <label for="state">Provincia:</label>
+                    <input type="text" name="state" id="client_state" value="{{ cliente.provincia }}" readonly>
+                </div>
+                
+            </fieldset>
+        </form>
+    </section>
+
 	<fieldset class="showUserControls"> 
 		<a class="btn button" href="{{ path('cliente_index') }}">Ir a Listado</a>
 
