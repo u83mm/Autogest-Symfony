@@ -587,8 +587,7 @@ input[type="radio"] {
 }
 
 section {
-	display: block;
-	min-height: 650px;
+	display: block;	
 	max-height: auto;	
 }
 
@@ -978,6 +977,10 @@ dl, ol,ul{
 
 div.clienteDate, div.razonSocial{
 	width: 45%;
+}
+
+#contenido {
+	min-height: 46em;
 }
 
 /************************************************************************
