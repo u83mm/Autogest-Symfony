@@ -962,7 +962,7 @@ dl, ol,ul{
 	width: 8em;	
 }
 
-.clientData {
+.clientData, .userData {
 	width: 90%;	
 }
 
@@ -970,7 +970,7 @@ dl, ol,ul{
 	margin-bottom: 0.5em;
 } */
 
-.clientData div {
+.clientData div, .userData div {
 	width: 30%;
 	display: inline-block;
 	padding: 0.4em;	
@@ -1461,17 +1461,21 @@ div.clienteDate, div.razonSocial{
 		width: 90%;
 	}
 
-	.clientData div {
+	.clientData div, .userData div {
 		width: 100%;
 		text-align: center;		
 	}
 
-	.clientData label {
+	.clientData label, .userData label {
 		width: 100%;
 		text-align: center;
 	}
 
 	.clientData input[type="text"], .clientData input[type="tel"], .clientData input[type="email"], .clientData input[type="password"] {
+		width: 100%;		
+	}
+
+	.userData input[type="text"], .userData input[type="tel"], .userData input[type="email"], .userData input[type="password"] {
 		width: 100%;		
 	}
 }
@@ -1727,11 +1731,11 @@ div.clienteDate, div.razonSocial{
 		width: 30%;
 	}
 	
-	.clientData div {
+	.clientData div, .userData div {
 		width: 45%;
 	}
 
-	div.razonSocial, div.name, div.tfno, div.email, div.nombreVia, div.postalCode, div.city, div.state {
+	div.razonSocial, div.name, div.tfno, div.email, div.nombreVia, div.postalCode, div.city, div.state, div.department {
 		width: 100%;
 	}
 
@@ -1919,15 +1923,15 @@ div.clienteDate, div.razonSocial{
 		vertical-align: middle;		
 	}
 
-	.clientData div {
+	.clientData div, .userData div {
 		width: 46%;		
 	}
 
-	.clientData label {
+	.clientData label, .userData label {
 		width: 7em;		
 	}
 
-	div.razonSocial, div.name, div.tfno, div.email, div.tipoVia, div.nombreVia, div.postalCode, div.city, div.state {
+	div.razonSocial, div.name, div.tfno, div.email, div.tipoVia, div.nombreVia, div.postalCode, div.city, div.state, div.department {
 		width: 100%;
 	}
 
@@ -1956,7 +1960,7 @@ div.clienteDate, div.razonSocial{
 		width: 8em;
 	}
 
-	.clientData div {
+	.clientData div, .userData div {
 		width: 47%;		
 	}
 
@@ -1968,7 +1972,7 @@ div.clienteDate, div.razonSocial{
 		width: 70%;
 	}
 
-	.clientData label {
+	.clientData label, .userData label {
 		width: 7em;		
 	}
 		
@@ -2007,7 +2011,7 @@ div.clienteDate, div.razonSocial{
 		width: 75%;
 	}
 
-	.clientData label {
+	.clientData label, .userData label {
 		width: 7em;		
 	}
 

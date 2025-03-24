@@ -17,7 +17,7 @@
 			</figure>
 		</div>
 	</div>
-    <table class="table table-showUser">   	
+    {# <table class="table table-showUser">   	
         <tbody>        
             <tr>
                 <th>Id:</th>
@@ -52,7 +52,39 @@
                 <td>{{ user.departamento }}</td>
             </tr>           
         </tbody>
-    </table>	
+    </table>	 #}
+
+    <section>
+        <form action="#">
+            <fieldset  class="userData">
+                <legend>Datos de usuario</legend>                                                
+                <div class="name">
+                    <label for="name">Nombre:</label>
+                    <input type="text" name="name" id="client_name" value="{{ user.nombre }}" readonly>
+                </div>
+                <div class="name">
+                    <label for="first_name">1º Apellido</label>
+                    <input type="text" name="first_name" id="client_first_name" value="{{ user.apellido1 }}" readonly>
+                </div>                
+                <div class="name">
+                    <label for="last_name">2º Apellido</label>
+                    <input type="text" name="last_name" id="cliente_last_name" value="{{ user.apellido2 }}" readonly>
+                </div> 
+                <div class="name">
+                    <label for="username">Usuario:</label>
+                    <input type="text" name="username" id="username" value="{{ user.username }}" readonly>
+                </div>           
+                <div class="email">
+                    <label for="email">Email:</label>
+                    <input type="email" name="email" id="client_email" value="{{ user.email }}" readonly>
+                </div>                                              
+                <div class="department">
+                    <label for="department">Departamento:</label>
+                    <input type="text" name="department" id="department" value="{{ user.departamento }}" readonly>
+                </div>                
+            </fieldset>
+        </form>
+    </section>
 	<fieldset class="showUserControls"> 
 		<a class="btn button" href="{{ path('user_index') }}">Ver listado</a>		
 		<a class="btn button" href="{{ path('user_edit', {'id': user.id}) }}">Editar</a> 		 
