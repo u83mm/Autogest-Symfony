@@ -49,7 +49,8 @@ class PedidoCallCenterType extends AbstractType
         $builder
             ->add('fecha', DateType::class, [  
             	'html5' => false,
-            	'widget' => 'single_text',             	            	     	       	            	           	
+            	'widget' => 'single_text',
+				'format' => 'dd/MM/yyyy',           	            	     	       	            	           	
             ])
             ->add('cuentaCliente', TextType::class)
             ->add('nombreCliente')
