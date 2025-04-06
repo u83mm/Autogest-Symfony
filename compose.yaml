@@ -9,10 +9,7 @@ services:
     labels:
       com.symfony.server.service-prefix: 'DATABASE'
     environment:
-      MARIADB_ROOT_PASSWORD: cantinflas
-      MARIADB_DATABASE: autogest
-      MARIADB_USER: admin
-      MARIADB_PASSWORD: admin
+      - ./MariaDB/.env
       
     volumes: 
         - db_vol:/var/lib/mysql

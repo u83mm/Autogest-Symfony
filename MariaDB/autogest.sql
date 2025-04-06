@@ -257,14 +257,6 @@ CREATE TABLE `stock` (
   `ubicacion` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `stock`
---
-
-INSERT INTO `stock` (`id`, `almacen`, `marca`, `referencia`, `cantidad`, `ubicacion`) VALUES
-(1, 1, 1, '000001', 0.00, NULL),
-(2, 1, 1, '000002', 0.00, NULL);
-
 -- --------------------------------------------------------
 
 --

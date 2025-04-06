@@ -472,7 +472,7 @@ function agrega_linea() {
 	inputext4.setAttribute("type", "text"); //Añade atributo de tipo texto a la etiqueta input
 	inputext4.setAttribute("id", "dto" + elementos.length);
 	inputext4.setAttribute("name", "dto" + elementos.length);
-	inputext4	.setAttribute("onblur", "buscaDatos(event, this);");
+	inputext4.setAttribute("onblur", "buscaDatos(event, this);");
 	inputext4.setAttribute("onkeypress", "consultaReferencias(event, this);");
 	inputext4.setAttribute("class", "color margen clientes dto");
 	inputext4.setAttribute("size", "4");
@@ -1262,32 +1262,34 @@ window.onload = function(){
 	#			el valor neto correspondiente																			#
 	###################################################################################################################*/
 	
-	var tipoFormulario = document.getElementsByTagName("h2");
+	tipoFormulario = document.getElementsByTagName("h2");
 	
-	if(tipoFormulario[0].innerHTML.match(/Pedido de Call Center/i)) {
-		var ref = [];
-		var neto = [];
-		var cantidad = [];
-		var stock = [];
-		
-		ref[0] = document.getElementById("pedido_items_referencia");
-		neto[0] = document.getElementById("pedido_items_dto");
-		cantidad[0] = document.getElementById("pedido_items_cantidad");		
-		
-		for(i = 1; i <=10; i++) {
-			ref[i] = document.getElementById("pedido_items_referencia" + i);
-			neto[i] = document.getElementById("pedido_items_dto" + i);
-			cantidad[i] = document.getElementById("pedido_items_cantidad" + i);			
+	if(tipoFormulario[0]) {
+		if(tipoFormulario[0].innerHTML.match(/Pedido de Call Center/i)) {
+			let ref = [];
+			let neto = [];
+			let cantidad = [];
+			let stock = [];
+			
+			ref[0] = document.getElementById("pedido_items_referencia");
+			neto[0] = document.getElementById("pedido_items_dto");
+			cantidad[0] = document.getElementById("pedido_items_cantidad");		
+			
+			for(i = 1; i <=10; i++) {
+				ref[i] = document.getElementById("pedido_items_referencia" + i);
+				neto[i] = document.getElementById("pedido_items_dto" + i);
+				cantidad[i] = document.getElementById("pedido_items_cantidad" + i);			
+			}
+			
+			for(i = 0; i < ref.length; i++) {
+				if(ref[i]) {
+					ref[i].onchange = showReferenceDescription;
+					neto[i].onblur = showReferenceNeto;
+					cantidad[i].onblur = showReferenceNetoByQuantity;
+					ref[i].onblur = showReferenceStock;	
+				}								
+			}						
 		}
-		
-		for(i = 0; i < ref.length; i++) {
-			if(ref[i]) {
-				ref[i].onchange = showReferenceDescription;
-				neto[i].onblur = showReferenceNeto;
-				cantidad[i].onblur = showReferenceNetoByQuantity;
-				ref[i].onblur = showReferenceStock;	
-			}								
-		}						
 	}		
 	
 	//busca datos de referencias mediante AJAX en "Datos del Pedido de Call Center" 
