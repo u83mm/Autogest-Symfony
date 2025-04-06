@@ -5,6 +5,10 @@ ARG TIMEZONE="Europe/Madrid"
 ARG USER_ID=1000
 ARG GROUP_ID=1000
 
+# Arguments for the system user and group
+ARG SYSTEM_USER="mario"
+ARG SYSTEM_GROUP="mario"
+
 COPY / /var/www/
 
 # Set timezone
@@ -13,8 +17,8 @@ RUN printf '[PHP]\ndate.timezone = "%s"\n', ${TIMEZONE} > /usr/local/etc/php/con
 RUN "date"
 
 # Asigna grupo y usuario en contenedor para no tener que estar cambiando propietario a los archivos creados desde el contenedor
-RUN addgroup --gid ${GROUP_ID} mario
-RUN adduser --disabled-password --gecos '' --uid ${USER_ID} --gid ${GROUP_ID} mario
+RUN addgroup --gid ${GROUP_ID} ${SYSTEM_GROUP}
+RUN adduser --disabled-password --gecos '' --uid ${USER_ID} --gid ${GROUP_ID} ${SYSTEM_USER}
 
 # Install system dependencies
 RUN apt update && apt install -y libicu-dev && rm -rf /var/lib/apt/lists/*
