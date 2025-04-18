@@ -987,7 +987,7 @@ div.clienteDate, div.razonSocial{
 .order-details input[type="text"] {
 	margin-bottom: 0.5em;
 }
-.order-details fieldset, .order-details textarea {
+.order-details fieldset, .order-details textarea, .product-details fieldset{
 	width: 80%;
 }
 
@@ -1009,7 +1009,7 @@ div.clienteDate, div.razonSocial{
 	margin-bottom: 0.5em;
 }
 
-.order-details div {
+.order-details div, .product-details div {
 	display: inline-block;
 }
 
@@ -1044,6 +1044,32 @@ div.clienteDate, div.razonSocial{
 .tfno-contacto label {
 	width: 25%;
 }
+
+.product-details input[type="number"] {
+	appearance: textfield;
+	width: 3em;
+}
+
+.product-details div {
+	margin-bottom: 0.5em;
+}
+
+.product-details .part-number, .product-details .family {
+	width: 27%;
+}
+
+.product-details #part-number, .product-details #family, .product-details #trademark {
+	width: 50%;
+}
+
+.product-details .description {
+	width: 40%;
+}
+
+.product-details #description{
+	width: 70%;
+}
+	
 
 /************************************************************************
 *					Configuración para móviles							*
@@ -1544,7 +1570,7 @@ div.clienteDate, div.razonSocial{
 		width: 100%;		
 	}
 
-	.order-details label {
+	.order-details label, .product-details label {
 		width: 100%;
 		text-align: center;
 	}
@@ -1554,12 +1580,16 @@ div.clienteDate, div.razonSocial{
 		margin-bottom: 0.5em;
 	}
 
-	.order-details div {
+	.order-details div, .product-details div, .product-details div.description, .product-details div.part-number, .product-details div.family {
 		width: 100%;
 	}
 
-	.order-details fieldset {
+	.order-details fieldset, .product-details fieldset {
 		width: 90%;
+	}
+
+	.product-details #part-number, .product-details #family, .product-details #description, .product-details #trademark {
+		width: 100%;		
 	}
 }
 
@@ -1581,7 +1611,8 @@ div.clienteDate, div.razonSocial{
 	
 	#pedido_intro_cif_cuentaCliente {
 		width: 50%;
-	}						
+	}
+		
 }
 
 /************************************************************************
@@ -1826,7 +1857,7 @@ div.clienteDate, div.razonSocial{
 		width: 80%;
 	}
 
-	.order-details fieldset {
+	.order-details fieldset, .product-details fieldset {
 		width: 90%;
 	}
 
@@ -1872,9 +1903,29 @@ div.clienteDate, div.razonSocial{
 		margin-bottom: 1.5em;		
 	}
 
-	.order-details label {
+	.order-details label, .product-details label {
 		text-align: right;
 	}
+
+	.product-details .part-number {
+		width: 52%;
+	}
+
+	.product-details .description {
+		width: 100%;
+	}
+
+	.product-details #description {
+		width: 72.5%;
+	}
+
+	.product-details .family, .product-details .trademark {
+		width: 52%;
+	}
+
+	.product-details {
+		min-height: initial;
+	}	
 }
 
 /***************************************************************
@@ -1888,7 +1939,6 @@ div.clienteDate, div.razonSocial{
 	input[type="file"] {
 		font-size: 90%;
 	}
-
 	
 	#marcas td p {
 		width: 100%;
@@ -2109,7 +2159,7 @@ div.clienteDate, div.razonSocial{
 		width: 100%;
 	}
 	
-	.order-details fieldset {
+	.order-details fieldset, .product-details fieldset {
 		width: 90%;
 	}
 
@@ -2117,6 +2167,26 @@ div.clienteDate, div.razonSocial{
 		text-align: center;
 		margin-bottom: 1.5em;		
 	}
+
+	.product-details .part-number {
+		width: 52%;
+	}
+
+	.product-details .description {
+		width: 100%;
+	}
+
+	.product-details #description {
+		width: 71.8%;
+	}
+
+	.product-details .family, .product-details .trademark {
+		width: 49%;
+	}
+
+	.product-details #family, .product-details #trademark {
+		width: 45%;
+	}	
 }
 
 /***************************************************************
@@ -2192,7 +2262,7 @@ div.clienteDate, div.razonSocial{
 		width: 100%;
 	}
 	
-	.order-details fieldset {
+	.order-details fieldset, .product-details fieldset {
 		width: 90%;
 	}
 
@@ -2200,7 +2270,22 @@ div.clienteDate, div.razonSocial{
 		text-align: center;
 		margin-bottom: 1.5em;		
 	}
-		
+
+	.product-details .part-number {
+		width: 50%;
+	}
+	
+	.product-details .description {
+		width: 100%;
+	}
+
+	.product-details #description {
+		width: 74%;
+	}
+
+	.product-details .family, .product-details .trademark {
+		width: 49%;
+	}
 }
 
 /***************************************************************
@@ -2214,12 +2299,25 @@ div.clienteDate, div.razonSocial{
 	#pedido_call_center_localidad {
 		width: 60%;
 	}
+
+	.product-details .part-number {
+		width: 40%;
+	}
+
+	.product-details .description {
+		width: 90%;
+	}
+
+	.product-details .family {
+		width: 35%;
+	}
 }
 
 /***************************************************************
 *			 Configuración para escritorio					   *
 ***************************************************************/
-@media (min-width: 1400px) {		
+@media (min-width: 1400px) and (max-width: 1850px) {
+			
 	.marca label {
 		width: 20%;
 	}		
@@ -2242,6 +2340,18 @@ div.clienteDate, div.razonSocial{
 
 	div.email, div.nombreVia, div.nombreVia input[type="text"] {
 		width: 65%;
+	}
+
+	.product-details .part-number {
+		width: 40%;
+	}
+
+	.product-details .description {
+		width: 70%;
+	}
+
+	.product-details .family {
+		width: 35%;
 	}
 }
 
