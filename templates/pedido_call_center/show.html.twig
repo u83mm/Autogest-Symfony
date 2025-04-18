@@ -1,63 +1,70 @@
 {% extends 'main_menu/base.html.twig' %}
 
-{% block title %}PedidoCallCenter{% endblock %}
+{% block title %}Pedido Call Center{% endblock %}
 
 {% block body %}
-    <h2>PedidoCallCenter</h2>
+    <h2>Pedido de Cliente</h2>
     <div id="datos">				
 		<div id="gif">
 							
 		</div>
-	</div>
+	</div>    
 
-    <table class="table table-showUser">    	
-        <tbody>       	       	
-        	<tr>
-                <th class="logoMarcaShow hidde">&nbsp;</th>
-                <td class="logoMarcaShow"><img class="logoMarcaOrderShow" src="{{ asset('uploads/logo_marca/') ~ logo.logo}}" alt="logo marca"></td>
-            </tr>
-            <tr>
-                <th>Id del pedido:</th>
-                <td>{{ pedido_call_center.id }}</td>
-            </tr>
-            <tr>
-                <th>Fecha:</th>
-                <td>{{ pedido_call_center.fecha ? pedido_call_center.fecha|date('d-m-Y') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Nº Cliente:</th>
-                <td>{{ pedido_call_center.cuentaCliente }}</td>
-            </tr>
-            <tr>
-                <th>Nombre Cliente:</th>
-                <td>{{ pedido_call_center.nombreCliente | upper }}</td>
-            </tr>           
-	        <tr>            			        		
-    			<th>Persona de Contacto:</th>
-        		<td>{{ pedido_call_center.contacto | upper}}</td>  
-        	</tr>
-        	<tr>      		
-    			<th>Teléfono Contacto:</th>
-    			<td>{{ pedido_call_center.telefono }}</td>            			        				        		           	                               
-	        </tr>            
-            <tr>
-                <th>Teléfono:</th>
-                <td>{{ pedido_call_center.telefono1 }}</td>
-            </tr>
-            <tr>
-                <th>Comentario:</th>
-                <td class="justify">{{ pedido_call_center.comentario }}</td>
-            </tr>           
-            <tr>
-                <th>VIN:</th>
-                <td>{{ pedido_call_center.vin }}</td>
-            </tr>
-            <tr>
-                <th>Estado:</th>
-                <td>{{ pedido_call_center.estado }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <section class="order-details">              
+        <form action="#">
+            <fieldset>
+                <legend>Detalles del pedido</legend>
+                <div class="logo-marca-container">
+                    <img class="logoMarcaOrderShow" src="{{ asset('uploads/logo_marca/') ~ logo.logo}}" alt="logo marca">
+                </div>
+                <div class="numero-pedido">
+                    <label class="order-details-label" for="id">Nº de pedido</label>
+                    <input type="text" id="id" name="id" value="{{ pedido_call_center.id }}" size="2" readonly>
+                </div>
+                <div class="fecha">
+                    <label for="fecha">Fecha</label>
+                    <input type="text" id="fecha" name="fecha" value="{{ pedido_call_center.fecha ? pedido_call_center.fecha|date('d-m-Y') : '' }}" size="8" readonly>
+                </div>
+                <div class="numero-cliente">
+                    <label class="order-details-label" for="cuentaCliente">Nª cliente</label>
+                    <input type="text" id="cuentaCliente" name="cuentaCliente" value="{{ pedido_call_center.cuentaCliente }}" size="2" readonly>
+                </div>
+                
+                <div class="nombre-cliente">
+                    <label for="nombreCliente">Cliente</label>
+                    <input type="text" id="nombreCliente" name="nombreCliente" value="{{ pedido_call_center.nombreCliente | upper }}" size="28" readonly>
+                </div>
+                <div class="persona-contacto">
+                    <label class="order-details-label" for="contacto">Pers. contacto</label>
+                    <input type="text" id="contacto" name="contacto" value="{{ pedido_call_center.contacto | upper }}" size="31" readonly>
+                </div>
+                <div class="tfno-contacto">
+                    <label for="telefono">Tfno. contacto</label>
+                    <input type="tel" id="telefono" name="telefono" value="{{ pedido_call_center.telefono }}" size="10" readonly>
+                </div>                                
+                
+                <div class="tfno-contacto">
+                    <label for="telefono1">Teléfono</label>
+                    <input type="tel" id="telefono1" name="telefono1" value="{{ pedido_call_center.telefono1 }}" size="10" readonly>
+                </div>                
+                <div class="comentario">
+                    <label class="order-details-label" for="comentario">Comentario</label>
+                    <textarea id="comentario" name="comentario" rows="4" readonly>{{ pedido_call_center.comentario }}</textarea>
+                </div> 
+                <div class="vin">
+                    <label for="vin">VIN</label>
+                    <input type="text" id="vin" name="vin" value="{{ pedido_call_center.vin }}" size="31" readonly>
+                </div>
+                <div class="estado">
+                    <label class="order-details-label" for="estado">Estado</label>
+                    <input type="text" id="estado" name="estado" value="{{ pedido_call_center.estado }}" size="15" readonly>
+                </div>                               
+                
+            </fieldset>
+            
+        </form>
+    <section/>
+
 	<fieldset class="showUserControls"> 
 		<a class="btn button" href="{{ path('pedido_call_center_index') }}">Ir a listado</a>
 
