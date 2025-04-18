@@ -5,10 +5,12 @@ namespace App\Controller;
 use App\Entity\Producto;
 use App\Entity\Stock;
 use App\Entity\BuscaProducto;
+use App\Entity\Marca;
 use App\Form\Producto\ProductoType;
 use App\Form\Producto\BuscaProductoType;
 use App\Repository\ProductoRepository;
 use App\Repository\MarcaRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -169,10 +171,14 @@ class ProductoController extends AbstractController
     }  
 
     #[Route('/{id}', name: 'producto_show', methods: ['GET'])]
-    public function show(Producto $producto): Response
+    public function show(Producto $producto, EntityManagerInterface $entityManager): Response
     {
+        // Get the trademark and logo of the product
+        $marca = $entityManager->getRepository(Marca::class)->find($producto->getMarca());
+
         return $this->render('producto/show.html.twig', [
             'producto' => $producto,
+            'marca' => $marca,
         ]);
     }
 

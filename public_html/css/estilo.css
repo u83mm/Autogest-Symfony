@@ -587,8 +587,7 @@ input[type="radio"] {
 }
 
 section {
-	display: block;
-	min-height: 650px;
+	display: block;	
 	max-height: auto;	
 }
 
@@ -844,14 +843,15 @@ img.listado {
 	margin-top: 1em;
 }
 
-.logoMarcaShow {
-	width: 26%;	
+td.logoMarcaShow {
+	width: 100%;
+	text-align: center;	
 }
 
 .logoMarcaOrderShow {
 	width: 7%;
 	vertical-align: middle;
-	text-align: center;
+	/* text-align: center; */
 }
 
 .logoMarcaNew {
@@ -962,7 +962,7 @@ dl, ol,ul{
 	width: 8em;	
 }
 
-.clientData {
+.clientData, .userData {
 	width: 90%;	
 }
 
@@ -970,7 +970,7 @@ dl, ol,ul{
 	margin-bottom: 0.5em;
 } */
 
-.clientData div {
+.clientData div, .userData div {
 	width: 30%;
 	display: inline-block;
 	padding: 0.4em;	
@@ -979,6 +979,97 @@ dl, ol,ul{
 div.clienteDate, div.razonSocial{
 	width: 45%;
 }
+
+#contenido {
+	min-height: 46em;
+}
+
+.order-details input[type="text"] {
+	margin-bottom: 0.5em;
+}
+.order-details fieldset, .order-details textarea, .product-details fieldset{
+	width: 80%;
+}
+
+.order-details-label {
+	width: 25%;
+}
+
+.logo-marca-container {
+	text-align: center;
+	margin-bottom: 1.5em;
+	width: 100%;
+}
+
+.order-details textarea {
+	width: 67%;
+}
+
+.order-details input[type="tel"] {
+	margin-bottom: 0.5em;
+}
+
+.order-details div, .product-details div {
+	display: inline-block;
+}
+
+.numero-pedido, .fecha, .numero-cliente, .tfno-contacto, .estado {
+	width: 30%;
+}
+
+.nombre-cliente, .persona-contacto {
+	width: 40%;
+}
+
+.comentario {
+	width: 62%;
+}
+
+.comentario label {
+	width: 12%;
+}
+
+.nombre-cliente label {
+	width: 19%;
+}
+
+.vin {
+	width: 40%;	
+}
+
+.vin label {
+	width: 18.5%;
+}
+
+.tfno-contacto label {
+	width: 25%;
+}
+
+.product-details input[type="number"] {
+	appearance: textfield;
+	width: 3em;
+}
+
+.product-details div {
+	margin-bottom: 0.5em;
+}
+
+.product-details .part-number, .product-details .family {
+	width: 27%;
+}
+
+.product-details #part-number, .product-details #family, .product-details #trademark {
+	width: 50%;
+}
+
+.product-details .description {
+	width: 40%;
+}
+
+.product-details #description{
+	width: 70%;
+}
+	
 
 /************************************************************************
 *					Configuración para móviles							*
@@ -1461,17 +1552,43 @@ div.clienteDate, div.razonSocial{
 		width: 90%;
 	}
 
-	.clientData div {
+	.clientData div, .userData div {
 		width: 100%;
 		text-align: center;		
 	}
 
-	.clientData label {
+	.clientData label, .userData label {
 		width: 100%;
 		text-align: center;
 	}
 
 	.clientData input[type="text"], .clientData input[type="tel"], .clientData input[type="email"], .clientData input[type="password"] {
+		width: 100%;		
+	}
+
+	.userData input[type="text"], .userData input[type="tel"], .userData input[type="email"], .userData input[type="password"] {
+		width: 100%;		
+	}
+
+	.order-details label, .product-details label {
+		width: 100%;
+		text-align: center;
+	}
+	
+	.order-details input[type="text"], .order-details input[type="tel"], .order-details textarea {
+		width: 100%;
+		margin-bottom: 0.5em;
+	}
+
+	.order-details div, .product-details div, .product-details div.description, .product-details div.part-number, .product-details div.family {
+		width: 100%;
+	}
+
+	.order-details fieldset, .product-details fieldset {
+		width: 90%;
+	}
+
+	.product-details #part-number, .product-details #family, .product-details #description, .product-details #trademark {
 		width: 100%;		
 	}
 }
@@ -1494,7 +1611,8 @@ div.clienteDate, div.razonSocial{
 	
 	#pedido_intro_cif_cuentaCliente {
 		width: 50%;
-	}						
+	}
+		
 }
 
 /************************************************************************
@@ -1727,17 +1845,87 @@ div.clienteDate, div.razonSocial{
 		width: 30%;
 	}
 	
-	.clientData div {
+	.clientData div, .userData div {
 		width: 45%;
 	}
 
-	div.razonSocial, div.name, div.tfno, div.email, div.nombreVia, div.postalCode, div.city, div.state {
+	div.razonSocial, div.name, div.tfno, div.email, div.nombreVia, div.postalCode, div.city, div.state, div.department {
 		width: 100%;
 	}
 
 	div.razonSocial input[type="text"] {
 		width: 80%;
 	}
+
+	.order-details fieldset, .product-details fieldset {
+		width: 90%;
+	}
+
+	.order-details-label {
+		width: 37%;
+	}
+
+	.order-details div {
+		text-align: initial;
+		margin: initial;
+	}
+
+	.order-details textarea {
+		width: 64%;
+	}
+
+	.numero-pedido, .fecha, .numero-cliente, .estado{
+		width: 45%;
+	}
+
+	.nombre-cliente, .persona-contacto {
+		width: 100%;
+	}
+
+	.nombre-cliente label, .persona-contacto label, .vin label, .comentario label, .estado label {
+		width: 16.5%
+	}
+
+	.tfno-contacto {
+		width: 49%;
+	}
+
+	.tfno-contacto label {
+		width: 33%;
+	}
+	
+	.comentario, .vin, .estado {
+		width: 100%;
+	}
+	
+	div.logo-marca-container {
+		text-align: center;
+		margin-bottom: 1.5em;		
+	}
+
+	.order-details label, .product-details label {
+		text-align: right;
+	}
+
+	.product-details .part-number {
+		width: 52%;
+	}
+
+	.product-details .description {
+		width: 100%;
+	}
+
+	.product-details #description {
+		width: 72.5%;
+	}
+
+	.product-details .family, .product-details .trademark {
+		width: 52%;
+	}
+
+	.product-details {
+		min-height: initial;
+	}	
 }
 
 /***************************************************************
@@ -1751,7 +1939,6 @@ div.clienteDate, div.razonSocial{
 	input[type="file"] {
 		font-size: 90%;
 	}
-
 	
 	#marcas td p {
 		width: 100%;
@@ -1919,21 +2106,87 @@ div.clienteDate, div.razonSocial{
 		vertical-align: middle;		
 	}
 
-	.clientData div {
+	.clientData div, .userData div {
 		width: 46%;		
 	}
 
-	.clientData label {
+	.clientData label, .userData label {
 		width: 7em;		
 	}
 
-	div.razonSocial, div.name, div.tfno, div.email, div.tipoVia, div.nombreVia, div.postalCode, div.city, div.state {
+	div.razonSocial, div.name, div.tfno, div.email, div.tipoVia, div.nombreVia, div.postalCode, div.city, div.state, div.department {
 		width: 100%;
 	}
 
 	div.razonSocial input[type="text"] {
 		width: 65%;
 	}
+
+	.order-details-label {
+		width: 37%;
+	}
+
+	.order-details div {
+		text-align: initial;
+		margin: initial;
+	}
+
+	.order-details textarea {
+		width: 64%;
+	}
+
+	.numero-pedido, .fecha, .numero-cliente, .estado{
+		width: 45%;
+	}
+
+	.nombre-cliente, .persona-contacto {
+		width: 100%;
+	}
+
+	.nombre-cliente label, .persona-contacto label, .vin label, .comentario label, .estado label {
+		width: 16.5%
+	}
+
+	.tfno-contacto {
+		width: 49%;
+	}
+
+	.tfno-contacto label {
+		width: 33%;
+	}
+	
+	.comentario, .vin, .estado {
+		width: 100%;
+	}
+	
+	.order-details fieldset, .product-details fieldset {
+		width: 90%;
+	}
+
+	div.logo-marca-container {
+		text-align: center;
+		margin-bottom: 1.5em;		
+	}
+
+	.product-details .part-number {
+		width: 52%;
+	}
+
+	.product-details .description {
+		width: 100%;
+	}
+
+	.product-details #description {
+		width: 71.8%;
+	}
+
+	.product-details .family, .product-details .trademark {
+		width: 49%;
+	}
+
+	.product-details #family, .product-details #trademark {
+		width: 45%;
+	}	
 }
 
 /***************************************************************
@@ -1956,7 +2209,7 @@ div.clienteDate, div.razonSocial{
 		width: 8em;
 	}
 
-	.clientData div {
+	.clientData div, .userData div {
 		width: 47%;		
 	}
 
@@ -1968,10 +2221,71 @@ div.clienteDate, div.razonSocial{
 		width: 70%;
 	}
 
-	.clientData label {
+	.clientData label, .userData label {
 		width: 7em;		
 	}
-		
+
+	.order-details-label {
+		width: 37%;
+	}
+
+	.order-details div {
+		text-align: initial;
+		margin: initial;
+	}
+
+	.order-details textarea {
+		width: 64%;
+	}
+
+	.numero-pedido, .fecha, .numero-cliente, .estado{
+		width: 45%;
+	}
+
+	.nombre-cliente, .persona-contacto {
+		width: 100%;
+	}
+
+	.nombre-cliente label, .persona-contacto label, .vin label, .comentario label, .estado label {
+		width: 16.5%
+	}
+
+	.tfno-contacto {
+		width: 49%;
+	}
+
+	.tfno-contacto label {
+		width: 33%;
+	}
+	
+	.comentario, .vin, .estado {
+		width: 100%;
+	}
+	
+	.order-details fieldset, .product-details fieldset {
+		width: 90%;
+	}
+
+	div.logo-marca-container {
+		text-align: center;
+		margin-bottom: 1.5em;		
+	}
+
+	.product-details .part-number {
+		width: 50%;
+	}
+	
+	.product-details .description {
+		width: 100%;
+	}
+
+	.product-details #description {
+		width: 74%;
+	}
+
+	.product-details .family, .product-details .trademark {
+		width: 49%;
+	}
 }
 
 /***************************************************************
@@ -1985,12 +2299,25 @@ div.clienteDate, div.razonSocial{
 	#pedido_call_center_localidad {
 		width: 60%;
 	}
+
+	.product-details .part-number {
+		width: 40%;
+	}
+
+	.product-details .description {
+		width: 90%;
+	}
+
+	.product-details .family {
+		width: 35%;
+	}
 }
 
 /***************************************************************
 *			 Configuración para escritorio					   *
 ***************************************************************/
-@media (min-width: 1400px) {		
+@media (min-width: 1400px) and (max-width: 1850px) {
+			
 	.marca label {
 		width: 20%;
 	}		
@@ -2007,12 +2334,24 @@ div.clienteDate, div.razonSocial{
 		width: 75%;
 	}
 
-	.clientData label {
+	.clientData label, .userData label {
 		width: 7em;		
 	}
 
 	div.email, div.nombreVia, div.nombreVia input[type="text"] {
 		width: 65%;
+	}
+
+	.product-details .part-number {
+		width: 40%;
+	}
+
+	.product-details .description {
+		width: 70%;
+	}
+
+	.product-details .family {
+		width: 35%;
 	}
 }
 
