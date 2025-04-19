@@ -26,7 +26,7 @@
                     <input type="text" id="fecha" name="fecha" value="{{ pedido_call_center.fecha ? pedido_call_center.fecha|date('d-m-Y') : '' }}" size="8" readonly>
                 </div>
                 <div class="numero-cliente">
-                    <label class="order-details-label" for="cuentaCliente">Nª cliente</label>
+                    <label class="order-details-label" for="cuentaCliente">Nº cliente</label>
                     <input type="text" id="cuentaCliente" name="cuentaCliente" value="{{ pedido_call_center.cuentaCliente }}" size="2" readonly>
                 </div>
                 
@@ -43,7 +43,7 @@
                     <input type="tel" id="telefono" name="telefono" value="{{ pedido_call_center.telefono }}" size="10" readonly>
                 </div>                                
                 
-                <div class="tfno-contacto">
+                <div class="tfno1">
                     <label for="telefono1">Teléfono</label>
                     <input type="tel" id="telefono1" name="telefono1" value="{{ pedido_call_center.telefono1 }}" size="10" readonly>
                 </div>                
@@ -57,7 +57,7 @@
                 </div>
                 <div class="estado">
                     <label class="order-details-label" for="estado">Estado</label>
-                    <input type="text" id="estado" name="estado" value="{{ pedido_call_center.estado }}" size="15" readonly>
+                    <input type="text" id="estado" name="estado" value="{{ estado.estado }}" size="15" readonly>
                 </div>                               
                 
             </fieldset>

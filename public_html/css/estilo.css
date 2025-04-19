@@ -1620,8 +1620,7 @@ div.clienteDate, div.razonSocial{
 ************************************************************************/
 @media (min-width:481px) and (max-width: 767px) {
 	body {
-		width: 99%;
-		/*max-width: 660px;*/
+		width: 99%;		
 		margin: 0 auto;
 		font-size: 100%;
 	}
@@ -1875,7 +1874,15 @@ div.clienteDate, div.razonSocial{
 	}
 
 	.numero-pedido, .fecha, .numero-cliente, .estado{
-		width: 45%;
+		width: 49%;
+	}
+
+	.numero-pedido label, .numero-cliente label {
+		width: 48%;
+	}
+
+	.fecha label {
+		width: 21%;
 	}
 
 	.nombre-cliente, .persona-contacto {
@@ -1883,15 +1890,15 @@ div.clienteDate, div.razonSocial{
 	}
 
 	.nombre-cliente label, .persona-contacto label, .vin label, .comentario label, .estado label {
-		width: 16.5%
+		width: 23.5%
 	}
 
 	.tfno-contacto {
-		width: 49%;
+		width: 55%;
 	}
 
 	.tfno-contacto label {
-		width: 33%;
+		width: 42%;
 	}
 	
 	.comentario, .vin, .estado {
@@ -2311,6 +2318,57 @@ div.clienteDate, div.razonSocial{
 	.product-details .family {
 		width: 35%;
 	}
+
+	.numero-pedido label {
+		width: 33%;
+	}
+
+	.fecha {
+		width: 34%;
+	}
+
+	.fecha label {
+		width: 13%;
+	}
+
+	.numero-cliente label, .persona-contacto label, .estado label {
+		margin-left: 0;
+	}
+
+	.nombre-cliente label {
+		width: 20%;
+	}
+
+	.nombre-cliente, .persona-contacto {
+		width: 49%;
+	}
+
+	.tfno-contacto, .tfno1 {
+		width: 43%;
+	}
+
+	.tfno-contacto label {
+		width: 36%;
+		margin-left: 0;
+	}
+
+	.tfno1 label {
+		width: 29%;		
+	}
+
+	.comentario label {
+		width: 16%;
+	}
+
+	.vin {
+		width: 52%;
+	}
+
+	.estado {
+		width: 36%;
+	}
+
+
 }
 
 /***************************************************************
@@ -2352,6 +2410,40 @@ div.clienteDate, div.razonSocial{
 
 	.product-details .family {
 		width: 35%;
+	}
+
+	.numero-pedido {
+		width: 36%;	
+	}
+
+	.fecha label {
+		margin-left: 0;
+	}
+
+	.nombre-cliente {
+		width: 47%;
+	}
+
+	.persona-contacto {
+		width: 44%;
+	}
+
+	.persona-contacto label {
+		margin-left: 0;
+	}
+
+	.tfno-contacto label {
+		width: 48%;
+		margin-left: 0;
+
+	}
+
+	.comentario label {
+		width: 14.4%;
+	}
+
+	.vin {
+		width: 48%;
 	}
 }
 
