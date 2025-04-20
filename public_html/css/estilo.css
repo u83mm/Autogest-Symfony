@@ -910,10 +910,14 @@ dl, ol,ul{
 }
 
 .print_pdf {
+	display: inline-block;
+}
+
+.print_pdf img {
 	width: 3em;
 }
 
-.print_pdf:hover {
+.print_pdf img:hover {
 	transform: scale(1.5);
 }
 
@@ -1591,6 +1595,25 @@ div.clienteDate, div.razonSocial{
 	.product-details #part-number, .product-details #family, .product-details #description, .product-details #trademark {
 		width: 100%;		
 	}
+
+	.estado {
+		width: 100%;
+	}
+
+	.print_pdf {
+		width: 100%;
+		text-align: center;
+		margin: 1em 0 0;
+	}
+
+	.editCallCenterOrder div {
+		text-align: center;
+		width: 100%;
+	}
+
+	.cantidad {
+		float: left;
+	}
 }
 
 /************************************************************************
@@ -1611,8 +1634,7 @@ div.clienteDate, div.razonSocial{
 	
 	#pedido_intro_cif_cuentaCliente {
 		width: 50%;
-	}
-		
+	}		
 }
 
 /************************************************************************
@@ -1752,7 +1774,7 @@ div.clienteDate, div.razonSocial{
 	}
 	
 	#createUser label {
-		width: 150px;
+		width: 125px;
 		margin-right: 3px;
 		margin-left: 0px;
 	}		
@@ -1932,7 +1954,19 @@ div.clienteDate, div.razonSocial{
 
 	.product-details {
 		min-height: initial;
-	}	
+	}
+
+	.marca, .estado {
+		width: 49%;
+	}
+
+	.vin {
+		width: 58%;
+	}
+
+	#createUser .vin label, #createUser .marca label, #createUser .estado label {
+		width: 63px;
+	}		
 }
 
 /***************************************************************
@@ -2083,11 +2117,7 @@ div.clienteDate, div.razonSocial{
 	
 	#cliente_razonSocial {
 		width: 60%;
-	}
-	
-	.marca label {
-		width: 20%;
-	}		
+	}			
 	
 	.estado label {
 		width: 20%;
@@ -2151,7 +2181,7 @@ div.clienteDate, div.razonSocial{
 	}
 
 	.nombre-cliente label, .persona-contacto label, .vin label, .comentario label, .estado label {
-		width: 16.5%
+		width: 150px;
 	}
 
 	.tfno-contacto {
@@ -2162,7 +2192,7 @@ div.clienteDate, div.razonSocial{
 		width: 33%;
 	}
 	
-	.comentario, .vin, .estado {
+	.comentario {
 		width: 100%;
 	}
 	
@@ -2193,7 +2223,19 @@ div.clienteDate, div.razonSocial{
 
 	.product-details #family, .product-details #trademark {
 		width: 45%;
+	}
+	
+	.estado {
+		width: 50%;
 	}	
+
+	.vin label, .estado label, .marca label {
+		width: 70px;
+	}
+
+	.vin {
+		width: 42%;
+	}
 }
 
 /***************************************************************
@@ -2253,7 +2295,7 @@ div.clienteDate, div.razonSocial{
 		width: 100%;
 	}
 
-	.nombre-cliente label, .persona-contacto label, .vin label, .comentario label, .estado label {
+	.nombre-cliente label, .persona-contacto label, .comentario label {
 		width: 16.5%
 	}
 
@@ -2265,7 +2307,7 @@ div.clienteDate, div.razonSocial{
 		width: 33%;
 	}
 	
-	.comentario, .vin, .estado {
+	.comentario {
 		width: 100%;
 	}
 	
@@ -2293,10 +2335,22 @@ div.clienteDate, div.razonSocial{
 	.product-details .family, .product-details .trademark {
 		width: 49%;
 	}
+
+	.vin label, .estado label, .marca label {
+		width: 70px;
+	}
+
+	.contacto {
+		width: 44%;
+	}	
+
+	.comentario label {
+		width: 167px;
+	}
 }
 
 /***************************************************************
-*			 Configuración para portátiles							*
+*			 Configuración para portátiles					   *
 ***************************************************************/
 @media (min-width: 1281px) and (max-width: 1399px) {		
 	.logoMarcaNew {
@@ -2357,24 +2411,26 @@ div.clienteDate, div.razonSocial{
 	}
 
 	.comentario label {
-		width: 16%;
+		width: 170px;
 	}
 
-	.vin {
-		width: 52%;
+	.vin, .estado, .marca {
+		width: 30%;
+	}
+	
+	.vin label, .estado label, .marca label {
+		width: 100px;
 	}
 
-	.estado {
-		width: 36%;
+	.comentario {
+		width: 93%;
 	}
-
-
 }
 
 /***************************************************************
 *			 Configuración para escritorio					   *
 ***************************************************************/
-@media (min-width: 1400px) and (max-width: 1850px) {
+@media (min-width: 1400px) {
 			
 	.marca label {
 		width: 20%;
@@ -2439,11 +2495,15 @@ div.clienteDate, div.razonSocial{
 	}
 
 	.comentario label {
-		width: 14.4%;
+		width: 170px;
 	}
 
 	.vin {
-		width: 48%;
+		width: 40%;
+	}
+
+	.comentario {
+		width: 100%;
 	}
 }
 
