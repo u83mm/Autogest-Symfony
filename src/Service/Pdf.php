@@ -17,6 +17,7 @@ class Pdf extends Fpdf
     public $comentario;
     public $vin;
     public $marca;
+	public $logo;
 
     public function Header()
     {
@@ -87,9 +88,10 @@ class Pdf extends Fpdf
 		$this->SetFont('');
 		$this->Cell(60, 6, iconv('UTF-8', 'ISO-8859-1', $this->vin), 0, 0, 'l');
 		$this->SetFont('Arial', 'B', 10);
-		$this->Cell(15, 6, 'Marca:', 0, 0, 'l');
+		$this->Cell(13, 6, 'Marca:', 0, 0, 'L');
 		$this->SetFont('');
-		$this->Cell(15, 6, iconv('UTF-8', 'ISO-8859-1', $this->marca), 0, 0, 'l');
+		$this->Cell(25, 6, iconv('UTF-8', 'ISO-8859-1', $this->marca), 0, 0, 'L');		
+		$this->Image("uploads/logo_marca/$this->logo", 180, 109, 20, 20);
 		$this->Ln(12);
 
         // Detalle del pedido
@@ -108,15 +110,15 @@ class Pdf extends Fpdf
 
 		// Crea cuadricula
 		$this->SetLineWidth(0.2);
-		$this->Line(10, 140, 203, 140);	// primera línea horizontal
-		$this->Line(10, 140, 10, 240);	// primera línea margen izquierdo
-		$this->Line(10, 240, 203, 240);	// última línea horizontal
-		$this->Line(50, 140, 50, 240);	// segunda línea margen izquierdo
-		$this->Line(127, 140, 127, 240);	// tercera línea margen izquierdo
-		$this->Line(145, 140, 145, 240);	// cuarta línea margen izquirdo
-		$this->Line(165, 140, 165, 240);	// quinta línea margen izquierdo
-		$this->Line(185, 140, 185, 240);	// sexta línea margen izquierdo
-		$this->Line(203, 140, 203, 240);	// última lína margen
+		$this->Line(10, 140, 203, 140);	 // primera línea horizontal
+		$this->Line(10, 140, 10, 240);	 // primera línea margen izquierdo
+		$this->Line(10, 240, 203, 240);	 // última línea horizontal
+		$this->Line(50, 140, 50, 240);	 // segunda línea margen izquierdo
+		$this->Line(127, 140, 127, 240); // tercera línea margen izquierdo
+		$this->Line(145, 140, 145, 240); // cuarta línea margen izquirdo
+		$this->Line(165, 140, 165, 240); // quinta línea margen izquierdo
+		$this->Line(185, 140, 185, 240); // sexta línea margen izquierdo
+		$this->Line(203, 140, 203, 240); // última lína margen
 
     }
     public function Footer()

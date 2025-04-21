@@ -409,6 +409,7 @@ class PedidoCallCenterController extends AbstractController
 		$pdf->comentario = $pedidoCallCenter->getComentario();
 		$pdf->vin = $pedidoCallCenter->getVin();
 		$pdf->marca = $logoMarca->getNombre();
+		$pdf->logo = $logoMarca->getLogo();
 		
 		// Cabecera del pdf
 		$pdf->SetLineWidth(0.5);
