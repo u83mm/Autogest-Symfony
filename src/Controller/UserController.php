@@ -28,16 +28,16 @@ class UserController extends AbstractController
 {
 	private $security;
 	private $imageOptimizer;
- /**
-  * @var \Doctrine\Persistence\ManagerRegistry
-  */
- private $managerRegistry;
+	/**
+	* @var \Doctrine\Persistence\ManagerRegistry
+	*/
+	private $managerRegistry;
 
 	public function __construct(Security $security, ImageOptimizer $imageOptimizer, \Doctrine\Persistence\ManagerRegistry $managerRegistry)
 	{       
-	  $this->security = $security;
-	  $this->imageOptimizer = $imageOptimizer;
-   $this->managerRegistry = $managerRegistry;
+		$this->security = $security;
+		$this->imageOptimizer = $imageOptimizer;
+		$this->managerRegistry = $managerRegistry;
 	}	
 	
     #[Route('/', name: 'user_index', methods: ['GET'])]
