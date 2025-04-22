@@ -69,7 +69,10 @@
 		<a class="btn button" href="{{ path('pedido_call_center_index') }}">Ir a listado</a>
 
 		<a class="btn button" href="{{ path('pedido_call_center_edit', {'id': pedido_call_center.id}) }}">Editar</a>
-
+        <div class="print_pdf">
+			<a href="{{ path('pedido_call_center_print', {'id': pedido_call_center.id }) }}" target="_blank"><img class="m-lg-0" src="{{ asset('images/print_order.png') }}"></a>
+		</div>
+        
     	{{ include('pedido_call_center/_delete_form.html.twig') }}
 	</fieldset>
 {% endblock %}
