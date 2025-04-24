@@ -93,7 +93,6 @@ body {
 	margin-right: auto;
 	margin-bottom: 10px;
 	text-align: center;
-	/* background: yellow; */
 }
 
 .center {
@@ -203,8 +202,7 @@ fieldset p {
 
 form {
 	margin-top: 30px;
-	margin-bottom: 30px;
-	/* background: yellow; */		
+	margin-bottom: 30px;		
 	margin: 0;
 	padding: 0.23em;
 }
@@ -218,8 +216,7 @@ form fieldset {
 }
 
 form label {
-	display: inline-block;
-	/* width: 150px; */
+	display: inline-block;	
 	text-align: right;
 	margin-right: 5px;
 	margin-left: 60px;
@@ -261,8 +258,7 @@ h2 {
 
 header {
 	padding: 10px;
-	background: rgba(175,100,50,1);
-	/* border-radius: 10px 10px 0px 0px; */
+	background: rgba(175,100,50,1);	
 }
 
 legend {
@@ -298,8 +294,7 @@ legend {
 #listado td, #listado th, #trade_mark td {
 	border: 1px solid white;
 	padding: 5px 0px 4px 0px;
-	text-align: center;
-	/* background: linear-gradient(rgb(200,147,97), rgb(175,100,50)); */
+	text-align: center;	
 	color: white;
 }
 
@@ -970,10 +965,6 @@ dl, ol,ul{
 	width: 90%;	
 }
 
-/* .clientData input[type="text"] {
-	margin-bottom: 0.5em;
-} */
-
 .clientData div, .userData div {
 	width: 30%;
 	display: inline-block;
@@ -996,7 +987,7 @@ div.clienteDate, div.razonSocial{
 }
 
 .order-details-label {
-	width: 25%;
+	width: 107px;
 }
 
 .logo-marca-container {
@@ -1034,7 +1025,7 @@ div.clienteDate, div.razonSocial{
 }
 
 .nombre-cliente label {
-	width: 19%;
+	width: 107px;
 }
 
 .vin {
@@ -1043,10 +1034,6 @@ div.clienteDate, div.razonSocial{
 
 .vin label {
 	width: 18.5%;
-}
-
-.tfno-contacto label {
-	width: 25%;
 }
 
 .product-details input[type="number"] {
@@ -1915,8 +1902,8 @@ div.clienteDate, div.razonSocial{
 		width: 23.5%
 	}
 
-	.tfno-contacto {
-		width: 55%;
+	.tfno-contacto, .tfno1 {
+		width: 100%;
 	}
 
 	.tfno-contacto label {
@@ -1934,6 +1921,7 @@ div.clienteDate, div.razonSocial{
 
 	.order-details label, .product-details label {
 		text-align: right;
+		width: 96px;
 	}
 
 	.product-details .part-number {
@@ -1956,17 +1944,26 @@ div.clienteDate, div.razonSocial{
 		min-height: initial;
 	}
 
-	.marca, .estado {
+	.marca{
 		width: 49%;
 	}
 
-	.vin {
-		width: 58%;
+	.vin, .estado {
+		width: 100%;
 	}
 
 	#createUser .vin label, #createUser .marca label, #createUser .estado label {
 		width: 63px;
-	}		
+	}
+	
+	.product-details div, .order-details div {
+		width: 100%;
+	}
+
+	div.print_pdf {		
+		text-align: center;
+		margin: 1em 0 0;
+	}
 }
 
 /***************************************************************
@@ -2160,7 +2157,7 @@ div.clienteDate, div.razonSocial{
 	}
 
 	.order-details-label {
-		width: 37%;
+		width: 150px;
 	}
 
 	.order-details div {
@@ -2185,11 +2182,11 @@ div.clienteDate, div.razonSocial{
 	}
 
 	.tfno-contacto {
-		width: 49%;
+		width: 56%;
 	}
 
-	.tfno-contacto label {
-		width: 33%;
+	.tfno-contacto label, .tfno1 label {
+		width: 150px;
 	}
 	
 	.comentario {
@@ -2226,15 +2223,15 @@ div.clienteDate, div.razonSocial{
 	}
 	
 	.estado {
-		width: 50%;
+		width: 100%;
 	}	
 
 	.vin label, .estado label, .marca label {
-		width: 70px;
+		width: 150px;
 	}
 
 	.vin {
-		width: 42%;
+		width: 100%;
 	}
 }
 
@@ -2275,7 +2272,7 @@ div.clienteDate, div.razonSocial{
 	}
 
 	.order-details-label {
-		width: 37%;
+		width: 107px;
 	}
 
 	.order-details div {
@@ -2287,25 +2284,21 @@ div.clienteDate, div.razonSocial{
 		width: 64%;
 	}
 
-	.numero-pedido, .fecha, .numero-cliente, .estado{
-		width: 45%;
+	.numero-pedido, .fecha, .numero-cliente{
+		width: 30%;
 	}
 
 	.nombre-cliente, .persona-contacto {
 		width: 100%;
 	}
 
-	.nombre-cliente label, .persona-contacto label, .comentario label {
-		width: 16.5%
+	.nombre-cliente label, .persona-contacto label, .comentario label, .tfno-contacto label, .vin label {
+		width: 107px;
 	}
 
 	.tfno-contacto {
 		width: 49%;
-	}
-
-	.tfno-contacto label {
-		width: 33%;
-	}
+	}	
 	
 	.comentario {
 		width: 100%;
@@ -2334,18 +2327,18 @@ div.clienteDate, div.razonSocial{
 
 	.product-details .family, .product-details .trademark {
 		width: 49%;
-	}
-
-	.vin label, .estado label, .marca label {
-		width: 70px;
-	}
+	}	
 
 	.contacto {
 		width: 44%;
 	}	
 
-	.comentario label {
-		width: 167px;
+	.vin{
+		width: 58%;
+	}
+
+	.estado {
+		width: 41%;
 	}
 }
 
@@ -2399,31 +2392,31 @@ div.clienteDate, div.razonSocial{
 
 	.tfno-contacto, .tfno1 {
 		width: 43%;
-	}
+	}	
 
-	.tfno-contacto label {
-		width: 36%;
-		margin-left: 0;
-	}
-
-	.tfno1 label {
-		width: 29%;		
-	}
-
-	.comentario label {
-		width: 170px;
-	}
-
-	.vin, .estado, .marca {
+	.marca {
 		width: 30%;
-	}
-	
-	.vin label, .estado label, .marca label {
-		width: 100px;
-	}
+	}		
 
 	.comentario {
 		width: 93%;
+	}
+
+	.order-details label {
+		width: 138px;
+		margin: 0;
+	}
+
+	.order-details div {
+		margin-bottom: 0.5em;
+	}
+
+	.vin{
+		width: 52%;
+	}
+
+	.estado {
+		width: 45%;
 	}
 }
 
@@ -2488,22 +2481,20 @@ div.clienteDate, div.razonSocial{
 		margin-left: 0;
 	}
 
-	.tfno-contacto label {
-		width: 48%;
-		margin-left: 0;
-
-	}
-
 	.comentario label {
-		width: 170px;
+		width: 107px;
 	}
 
-	.vin {
-		width: 40%;
+	.vin, .estado {
+		width: 49%;
 	}
 
 	.comentario {
 		width: 100%;
+	}
+
+	.tfno-contacto label, .vin label {
+		width: 107px;
 	}
 }
 
