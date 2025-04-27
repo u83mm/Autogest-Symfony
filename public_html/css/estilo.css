@@ -1060,6 +1060,14 @@ div.clienteDate, div.razonSocial{
 .product-details #description{
 	width: 70%;
 }
+
+.editCallCenterOrder .comentario label {
+	width: 170px;
+}
+
+.editCallCenterOrder .comentario textarea {
+	width: 70%;
+}
 	
 
 /************************************************************************
@@ -1601,6 +1609,10 @@ div.clienteDate, div.razonSocial{
 	.cantidad {
 		float: left;
 	}
+
+	.editCallCenterOrder .comentario textarea {
+		width: 80%;
+	}
 }
 
 /************************************************************************
@@ -1963,7 +1975,7 @@ div.clienteDate, div.razonSocial{
 	div.print_pdf {		
 		text-align: center;
 		margin: 1em 0 0;
-	}
+	}	
 }
 
 /***************************************************************
@@ -2233,6 +2245,10 @@ div.clienteDate, div.razonSocial{
 	.vin {
 		width: 100%;
 	}
+
+	.editCallCenterOrder .comentario label {
+		width: 150px;
+	}
 }
 
 /***************************************************************
@@ -2292,7 +2308,7 @@ div.clienteDate, div.razonSocial{
 		width: 100%;
 	}
 
-	.nombre-cliente label, .persona-contacto label, .comentario label, .tfno-contacto label, .vin label {
+	.nombre-cliente label, .persona-contacto label, .comentario label, .tfno-contacto label, .vin label, .marca label {
 		width: 107px;
 	}
 
@@ -2418,21 +2434,20 @@ div.clienteDate, div.razonSocial{
 	.estado {
 		width: 45%;
 	}
+
+	.estado label {
+		margin-left: 10px;
+	}
+
+	.estado label, .vin label, .marca label {
+		width: 150px;
+	}
 }
 
 /***************************************************************
 *			 Configuración para escritorio					   *
 ***************************************************************/
-@media (min-width: 1400px) {
-			
-	.marca label {
-		width: 20%;
-	}		
-	
-	.estado label {
-		width: 20%;
-	}
-	
+@media (min-width: 1400px) {				
 	input[type="email"], #pedido_call_center_localidad {
 		width: 40%;
 	}
@@ -2493,7 +2508,7 @@ div.clienteDate, div.razonSocial{
 		width: 100%;
 	}
 
-	.tfno-contacto label, .vin label {
+	.tfno-contacto label, .vin label, .marca label, .estado label {
 		width: 107px;
 	}
 }
