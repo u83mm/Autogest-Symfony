@@ -1,7 +1,7 @@
 <ul class="menuRecambios">
 	{% if is_granted('ROLE_ADMIN') or is_granted('ROLE_RECAMBIOS') %}		
 		<li>
-			<a id="consultar_pedido" class="menusRecambios ajaxMenu" href="#" onclick="showMenus(this.id, this.innerHTML)">Consultar Pedidos</a>
+			<a id="consultar_pedido" class="menusRecambios ajaxMenu" href="#">Consultar Pedidos</a>
 		</li>
 		<li>
 			<a class="menusRecambios ajaxMenu" href="{{ path('pedido_call_center') }}" onclick="menuConsultaPedidos()">Crear Pedido Call Center</a>
