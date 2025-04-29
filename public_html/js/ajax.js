@@ -40,24 +40,21 @@
 	
 	function showLinks() {
 		document.getElementsByTagName("h2")[0].innerHTML="Menú de " + this.innerHTML;		
-		var url = this.id;				
+		let url = this.id;					
 				
-		// inicializa color de fondo y color de texto de los menús principales	
-			
-		var menus = document.getElementsByClassName('menusPostVenta');
+		// inicializa color de fondo y color de texto de los menús principales				
+		let menus = document.getElementsByClassName('menusPostVenta');
 		for(var i = 0; i < menus.length; i++) {
 			menus[i].style.background = "rgba(200,145,90,0.8)";
 			menus[i].style.color = "rgb(155,85,20)";
 		}
 		
-		// cambia estilo en función del menú seleccionado						
-		
+		// cambia estilo en función del menú seleccionado								
 		this.style.background = "rgba(175,100,50,0.8)";
 		this.style.color = "white";
 		
-		// inicia la petición 
-		
-		var peticion1 = getXMLHTTPRequest();
+		// inicia la petición 		
+		let peticion1 = getXMLHTTPRequest();
 		peticion1.onreadystatechange = muestraClientes;
 		peticion1.open('GET', url, true);
 		peticion1.send(null);
@@ -68,7 +65,14 @@
 			}
 			else if(peticion1.readyState == 4 && peticion1.status == 200) {
 				restablece();
-				$("datos").innerHTML = peticion1.responseText;
+				document.getElementById("datos").innerHTML = peticion1.responseText;
+
+				// Add onclick event to Recambios's ajax menus 
+				let consultarPedidosLink = document.getElementById('consultar_pedido');
+
+				if(consultarPedidosLink) {
+					consultarPedidosLink.addEventListener('click', showMenus);
+				}
 			} 
 		}
 	}
@@ -77,17 +81,16 @@
 	#	 Función que muestra los menus correspondiente a los links de los menús principales  	#
 	###########################################################################################*/
 	
-	function showMenus(url, cadena) {
-		var url = url;
-		var cadena = cadena;
-		document.getElementsByTagName("h2")[0].innerHTML=cadena;		
-		var params = new FormData();
+	function showMenus() {		
+		let params = new FormData();
+		let url = this.id;		
 
-		params.append("tipo", cadena);										
+		document.querySelector("h2").innerHTML=this.innerHTML;		
 		
-		// inicia la petición 
+		params.append("tipo", this.innerHTML);										
 		
-		var peticion1 = getXMLHTTPRequest();
+		// inicia la petición 		
+		let peticion1 = getXMLHTTPRequest();
 		peticion1.onreadystatechange = consulta;
 		peticion1.open('POST', url, true);
 		peticion1.send(params);
@@ -99,6 +102,20 @@
 			else if(peticion1.readyState == 4 && peticion1.status == 200) {
 				restablece();
 				$("datos").innerHTML = peticion1.responseText;
+
+				// Add onclick event to diferent ajax menus 
+				let pedidosCallCenterMenus = document.querySelectorAll('.pedidosCallCenterMenus');
+				let consultarPedidosMenus = document.getElementById('consultar_pedido');							
+
+				if(pedidosCallCenterMenus) {
+					pedidosCallCenterMenus.forEach(menu => {
+						menu.addEventListener('click', menuConsultaPedidos);
+					});
+				}
+
+				if(consultarPedidosMenus) {
+					consultarPedidosMenus.addEventListener('click', showMenus);
+				}
 			} 
 		}
 	}
@@ -542,20 +559,20 @@
 	}
 
 	// Función que muestra el menú de consulta de pedidos de Taller
-	function menuConsultaPedidos() {
-		//document.getElementsByTagName("h2")[0].innerHTML="Consultar Pedidos";
-		var peticion = getXMLHTTPRequest();
+	function menuConsultaPedidos() {		
+		let peticion = getXMLHTTPRequest();	
+		let url = this.id;		
+		
 		peticion.onreadystatechange = consulta;
-		peticion.open('GET', '', true);
-		peticion.send();
+		peticion.open('GET', url, true);
+		peticion.send();		
 
 		function consulta() {
-			if(peticion.readyState == 1) {//función que se repite y se puede optimizar reduciendo código
-				muestraGif();
+			if(peticion.readyState == 1) {//función que se repite y se puede optimizar reduciendo código				
+				muestraGif();				
 			}
 			else if(peticion.readyState == 4 && peticion.status == 200) {
-				restablece();
-				document.getElementById("datos").innerHTML = peticion.responseText;
+				window.location = url;
 			} 
 		}
 	}

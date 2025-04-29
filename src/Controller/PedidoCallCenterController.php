@@ -24,6 +24,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Fpdf\Fpdf;
 use App\Service\Pdf;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 #[Route('/pedido/call/center')]
 class PedidoCallCenterController extends AbstractController
@@ -52,7 +53,7 @@ class PedidoCallCenterController extends AbstractController
             'desde' 	=> $offset + 1,            
             'last' 		=> $pedidoCallCenterRepository->getLast($paginator),
             'estados' 	=> $estados,                   
-        ]);
+        ]);		
     }
     
     #[Route('/pedido', name: 'pedido_call_center', methods: ['GET','POST'])]
