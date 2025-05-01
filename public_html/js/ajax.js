@@ -69,9 +69,16 @@
 
 				// Add onclick event to Recambios's ajax menus 
 				let consultarPedidosLink = document.getElementById('consultar_pedido');
+				let crearPedidoCallCenterLink = document.getElementById('/pedido/call/center/pedido');
+				let referenciasLink = document.getElementById('/main/consultar_pedido');
 
-				if(consultarPedidosLink) {
+				if(consultarPedidosLink || referenciasLink) {
 					consultarPedidosLink.addEventListener('click', showMenus);
+					referenciasLink.addEventListener('click', showMenus);
+				}
+
+				if(crearPedidoCallCenterLink) {
+					crearPedidoCallCenterLink.addEventListener('click', menuConsultaPedidos);
 				}
 			} 
 		}
