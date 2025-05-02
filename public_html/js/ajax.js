@@ -112,7 +112,8 @@
 
 				// Add onclick event to diferent ajax menus 
 				let pedidosCallCenterMenus = document.querySelectorAll('.pedidosCallCenterMenus');
-				let consultarPedidosMenus = document.getElementById('consultar_pedido');							
+				let consultarPedidosMenus = document.getElementById('consultar_pedido');
+				let referenciasLink = document.querySelectorAll('.referenciasMenus');							
 
 				if(pedidosCallCenterMenus) {
 					pedidosCallCenterMenus.forEach(menu => {
@@ -122,6 +123,12 @@
 
 				if(consultarPedidosMenus) {
 					consultarPedidosMenus.addEventListener('click', showMenus);
+				}
+
+				if(referenciasLink) {
+					referenciasLink.forEach(menu => {
+						menu.addEventListener('click', menuConsultaPedidos);
+					});
 				}
 			} 
 		}
