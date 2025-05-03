@@ -1,4 +1,4 @@
-{{ form_start(form, {'attr': {'id': 'createUser'}}) }}
+{{ form_start(form, {'attr': {'id': 'createUser', 'class': 'editCallCenterOrder'}}) }}
 	<div class="text-center" style="color:red">
 		{% if errors is defined %}
 			{% for error in errors %}
@@ -13,7 +13,7 @@
 								
 			</div>
 		</div>		
-		<div class="clienteForm col-12 col-sm-3 col-md-6">
+		<div class="clienteForm col-12 col-md-6">
 			{{ form_label(form.cuentaCliente, 'Cuenta:') }}
 			{{ form_widget(form.cuentaCliente, { 'attr': { 'size': '5', 'readonly': 'true', 'autofocus': 'true', 'value': pedido_call_center.cuentaCliente }}) }}			
 		</div>
@@ -21,19 +21,19 @@
 			{{ form_label(form.fecha, 'Fecha:') }}
 			{{ form_widget(form.fecha, { 'attr': { 'size': '10', 'readonly': 'true'}}) }}
 		</div>
-		<div class="clienteForm col-12 col-sm-5 col-md-12 col-xxl-12">
+		<div class="clienteForm col-12 col-md-12 col-xxl-12">
 			{{ form_label(form.nombreCliente, 'Cliente:') }}
 			{{ form_widget(form.nombreCliente, { 'attr': { 'size': '30', 'readonly': 'true', 'value': pedido_call_center.nombreCliente }}) }}
 		</div>
-		<div class="clienteForm col-12 col-sm-12 col-lg-12 col-xl-4">
+		<div class="clienteForm col-12 contacto">
 			{{ form_label(form.contacto, 'Contacto:') }}
 			{{ form_widget(form.contacto) }}
 		</div>
-		<div class="clienteForm col-12 col-sm-12 col-lg-12 col-xl-4">
+		<div class="clienteForm col-12 contacto">
 			{{ form_label(form.telefono, 'Telf. contacto:') }}
 			{{ form_widget(form.telefono, { 'attr': { 'maxlength': 9 }}) }}
 		</div>
-		<div class="clienteForm col-12 col-sm-12 col-lg-12 col-xl-4">
+		<div class="clienteForm col-12 contacto">
 			{{ form_label(form.telefono1, 'Telf.:') }}
 			{{ form_widget(form.telefono1, { 'attr': { 'readonly': 'true', 'value': pedido_call_center.telefono1 }}) }}
 		</div>
@@ -41,44 +41,44 @@
 			{{ form_label(form.email, 'E-mail') }}
 			{{ form_widget(form.email, { 'attr': { 'readonly': 'true', 'value': pedido_call_center.email }}) }}			
 		</div>
-		<div class="clienteForm col-12 col-sm-4 col-md-12 col-lg-12">
+		<div class="clienteForm col-12 col-md-12 col-lg-12">
 			{{ form_label(form.localidad, 'Localidad:') }}
 			{{ form_widget(form.localidad, { 'attr': { 'size': '10', 'readonly': 'true', 'value': pedido_call_center.localidad }}) }}			
 		</div>    	  	
-		<div class="clienteForm col-12 col-sm-3 col-md-12">
+		<div class="clienteForm col-12 col-md-12">
 			{{ form_label(form.cif, 'C.I.F:') }}
 			{{ form_widget(form.cif, { 'attr': { 'size': '10', 'readonly': 'true', 'value': pedido_call_center.cif }}) }}			
 		</div>
-		<div class="clienteForm col-12 col-sm-10 col-md-12 col-xxl-12">
+		<div class="clienteForm comentario col-12 col-sm-10 col-md-12 col-xxl-12">
 			{{ form_label(form.comentario, 'Comentario:') }}
 			{{ form_widget(form.comentario, { 'attr': { 'placeholder': 'Puedes añadir un comentario' }}) }}			
 		</div>    	
     </fieldset>
     <fieldset class="createUser">
 		<legend>Datos del Pedido</legend>
+		<div class="logo-marca-container">
+			<img class="logoMarcaOrderShow" src="{{ asset('uploads/logo_marca/') ~ logo.logo}}" alt="logo marca">
+		</div>
 		<div class="row cols-row-4">
-			<div class="clienteForm col-sm-3 col-md-12 col-xxl-4">
+			<div class="clienteForm vin col-12 col-sm-6 col-xxl-4">
 				{{ form_label(form.vin, 'VIN:') }}
 				{{ form_widget(form.vin, { 'attr': { 'size': '16', 'minlength': 17, 'maxlength': 17, 'placeholder': 'SAJAB52M21XC41941' }}) }}			
 			</div>
-			<div class="pedidoCallForm col-12 col-sm-25 col-md-6 marca col-xxl-3">
+			<div class="pedidoCallForm col-12 col-md-6 marca col-xxl-3">
 				{{ form_label(form.marca, 'Marca:') }}
 				{{ form_widget(form.marca, { 'attr': { 'onchange': 'showLogoMarca(this.value)' }}) }}			
 			</div>
 			{% if is_granted('ROLE_ADMIN') or is_granted('ROLE_RECAMBIOS') %}
-				<div class="pedidoCallForm col-12 col-sm-25 col-md-6 estado col-xxl-3">			
+				<div class="pedidoCallForm col-12 col-md-6 estado col-xxl-3">			
 					{{ form_label(form.estado, 'Estado:') }}
 					{{ form_widget(form.estado)}}					
 				</div>
 			{% else %}
-				<div class="pedidoCallForm col-12 col-sm-25 col-md-6 hidde col-xxl-3">			
+				<div class="pedidoCallForm col-12 col-sm-2 col-md-6 hidde col-xxl-3">			
 					{{ form_label(form.estado, 'Estado:') }}
 					{{ form_widget(form.estado)}}					
 				</div>			
-			{% endif %}	
-			<div class="pedidoCallForm float-right col-12 col-sm-12 col-lg-12 col-xxl-2" id="logoMarca">
-				<img class="logoMarcaNew" src="{{ asset('uploads/logo_marca/') ~ logo.logo}}" alt="logo marca">
-			</div>
+			{% endif %}				
 		</div>		
 	</fieldset>
 	<fieldset class="createUser">
@@ -420,6 +420,8 @@
     	{% if is_granted('ROLE_ADMIN') or is_granted('ROLE_RECAMBIOS')  %}
     		<a class="btn button" href="{{ path('cliente_show', {'id': pedido_call_center.cuentaCliente }) }}">Ficha Cliente</a>
     	{% endif %}
-		<a href="{{ path('pedido_call_center_print', {'id': pedido_call_center.id }) }}" target="_blank"><img class="mt-4 m-lg-0 print_pdf" src="{{ asset('images/print_order.png') }}"></a>
+		<div class="print_pdf">
+			<a href="{{ path('pedido_call_center_print', {'id': pedido_call_center.id }) }}" target="_blank"><img class="m-lg-0" src="{{ asset('images/print_order.png') }}"></a>
+		</div>		
     </fieldset>
 {{ form_end(form) }}

@@ -1348,7 +1348,7 @@ window.onload = function(){
 	}
 	
 	// Añade evento onclick a los menus de "Postventa"
-	var menusPostVenta = document.getElementsByClassName('menusPostVenta');
+	let menusPostVenta = document.getElementsByClassName('menusPostVenta');
 	if(menusPostVenta) {		
 		for(var i = 0; i < menusPostVenta.length; i++) {					
 			menusPostVenta[i].onclick = showLinks;
