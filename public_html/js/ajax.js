@@ -32,6 +32,7 @@
 		document.getElementById("datos").style.marginTop = '0px';
 		document.getElementById("datos").style.textAlign = 'left';
 		document.getElementById("datos").style.background = 'rgba(175,100,50,0.8)';
+		document.getElementById("datos").innerHTML = "";
 	}
 
 	/*###############################################################
@@ -66,25 +67,12 @@
 			else if(peticion1.readyState == 4 && peticion1.status == 200) {
 				restablece();
 				document.getElementById("datos").innerHTML = peticion1.responseText;
-
-				// Add onclick event to Recambios's ajax menus 
-				let consultarPedidosLink = document.getElementById('consultar_pedido');
-				let crearPedidoCallCenterLink = document.getElementById('/pedido/call/center/pedido');
-				let referenciasLink = document.getElementById('/main/consultar_pedido');
-				let clientesLink = document.querySelectorAll('.menusClientesLink');
-
-				if(consultarPedidosLink || referenciasLink) {
-					consultarPedidosLink.addEventListener('click', showMenus);
-					referenciasLink.addEventListener('click', showMenus);
-				}
-
-				if(crearPedidoCallCenterLink) {
-					crearPedidoCallCenterLink.addEventListener('click', menuConsultaPedidos);
-				}
+				
+				let clientesLink = document.querySelectorAll('.menusClientesLink');				
 
 				if(clientesLink) {
 					clientesLink.forEach(menu => {
-						menu.addEventListener('click', menuConsultaPedidos)
+						menu.addEventListener('click', getDataFromController)
 					});
 				}
 			} 
@@ -115,28 +103,7 @@
 			}
 			else if(peticion1.readyState == 4 && peticion1.status == 200) {
 				restablece();
-				$("datos").innerHTML = peticion1.responseText;
-
-				// Add onclick event to diferent ajax menus 
-				let pedidosCallCenterMenus = document.querySelectorAll('.pedidosCallCenterMenus');
-				let consultarPedidosMenus = document.getElementById('consultar_pedido');
-				let referenciasLink = document.querySelectorAll('.referenciasMenus');							
-
-				if(pedidosCallCenterMenus) {
-					pedidosCallCenterMenus.forEach(menu => {
-						menu.addEventListener('click', menuConsultaPedidos);
-					});
-				}
-
-				if(consultarPedidosMenus) {
-					consultarPedidosMenus.addEventListener('click', showMenus);
-				}
-
-				if(referenciasLink) {
-					referenciasLink.forEach(menu => {
-						menu.addEventListener('click', menuConsultaPedidos);
-					});
-				}
+				document.getElementById("datos").innerHTML = peticion1.responseText;							
 			} 
 		}
 	}
@@ -580,7 +547,7 @@
 	}
 
 	// Función que muestra el menú de consulta de pedidos de Taller
-	function menuConsultaPedidos() {		
+	function getDataFromController() {		
 		let peticion = getXMLHTTPRequest();	
 		let url = this.id;		
 		
