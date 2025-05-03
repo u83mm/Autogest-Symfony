@@ -9,26 +9,19 @@ use App\Form\AbreviaType;
 use App\Form\Cliente\BuscaClienteType;
 use App\Repository\ClienteRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
-use Symfony\Component\Security\Core\Security;
 
 #[Route('/cliente')]
 class ClienteController extends AbstractController
-{
-	private $security;
- /**
-  * @var \Doctrine\Persistence\ManagerRegistry
-  */
- private $managerRegistry;
-
-	public function __construct(Security $security, \Doctrine\Persistence\ManagerRegistry $managerRegistry)
-	{       
-	  $this->security = $security;
-   $this->managerRegistry = $managerRegistry;
-	}
+{	    
+	public function __construct(
+        private Security $security, 
+        private \Doctrine\Persistence\ManagerRegistry $managerRegistry)
+	{}
 	
     #[Route('/', name: 'cliente_index', methods: ['GET'])]
     public function index(ClienteRepository $clienteRepository, Request $request): Response
@@ -39,8 +32,7 @@ class ClienteController extends AbstractController
     	// Cálcula el valor a asignar a la variable $last para ir al último registro del listado    	    	    	
     	$last = $clienteRepository->getLast($paginator);    	
     	
-        return $this->render('cliente/index.html.twig', [
-            //'clientes' => $clienteRepository->findAll(),
+        return $this->render('cliente/index.html.twig', [            
             'clientes' => $paginator,
             'previous' => $offset - ClienteRepository::PAGINATOR_PER_PAGE,
             'next'     => min(count($paginator), $offset + ClienteRepository::PAGINATOR_PER_PAGE),

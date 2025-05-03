@@ -40,7 +40,7 @@
 	
 	function showLinks() {
 		document.getElementsByTagName("h2")[0].innerHTML="Menú de " + this.innerHTML;		
-		let url = this.id;					
+		let url = this.id;						
 				
 		// inicializa color de fondo y color de texto de los menús principales				
 		let menus = document.getElementsByClassName('menusPostVenta');
@@ -71,6 +71,7 @@
 				let consultarPedidosLink = document.getElementById('consultar_pedido');
 				let crearPedidoCallCenterLink = document.getElementById('/pedido/call/center/pedido');
 				let referenciasLink = document.getElementById('/main/consultar_pedido');
+				let clientesLink = document.querySelectorAll('.menusClientesLink');
 
 				if(consultarPedidosLink || referenciasLink) {
 					consultarPedidosLink.addEventListener('click', showMenus);
@@ -79,6 +80,12 @@
 
 				if(crearPedidoCallCenterLink) {
 					crearPedidoCallCenterLink.addEventListener('click', menuConsultaPedidos);
+				}
+
+				if(clientesLink) {
+					clientesLink.forEach(menu => {
+						menu.addEventListener('click', menuConsultaPedidos)
+					});
 				}
 			} 
 		}
