@@ -1,5 +1,7 @@
 "use strict";
 
+import {recambiosMenusAjax} from './recambiosMenusAjax.js';
+
 var $ = function(id) {
 	return document.getElementById(id);
 }
@@ -1153,7 +1155,7 @@ function showReferenceNetoByQuantity() {
 #						AQUÍ EMPIEZA EL window.onload										#
 ###########################################################################################*/
 
-window.onload = function(){		
+window.onload = function(){	
 	// pone en mayúsculas los datos de los campos de texto con clase "mayusculas"
 	var z = document.getElementsByClassName("mayusculas"); //Manejador semántico en array
 	
@@ -1354,11 +1356,17 @@ window.onload = function(){
 			menusPostVenta[i].onclick = showLinks;
 		}
 	}
+
+	// Añade evento onclick al menú principal de "Recambios"
+	let recambios = document.getElementById('recambios_main_menu');
+	if(recambios) {
+		recambios.addEventListener('click', recambiosMenusAjax.muestraMenusDeRecambios);
+	}	
 	
 	// Añade evento onclick a los menus de "Recambios"
-	var menusRecambios = document.getElementsByClassName('menusRecambios');
+	let menusRecambios = document.getElementsByClassName('menusRecambios');
 	if(menusRecambios) {		
-		for(var i = 0; i < menusRecambios.length; i++) {					
+		for(let i = 0; i < menusRecambios.length; i++) {					
 			menusRecambios[i].onclick = showMenus;
 		}
 	}
