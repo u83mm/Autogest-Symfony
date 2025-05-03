@@ -60,26 +60,22 @@ class MainMenuController extends AbstractController
 	 */
 	public function recambiosConsultaPedidos(): Response
     {    	    	
-    	// muestra menús AJAX en función del menú seleccionado
-    	   	
+    	// Muestra menús AJAX en función del menú seleccionado    	   	
     	if($_REQUEST['tipo'] == "Consultar Pedidos") {
     		return $this->render('main_menu/recambios/consultar_pedido.html.twig', [
 		        'controller_name' => 'MainMenuController',                      
 		    ]);
-    	}
-    	
-    	if($_REQUEST['tipo'] == "Pedidos de Call Center") {
+    	}    	
+    	else if($_REQUEST['tipo'] == "Pedidos de Call Center") {
     		return $this->render('main_menu/recambios/pedidos_call_center.html.twig', [
 		        'controller_name' => 'MainMenuController',                      
 		    ]);
-    	}
-    	
-    	if($_REQUEST['tipo'] == "Referencias") {
+    	}    	
+    	else if($_REQUEST['tipo'] == "Referencias") {
     		return $this->render('main_menu/recambios/referencias.html.twig', [
 		        'controller_name' => 'MainMenuController',                      
 		    ]);
-    	}     
-    	       	 	    	    	   	    	       
+    	}         	       	 	    	    	   	    	       
     }
     
     /**
