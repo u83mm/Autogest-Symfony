@@ -1,7 +1,7 @@
 // Recambios Menus Ajax
 const recambiosMenusAjax =  {
     // Muestra los menús del menú principal de 'Recambios'
-    'muestraMenusDeRecambios' : function muestraMenusDeRecambios() {
+    muestraMenusDeRecambios: function muestraMenusDeRecambios() {
         document.getElementsByTagName("h2")[0].innerHTML = "Menú de " + this.innerHTML;        
 
         // Inicializa color de fondo y color de texto de los menús principales
@@ -49,7 +49,7 @@ const recambiosMenusAjax =  {
     },
 
     // Muestra los menús del menú 'Consultar pedidos'
-    'menusDeConsultarPedidos' : function muestraMenusDeConsultarPedidos() {
+    menusDeConsultarPedidos : function muestraMenusDeConsultarPedidos() {
         document.getElementsByTagName("h2")[0].innerHTML = this.innerHTML;
         
         // Inicializa color de fondo y color de texto de los menús principales
@@ -89,7 +89,7 @@ const recambiosMenusAjax =  {
     },
 
     // Muestra los menús del menú 'Referencias'
-    'menusDeReferencias' : function muestraMenusDeReferencias() {
+    menusDeReferencias : function muestraMenusDeReferencias() {
         document.getElementsByTagName("h2")[0].innerHTML = this.innerHTML;              
 
         // Inicializa color de fondo y color de texto de los menús principales
@@ -126,7 +126,7 @@ const recambiosMenusAjax =  {
     },
 
     // Muestra los menús del menú 'Pedidos de Call Center'
-    'menusDePedidosDeCallCenter' : function muestraMenusDePedidosDeCallCenter() {
+    menusDePedidosDeCallCenter : function muestraMenusDePedidosDeCallCenter() {
         document.getElementsByTagName("h2")[0].innerHTML = this.innerHTML;              
 
         // Inicializa color de fondo y color de texto de los menús principales
