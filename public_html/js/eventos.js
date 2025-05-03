@@ -1,6 +1,7 @@
 "use strict";
 
 import {recambiosMenusAjax} from './recambiosMenusAjax.js';
+import {clientesMenusAjax} from './clientesMenusAjax.js';
 
 var $ = function(id) {
 	return document.getElementById(id);
@@ -1357,10 +1358,13 @@ window.onload = function(){
 		}
 	}
 
-	// Añade evento onclick al menú principal de "Recambios"
+	// Añade evento onclick a los menus de "Postventa"
 	let recambios = document.getElementById('recambios_main_menu');
-	if(recambios) {
+	let clientes = document.getElementById('clientes_main_menu');	
+
+	if(recambios && clientes) {
 		recambios.addEventListener('click', recambiosMenusAjax.muestraMenusDeRecambios);
+		clientes.addEventListener('click', clientesMenusAjax.muestraMenusDeClientes);
 	}	
 	
 	// Añade evento onclick a los menus de "Recambios"
