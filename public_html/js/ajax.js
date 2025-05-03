@@ -40,8 +40,7 @@
 	
 	function showLinks() {
 		document.getElementsByTagName("h2")[0].innerHTML="Menú de " + this.innerHTML;		
-		let url = this.id;
-		console.log(url);					
+		let url = this.id;						
 				
 		// inicializa color de fondo y color de texto de los menús principales				
 		let menus = document.getElementsByClassName('menusPostVenta');
