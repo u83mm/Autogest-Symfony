@@ -33,72 +33,7 @@
 		document.getElementById("datos").style.textAlign = 'left';
 		document.getElementById("datos").style.background = 'rgba(175,100,50,0.8)';
 		document.getElementById("datos").innerHTML = "";
-	}
-
-	/*###############################################################
-	#	 Función que muestra los links de los menús principales  	#
-	###############################################################*/
-	
-	function showLinks() {
-		document.getElementsByTagName("h2")[0].innerHTML="Menú de " + this.innerHTML;		
-		let url = this.id;						
-				
-		// inicializa color de fondo y color de texto de los menús principales				
-		let menus = document.getElementById('menus').querySelectorAll('a');
-		for(var i = 0; i < menus.length; i++) {
-			menus[i].style.background = "rgba(200,145,90,0.8)";
-			menus[i].style.color = "rgb(155,85,20)";
-		}
-		
-		// cambia estilo en función del menú seleccionado								
-		this.style.background = "rgba(175,100,50,0.8)";
-		this.style.color = "white";
-		
-		// inicia la petición 		
-		let peticion1 = getXMLHTTPRequest();
-		peticion1.onreadystatechange = muestraClientes;
-		peticion1.open('GET', url, true);
-		peticion1.send(null);
-
-		function muestraClientes() {
-			if(peticion1.readyState == 1) {//función que se repite y se puede optimizar reduciendo código
-				muestraGif();
-			}
-			else if(peticion1.readyState == 4 && peticion1.status == 200) {
-				restablece();
-				document.getElementById("datos").innerHTML = peticion1.responseText;								
-			} 
-		}
-	}
-	
-	/*###########################################################################################
-	#	 Función que muestra los menus correspondiente a los links de los menús principales  	#
-	###########################################################################################*/
-	
-	function showMenus() {		
-		let params = new FormData();
-		let url = this.id;		
-
-		document.querySelector("h2").innerHTML=this.innerHTML;		
-		
-		params.append("tipo", this.innerHTML);										
-		
-		// inicia la petición 		
-		let peticion1 = getXMLHTTPRequest();
-		peticion1.onreadystatechange = consulta;
-		peticion1.open('POST', url, true);
-		peticion1.send(params);
-
-		function consulta() {
-			if(peticion1.readyState == 1) {//función que se repite y se puede optimizar reduciendo código
-				muestraGif();
-			}
-			else if(peticion1.readyState == 4 && peticion1.status == 200) {
-				restablece();
-				document.getElementById("datos").innerHTML = peticion1.responseText;							
-			} 
-		}
-	}
+	}			
 
 	// Función que muestra formulario de pedidos de taller
 	function pedidosTaller() {
@@ -442,101 +377,7 @@
 				document.getElementById("datos").innerHTML = peticion.responseText;
 			}
 		}
-	}
-
-	// Función que muestra registros por tipo de sección
-	function pedido_seccion(x,s,p) {
-		document.getElementsByTagName("h2")[0].innerHTML="Pedidos de Taller por Sección";
-		var peticion = getXMLHTTPRequest();
-		var params = new FormData();
-
-		params.append("seccion", x);
-		params.append("s", s);
-		params.append("p", p);
-		
-		peticion.onreadystatechange = hojaPedidosTaller;
-		peticion.open('POST', '/scripts/pedido_seccion.php', true);	
-		peticion.send(params);
-
-		function hojaPedidosTaller() {
-			if(peticion.readyState == 1) {//función que se repite y se puede optimizar reduciendo código
-				muestraGif();
-			}
-			else if(peticion.readyState == 4 && peticion.status == 200) {
-				restablece();
-				document.getElementById("datos").innerHTML = peticion.responseText;
-			}
-		}
-	}
-
-	// Función que muestra los links del menú principal de Marcas
-	function marcas() {
-		document.getElementsByTagName("h2")[0].innerHTML="Menú de Marcas";
-		document.getElementById("marcas").style.background = "rgba(175,100,50,0.8)";
-		document.getElementById("marcas").style.color = "white";
-		//document.getElementById("link").style.background = "rgba(200,145,90,0.8)";
-		//document.getElementById("link").style.color = "rgb(155,85,20)";
-		var peticion = getXMLHTTPRequest();
-		peticion.onreadystatechange = funcion;
-		peticion.open('GET', 'ajax/menuMarcas.php', true);
-		peticion.send(null);
-
-		function funcion() {
-			if(peticion.readyState == 1) {//función que se repite y se puede optimizar reduciendo código
-				muestraGif();
-			}
-			else if(peticion.readyState == 4 && peticion.status == 200) {
-				restablece();
-				document.getElementById("datos").innerHTML = peticion.responseText;
-			} 
-		}
-	}
-
-	// Función que muestra formulario de creación de Marcas
-	function creaMarca() {
-		document.getElementsByTagName("h2")[0].innerHTML="Crea una Marca";
-		var peticion = getXMLHTTPRequest();
-		peticion.onreadystatechange = funcion;
-		peticion.open('POST', '/view/formulario_crea_marcas.php', true);
-		peticion.send();
-
-		function funcion() {
-			if(peticion.readyState == 1) {//función que se repite y se puede optimizar reduciendo código
-				muestraGif();
-			}
-			else if(peticion.readyState == 4 && peticion.status == 200) {
-				restablece();
-				document.getElementById("datos").innerHTML = peticion.responseText;
-			} 
-		}
-	}
-
-	// Función que muestra listado de Marcas
-	function muestraMarcas(s, p) {
-		document.getElementsByTagName("h2")[0].innerHTML="Listado de Marcas";
-		var peticion = getXMLHTTPRequest();
-		var params = new FormData();
-		
-		//peticion.open('POST', 'muestra_marcas.php', true);	
-		//peticion.send();
-
-		params.append("s", s);
-		params.append("p", p);
-
-		peticion.onreadystatechange = funcion;
-		peticion.open('POST', '/scripts/ajax/index.php?action=muestra_marcas', true);
-		peticion.send(params);
-
-		function funcion() {
-			if(peticion.readyState == 1) {//función que se repite y se puede optimizar reduciendo código
-				muestraGif();
-			}
-			else if(peticion.readyState == 4 && peticion.status == 200) {
-				restablece();
-				document.getElementById("datos").innerHTML = peticion.responseText;
-			} 
-		}
-	}
+	}		
 
 	// Función que muestra el menú de consulta de pedidos de Taller
 	function getDataFromController() {		
@@ -555,227 +396,7 @@
 				window.location = url;
 			} 
 		}
-	}
-
-	// Muestra el formulario de consulta general de Taller, Clientes o Referencias
-	function consultaGeneral(url) {
-		document.getElementsByTagName("h2")[0].innerHTML="Búsqueda General";
-		var peticion = getXMLHTTPRequest();
-		var url = url;
-
-		peticion.onreadystatechange = consulta;
-		peticion.open('POST', url, true);
-		peticion.send();
-
-		function consulta() {
-			if(peticion.readyState == 1) {//función que se repite y se puede optimizar reduciendo código
-				muestraGif();
-			}
-			else if(peticion.readyState == 4 && peticion.status == 200) {
-				restablece();
-				document.getElementById("datos").innerHTML = peticion.responseText;
-			} 
-		}
-	}
-
-	// muestra registros por estado de los pedidos de clientes
-	function pedido_estado_clientes(estado, s, p) {
-		var estadoPedido = "";
-		//Asigna una cadena de texto al estado del pedido, ya que la variable estado es un número
-		if(estado == 1) {
-			estadoPedido = "Por mirar";
-		}
-		if(estado == 2) {
-			estadoPedido = "Presupuestado";
-		}
-		if(estado == 3) {
-			estadoPedido = "Pedido";
-		}
-		if(estado == 4) {
-			estadoPedido = "Servido";
-		}
-		if(estado == 5) {
-			estadoPedido = "Enviado despiece";
-		}
-		document.getElementsByTagName("h2")[0].innerHTML="Pedidos en estado: " + estadoPedido;
-		var peticion = getXMLHTTPRequest();	
-		var url = "/scripts/clientes/pedido_estado.php";
-		var params = new FormData();
-
-		params.append("estado", estado);
-		params.append("s", s);
-		params.append("p", p);
-		
-		peticion.onreadystatechange = consulta;
-		peticion.open('POST', url, true);	
-		peticion.send(params);
-
-		function consulta() {
-			if(peticion.readyState == 1) {//función que se repite y se puede optimizar reduciendo código
-				muestraGif();
-			}
-			else if(peticion.readyState == 4 && peticion.status == 200) {
-				restablece();
-				document.getElementById("datos").innerHTML = peticion.responseText;
-			}
-		}
-	}
-
-	// muestra registros por fecha de los pedidos de clientes
-	function pedido_fecha_clientes(fecha, s, p) {
-		document.getElementsByTagName("h2")[0].innerHTML="Pedidos a fecha: " + fecha;
-		var peticion = getXMLHTTPRequest();	
-		var url = "/scripts/clientes/pedido_fecha.php";
-		var params = new FormData();
-
-		params.append("fecha", fecha);
-		params.append("s", s);
-		params.append("p", p);
-
-		peticion.onreadystatechange = consulta;
-		peticion.open('POST', url, true);	
-		peticion.send(params);
-
-		function consulta() {
-			if(peticion.readyState == 1) {//función que se repite y se puede optimizar reduciendo código
-				muestraGif();
-			}
-			else if(peticion.readyState == 4 && peticion.status == 200) {
-				restablece();
-				document.getElementById("datos").innerHTML = peticion.responseText;
-			} 
-		}
-	}
-
-	// muestra datos del pedido de un cliente
-	function pedido_numero_clientes(pedido, s, p) {	
-		var peticion = getXMLHTTPRequest();	
-		//var url = "/scripts/clientes/pedido_fecha.php";
-		var url = "/scripts/clientes/muestra_registro.php?pedido=" + pedido;
-		/*var params = new FormData();
-
-		params.append("pedido", pedido);
-		params.append("s", s);
-		params.append("p", p);*/
-
-		peticion.onreadystatechange = consulta;
-		peticion.open('POST', url, true);	
-		peticion.send();
-
-		function consulta() {
-			if(peticion.readyState == 1) {//función que se repite y se puede optimizar reduciendo código
-				muestraGif();
-			}
-			else if(peticion.readyState == 4 && peticion.status == 200) {
-				//restablece();			
-				//document.getElementById("datos").innerHTML = peticion.responseText;
-				location = url;			
-			} 
-		}
-	}
-
-	// muestra registros por nombre de cliente
-	function pedido_cliente(cliente, s, p) {
-		document.getElementsByTagName("h2")[0].innerHTML="Pedidos del cliente: " + cliente;
-		var peticion = getXMLHTTPRequest();	
-		var url = "/scripts/clientes/pedido_cliente.php";
-		var params = new FormData();
-
-		params.append("cliente", cliente);
-		params.append("s", s);
-		params.append("p", p);
-
-		peticion.onreadystatechange = consulta;
-		peticion.open('POST', url, true);	
-		peticion.send(params);
-
-		function consulta() {
-			if(peticion.readyState == 1) {//función que se repite y se puede optimizar reduciendo código
-				muestraGif();
-			}
-			else if(peticion.readyState == 4 && peticion.status == 200) {
-				restablece();
-				document.getElementById("datos").innerHTML = peticion.responseText;
-			}
-		}
-	}
-
-	// muestra registros de una "Consulta general" de clientes o de taller
-	function consulta_general(campo, criterio, marca, tipo, estado, dpto, s, p) {
-		if(campo != "") campo = campo.value;
-		if(criterio != "") criterio = criterio.value;
-		if(marca != "") marca = marca.value;
-		if(tipo != "") tipo = tipo.value;
-		if(estado != "") estado = estado.value;
-		if(dpto != "") dpto = dpto.value;
-		
-		if(dpto == "taller") {
-			var ruta = "/scripts/listadoPedidoTaller.php";
-		}
-		else if(dpto == "clientes") {
-			ruta = "/scripts/clientes/listado_pedido_clientes.php";
-		}
-		else {
-			ruta = "/products/view/listado_referencias_criterio.php";
-		}
-		
-		document.getElementsByTagName("h2")[0].innerHTML="Resultado de la consulta";
-		var peticion = getXMLHTTPRequest();
-		url = ruta;
-		var params = new FormData();
-
-		params.append("campo", campo);
-		params.append("criterio", criterio);
-		params.append("marca", marca);
-		params.append("tipo", tipo);
-		params.append("estado", estado);
-		params.append("s", s);
-		params.append("p", p);
-		
-		peticion.onreadystatechange = consulta;
-		peticion.open('POST', url, true);	
-		peticion.send(params);
-
-		function consulta() {
-			if(peticion.readyState == 1) {//función que se repite y se puede optimizar reduciendo código
-				muestraGif();
-			}
-			else if(peticion.readyState == 4 && peticion.status == 200) {
-				restablece();
-				document.getElementById("datos").innerHTML = peticion.responseText;
-			}
-		}
-	}		
-
-	/*function showDatesPvp() {
-		// obtiene la referencia del objeto que llama a la función showDates();
-		var referencia = document.getElementById(this.id).value;	
-
-		// crea una petición	para el campo "PVP" de la hoja de "ENTRADAS DE ALMACÉN"
-		var peticion = getXMLHTTPRequest();
-		var params = new FormData();
-
-		params.append("referencia", referencia);
-
-		peticion.open('POST', "/spare_parts/view/inputs_request_pvp.php", true);
-		peticion.onreadystatechange = consulta;
-		peticion.send(params);
-
-		// obtiene el índice del objeto para pasárselo al id del objeto que contendrá la descripción del producto
-		var str = this.id;
-		var indice = str.charAt(3);
-		var indice_decenas = str.charAt(4);
-		if(indice_decenas) indice += indice_decenas;
-
-		function consulta() {
-			if(peticion.readyState == 1) {
-				alert("No se ha encontrado la referencia");
-			}
-			else if(peticion.readyState == 4 && peticion.status == 200) {						
-				document.getElementById("pvp" + indice).value = peticion.responseText;			
-			}
-		}		
-	}*/
+	}							
 
 	function showNeto() {
 		// obtiene el índice del objeto para pasárselo al id del objeto que contendrá la descripción del producto
@@ -1236,11 +857,11 @@
 												
 				for(var i = 0; i < myObj.length; i++) {				
 					if(myObj[i].id == id) {
-						$("logoMarca").innerHTML = "<img class='logoMarcaNew' src='/uploads/logo_marca/" + myObj[i].logo + "' alt='logo marca'>";						
+						document.getElementById("logoMarca").innerHTML = "<img class='logoMarcaNew' src='/uploads/logo_marca/" + myObj[i].logo + "' alt='logo marca'>";						
 						i = myObj.length;
 					}
 					else {
-						$("logoMarca").innerHTML = "No hay resultado";					
+						document.getElementById("logoMarca").innerHTML = "No hay resultado";					
 					}				
 				}						
 			}					
@@ -1275,22 +896,22 @@
 			}
 			else if(peticion.readyState == 4 && peticion.status == 404) {
 				if(indice >= 1) {
-					$("pedido_items_precio" + indice).value = parseFloat(0).toFixed(2);
-					$("pedido_items_dto" + indice).value = 0;
-					$("pedido_items_neto" + indice).value = 0;										
+					document.getElementById("pedido_items_precio" + indice).value = parseFloat(0).toFixed(2);
+					document.getElementById("pedido_items_dto" + indice).value = 0;
+					document.getElementById("pedido_items_neto" + indice).value = 0;										
 										
-					$("pedido_items_stock" + indice).value = 0;
+					document.getElementById("pedido_items_stock" + indice).value = 0;
 					
 					/*$("pedido_items_descripcion" + indice).value = "No hay resultado";
 					$("pedido_items_precio" + indice).value = 0;
 					$("pedido_items_dto" + indice).value = 0;*/						
 				}
 				else {
-					$("pedido_items_precio" + indice).value = parseFloat(0).toFixed(2);
-					$("pedido_items_dto" + indice).value = 0;
-					$("pedido_items_neto" + indice).value = 0;										
+					document.getElementById("pedido_items_precio" + indice).value = parseFloat(0).toFixed(2);
+					document.getElementById("pedido_items_dto" + indice).value = 0;
+					document.getElementById("pedido_items_neto" + indice).value = 0;										
 										
-					$("pedido_items_stock" + indice).value = 0;
+					document.getElementById("pedido_items_stock" + indice).value = 0;
 					
 					/*$("pedido_items_descripcion").value = "No hay resultado";
 					$("pedido_items_precio").value = 0;
@@ -1303,28 +924,28 @@
 				for(var i = 0; i < myObj.length; i++) {				
 					if(myObj[i].referencia == ref) {						
 						if(indice >= 1) {
-							$("pedido_items_descripcion" + indice).value = myObj[i].descripcion;
-							$("pedido_items_precio" + indice).value = parseFloat(myObj[i].pvp).toFixed(2);
-							$("pedido_items_dto" + indice).value = myObj[i].dto;							
+							document.getElementById("pedido_items_descripcion" + indice).value = myObj[i].descripcion;
+							document.getElementById("pedido_items_precio" + indice).value = parseFloat(myObj[i].pvp).toFixed(2);
+							document.getElementById("pedido_items_dto" + indice).value = myObj[i].dto;							
 						}
 						else {
-							$("pedido_items_descripcion").value = myObj[i].descripcion;
-							$("pedido_items_precio").value = myObj[i].pvp;
-							$("pedido_items_dto").value = myObj[i].dto;								
+							document.getElementById("pedido_items_descripcion").value = myObj[i].descripcion;
+							document.getElementById("pedido_items_precio").value = myObj[i].pvp;
+							document.getElementById("pedido_items_dto").value = myObj[i].dto;								
 						}
 											
 						i = myObj.length;
 					}
 					else {
 						if(indice >= 1) {
-							$("pedido_items_descripcion" + indice).value = "No hay resultado";
-							$("pedido_items_precio" + indice).value = 0;
-							$("pedido_items_dto" + indice).value = 0;							
+							document.getElementById("pedido_items_descripcion" + indice).value = "No hay resultado";
+							document.getElementById("pedido_items_precio" + indice).value = 0;
+							document.getElementById("pedido_items_dto" + indice).value = 0;							
 						}
 						else {
-							$("pedido_items_descripcion").value = "No hay resultado";
-							$("pedido_items_precio").value = 0;
-							$("pedido_items_dto").value = 0;								
+							document.getElementById("pedido_items_descripcion").value = "No hay resultado";
+							document.getElementById("pedido_items_precio").value = 0;
+							document.getElementById("pedido_items_dto").value = 0;								
 						}											
 					}				
 				}											
@@ -1360,18 +981,18 @@
 			}
 			else if(peticion.readyState == 4 && peticion.status == 404) {
 				if(indice >= 1) {					
-					$("pedido_items_precio" + indice).value = parseFloat(0).toFixed(2);
-					$("pedido_items_dto" + indice).value = 0;
-					$("pedido_items_neto" + indice).value = 0;									
+					document.getElementById("pedido_items_precio" + indice).value = parseFloat(0).toFixed(2);
+					document.getElementById("pedido_items_dto" + indice).value = 0;
+					document.getElementById("pedido_items_neto" + indice).value = 0;									
 										
-					$("pedido_items_stock" + indice).value = 0;					
+					document.getElementById("pedido_items_stock" + indice).value = 0;					
 				}
 				else {					
-					$("pedido_items_precio").value = parseFloat(0).toFixed(2);
-					$("pedido_items_dto").value = 0;
-					$("pedido_items_neto").value = 0;										
+					document.getElementById("pedido_items_precio").value = parseFloat(0).toFixed(2);
+					document.getElementById("pedido_items_dto").value = 0;
+					document.getElementById("pedido_items_neto").value = 0;										
 										
-					$("pedido_items_stock").value = 0;					
+					document.getElementById("pedido_items_stock").value = 0;					
 				}	
 			}
 			else if(peticion.readyState == 4 && peticion.status == 200) {
@@ -1380,20 +1001,20 @@
 				for(var i = 0; i < myObj.length; i++) {				
 					if(myObj[i].referencia == ref) {						
 						if(indice >= 1) {
-							$("pedido_items_stock" + indice).value = myObj[i].stock;													
+							document.getElementById("pedido_items_stock" + indice).value = myObj[i].stock;													
 						}
 						else {
-							$("pedido_items_stock").value = myObj[i].stock;														
+							document.getElementById("pedido_items_stock").value = myObj[i].stock;														
 						}
 											
 						i = myObj.length;
 					}
 					else {
 						if(indice >= 1) {							
-							$("pedido_items_stock" + indice).value = 0;							
+							document.getElementById("pedido_items_stock" + indice).value = 0;							
 						}
 						else {							
-							$("pedido_items_stock").value = 0;							
+							document.getElementById("pedido_items_stock").value = 0;							
 						}											
 					}				
 				}																										
