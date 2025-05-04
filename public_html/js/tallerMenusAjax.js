@@ -1,7 +1,7 @@
-const clientesMenusAjax = {
-    muestraMenusDeClientes: function muestraMenusDeClientes() {
+const tallerMenusAjax = {
+    muestraMenusDeTaller: function muestraMenusDeTaller() {
 		document.getElementsByTagName("h2")[0].innerHTML="Menú de " + this.innerHTML;		
-		let url = '/main/clientes';						
+		let url = '/main/taller';						
 				
 		// inicializa color de fondo y color de texto de los menús principales				
 		let linkElements = document.getElementById('menus').querySelectorAll('a');
@@ -27,18 +27,10 @@ const clientesMenusAjax = {
 			}
 			else if(peticion1.readyState == 4 && peticion1.status == 200) {
 				restablece();
-				document.getElementById("datos").innerHTML = peticion1.responseText;
-				
-				let clientesLink = document.querySelectorAll('.menusClientesLink');				
-
-				if(clientesLink) {
-					clientesLink.forEach(menu => {
-						menu.addEventListener('click', getDataFromController)
-					});
-				}
+				document.getElementById("datos").innerHTML = peticion1.responseText;								
 			} 
 		}
 	}
 }
 
-export {clientesMenusAjax};
+export {tallerMenusAjax};

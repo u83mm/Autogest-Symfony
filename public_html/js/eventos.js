@@ -1,7 +1,8 @@
 "use strict";
 
-import {recambiosMenusAjax} from './recambiosMenusAjax.js';
-import {clientesMenusAjax} from './clientesMenusAjax.js';
+import { recambiosMenusAjax } from './recambiosMenusAjax.js';
+import { clientesMenusAjax } from './clientesMenusAjax.js';
+import { tallerMenusAjax } from './tallerMenusAjax.js';
 
 var $ = function(id) {
 	return document.getElementById(id);
@@ -1348,23 +1349,17 @@ window.onload = function(){
 	if(showAbrev) {
 		showAbrev.onclick = muestraAbrev;
 		showAbrev.onblur = muestraAbrev;
-	}
-	
-	// Añade evento onclick a los menus de "Postventa"
-	let menusPostVenta = document.getElementsByClassName('menusPostVenta');
-	if(menusPostVenta) {		
-		for(var i = 0; i < menusPostVenta.length; i++) {					
-			menusPostVenta[i].onclick = showLinks;
-		}
-	}
+	}		
 
 	// Añade evento onclick a los menus de "Postventa"
 	let recambios = document.getElementById('recambios_main_menu');
-	let clientes = document.getElementById('clientes_main_menu');	
+	let clientes = document.getElementById('clientes_main_menu');
+	let taller = document.getElementById('taller_main_menu');	
 
-	if(recambios && clientes) {
+	if(recambios && clientes && taller) {
 		recambios.addEventListener('click', recambiosMenusAjax.muestraMenusDeRecambios);
 		clientes.addEventListener('click', clientesMenusAjax.muestraMenusDeClientes);
+		taller.addEventListener('click', tallerMenusAjax.muestraMenusDeTaller);
 	}	
 	
 	// Añade evento onclick a los menus de "Recambios"
