@@ -29,17 +29,20 @@ const recambiosMenusAjax =  {
             }
             else if(peticion.readyState == 4 && peticion.status == 200) {
                 restablece();                    
-                document.getElementById("datos").innerHTML = peticion.responseText;
+                document.getElementById("datos").innerHTML = peticion.responseText;                
                 
                 // Add onclick event to Recambios's ajax menus 
 				let consultarPedidosLink = document.getElementById('consultar_pedidos');
 				let crearPedidoCallCenterLink = document.getElementById('/pedido/call/center/pedido');
 				let referenciasLink = document.getElementById('menus_referencias');
 
-                if(consultarPedidosLink || referenciasLink) {
-					consultarPedidosLink.addEventListener('click', recambiosMenusAjax.menusDeConsultarPedidos);
-					referenciasLink.addEventListener('click', recambiosMenusAjax.menusDeReferencias);
+                if(consultarPedidosLink) {
+					consultarPedidosLink.addEventListener('click', recambiosMenusAjax.menusDeConsultarPedidos);					
 				}
+
+                if(referenciasLink) {
+                    referenciasLink.addEventListener('click', recambiosMenusAjax.menusDeReferencias);
+                }
 
 				if(crearPedidoCallCenterLink) {
 					crearPedidoCallCenterLink.addEventListener('click', getDataFromController);
