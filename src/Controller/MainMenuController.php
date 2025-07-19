@@ -43,40 +43,7 @@ class MainMenuController extends AbstractController
         return $this->render('main_menu/cuenta_atras.html.twig', [
             'controller_name' => 'MainMenuController',           
         ]);
-    }
-    
-    /**
-	 * @Route("/recambios", name="recambios", methods={"GET", "POST"})
-	 */
-	public function recambios(): Response
-    {    
-    	return $this->render('main_menu/recambios/menus_recambios.html.twig', [
-            'controller_name' => 'MainMenuController',                      
-        ]);        	 	    	    	   	    	       
-    }
-    
-    /**
-	 * @Route("/consultar_pedido", name="consultar_pedido", methods={"GET", "POST"})
-	 */
-	public function recambiosConsultaPedidos(): Response
-    {    	    	
-    	// Muestra menús AJAX en función del menú seleccionado    	   	
-    	if($_REQUEST['tipo'] == "Consultar Pedidos") {
-    		return $this->render('main_menu/recambios/consultar_pedido.html.twig', [
-		        'controller_name' => 'MainMenuController',                      
-		    ]);
-    	}    	
-    	else if($_REQUEST['tipo'] == "Pedidos de Call Center") {
-    		return $this->render('main_menu/recambios/pedidos_call_center.html.twig', [
-		        'controller_name' => 'MainMenuController',                      
-		    ]);
-    	}    	
-    	else if($_REQUEST['tipo'] == "Referencias") {
-    		return $this->render('main_menu/recambios/referencias.html.twig', [
-		        'controller_name' => 'MainMenuController',                      
-		    ]);
-    	}         	       	 	    	    	   	    	       
-    }
+    }        
     
     /**
 	 * @Route("/taller", name="taller")

@@ -1,11 +1,16 @@
 "use strict";
 
+import { recambiosMenusAjax } from './recambiosMenusAjax.js';
+import { clientesMenusAjax } from './clientesMenusAjax.js';
+import { tallerMenusAjax } from './tallerMenusAjax.js';
+
 var $ = function(id) {
 	return document.getElementById(id);
 }
 
 function salir() {
 	if(confirm("Está a punto de salir de la aplicación. \n¿Estás seguro?")) {
+		this.href = '/logout';
 		return true;
 	}
 	else {
@@ -64,120 +69,6 @@ var comprueba_check = function() {
 		}
 	}
 }
-
-/*$(document).ready(function() {
-	$("#username").focus(); //Pone el foco en el campo "usuario" en el formulario de inicio
-	//$("#empresa").focus();
-
-	//Valida el formulario de registro
-	$("#createUser").validate({
-		rules: {
-			password: {
-				minlength: 6
-			},
-			confirm_password: {
-				minlength: 6,
-				equalTo: "#password"
-			}
-		},
-		messages: {
-			first_name: {
-				required: "Introduzca su nombre"
-			},
-			last_name1: {
-				required: "Introduzca su apellido"
-			},
-			last_name2: {
-				required: "Introduzca su apellido"
-			},
-			email: {
-				required: "Introduzca un email"
-			},
-			user_name: {
-				required: "Introduzca un usuario"
-			},
-			password: {
-				required: "Introduzca una contraseña",
-				minlength: "Mínimo 6 caracteres"
-			},
-			confirm_password: {
-				required: "Introduzca una contraseña",
-				minlength: "Mínimo 6 caracteres",
-				equalTo: "Las contraseñas no coinciden"
-			}
-		}
-	}); // end validate formulario registro
-}); //end ready
-
-// Valida formulario pedidos de taller
-function validaPedidosTaller() {
-	$("#pedidosForm").validate({
-		messages: {
-			marca: {
-				required: "Elige una marca"
-			},
-			tipo: {
-				required: "Especifica tipo de pedido"
-			},
-			fecha: {
-				required: "Debes especificar una fecha"
-			},
-			referencia: {
-				required: "No has puesto la referencia"
-			},
-			descripcion: {
-				required: "¿qué quieres pedir?"
-			},
-			cantidad: {
-				required: "Especifica una cantidad"
-			},
-			or: {
-				required: "Anota la O.R"
-			},
-			operario: {
-				required: "No olvides el operario"
-			},
-			estado: {
-				required: "Selecciona una opción"
-			},
-			pedido: {
-				required: "Introduce nº de pedido"
-			},
-			//También valida campos para formulario de pedidos de clientes
-			empresa: {
-				required: "Nombre de la empresa"
-			},
-			contacto: {
-				required: "Introduce datos del cliente"
-			}, 
-			tfno: {
-				required: "Telefono"
-			},
-			bastidor: {
-				required: "Introduce el bastidor"
-			},
-			localidad: {
-				required: "¿Localidad?"
-			},
-			cif: {
-				required: "Introduce el C.I.F"
-			},
-			//Valida campo en formulario de consulta general de clientes
-			campo: {
-				required: "Selecciona opción"
-			}
-		}
-	}); // end validate formulario pedidos taller
-
-	$("#numPedido").validate({
-		messages: {
-			pedido: {
-				required: "Introduce nº de pedido"
-			}	
-		}
-	});
-	
-}*/
 
 function validaPedidos() {
 	var marca = document.getElementById("marca");
@@ -1153,7 +1044,7 @@ function showReferenceNetoByQuantity() {
 #						AQUÍ EMPIEZA EL window.onload										#
 ###########################################################################################*/
 
-window.onload = function(){		
+window.onload = function(){	
 	// pone en mayúsculas los datos de los campos de texto con clase "mayusculas"
 	var z = document.getElementsByClassName("mayusculas"); //Manejador semántico en array
 	
@@ -1345,20 +1236,29 @@ window.onload = function(){
 	if(showAbrev) {
 		showAbrev.onclick = muestraAbrev;
 		showAbrev.onblur = muestraAbrev;
+	}		
+
+	// Añade evento onclick a los menus de "Postventa"
+	let recambios = document.getElementById('recambios_main_menu');
+	let clientes = document.getElementById('clientes_main_menu');
+	let taller = document.getElementById('taller_main_menu');	
+
+	if(recambios) {
+		recambios.addEventListener('click', recambiosMenusAjax.muestraMenusDeRecambios);		
 	}
 	
-	// Añade evento onclick a los menus de "Postventa"
-	let menusPostVenta = document.getElementsByClassName('menusPostVenta');
-	if(menusPostVenta) {		
-		for(var i = 0; i < menusPostVenta.length; i++) {					
-			menusPostVenta[i].onclick = showLinks;
-		}
+	if(clientes) {
+		clientes.addEventListener('click', clientesMenusAjax.muestraMenusDeClientes);		
+	}
+
+	if(taller) {
+		taller.addEventListener('click', tallerMenusAjax.muestraMenusDeTaller);
 	}
 	
 	// Añade evento onclick a los menus de "Recambios"
-	var menusRecambios = document.getElementsByClassName('menusRecambios');
+	let menusRecambios = document.getElementsByClassName('menusRecambios');
 	if(menusRecambios) {		
-		for(var i = 0; i < menusRecambios.length; i++) {					
+		for(let i = 0; i < menusRecambios.length; i++) {					
 			menusRecambios[i].onclick = showMenus;
 		}
 	}
@@ -1377,6 +1277,12 @@ window.onload = function(){
 		for(var i = 0; i < principal.length; i++) {					
 			principal[i].onclick = consultaPedidos;
 		}
+	}
+
+	// Añade evento 'onclick' al menú 'Salir' para confirmar la salida
+	let salirButton = document.getElementById('salir');
+	if(salirButton) {
+		salirButton.addEventListener('click', salir);
 	}
 }
 

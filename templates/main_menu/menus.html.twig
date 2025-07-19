@@ -2,12 +2,12 @@
 	<ul class="menus">
 		{% if is_granted('ROLE_ADMIN') or is_granted('ROLE_RECAMBIOS') or is_granted('ROLE_COMERCIAL') %}
 			<li>
-				<a class="menusPostVenta" id="recambios" href="#">Recambios</a>
+				<a id="recambios_main_menu" href="#">Recambios</a>
 			</li>
 		{% endif %}
 		{% if is_granted('ROLE_ADMIN') or is_granted('ROLE_TALLER') %}						
 			<li>
-				<a class="menusPostVenta" id="taller" href="#">Taller</a>	
+				<a id="taller_main_menu" href="#">Taller</a>	
 			</li>
 		{% endif %}		
 		{# {% if is_granted('ROLE_ADMIN') %}
@@ -16,7 +16,7 @@
 			</li>
 		{% endif %}	#}
 		<li>
-			<a class="menusPostVenta" id="clientes" href="#">Clientes</a>	
+			<a id="clientes_main_menu" href="#">Clientes</a>	
 		</li>				
 	</ul>
 </div>
