@@ -13,15 +13,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
-use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Security\Core\Security;
 use App\Service\ImageOptimizer;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/user')]
 class UserController extends AbstractController
@@ -271,12 +271,24 @@ class UserController extends AbstractController
         ]);
     } 
 
-    #[Route('/{id}', name: 'user_show', methods: ['GET'])]
-    public function show(User $user): Response
-    {    		   	   	
-        return $this->render('user/show.html.twig', [
-            'user' => $user,            
-        ]);
+    #[Route('/{id}', name: 'user_show', methods: ['GET'])]		
+    public function show(User $user, TokenInterface $token): Response
+    { 
+		if(!$this->security->isGranted('view', $user)) {
+			$this->addFlash('warning', 'Acceso denegado.');
+			
+			return $this->redirectToRoute('user_show', ['id' => $token->getUser()->getId()]);
+		}
+
+        try {			
+			return $this->render('user/show.html.twig', [
+				'user' => $user,            
+			]);
+
+		} catch (\Throwable $th) {
+			$this->addFlash('warning', $th->getMessage());
+			return $this->redirectToRoute('user_show', ['id' => $user->getId()]);
+		}
     }
 
     #[Route('/{id}/edit', name: 'user_edit', methods: ['GET', 'POST'])]
