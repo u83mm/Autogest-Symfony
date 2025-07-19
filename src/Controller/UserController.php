@@ -273,14 +273,14 @@ class UserController extends AbstractController
 
     #[Route('/{id}', name: 'user_show', methods: ['GET'])]		
     public function show(User $user, TokenInterface $token): Response
-    { 
-		if(!$this->security->isGranted('view', $user)) {
-			$this->addFlash('warning', 'Acceso denegado.');
-			
-			return $this->redirectToRoute('user_show', ['id' => $token->getUser()->getId()]);
-		}
+    { 		
+        try {
+			if(!$this->security->isGranted('view', $user) && !$this->security->isGranted('ROLE_ADMIN')) {
+				$this->addFlash('warning', 'Acceso denegado.');
+				
+				return $this->redirectToRoute('user_show', ['id' => $token->getUser()->getId()]);
+			}			
 
-        try {			
 			return $this->render('user/show.html.twig', [
 				'user' => $user,            
 			]);
