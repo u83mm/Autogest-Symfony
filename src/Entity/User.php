@@ -240,5 +240,5 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->confirmPassword = $confirmPassword;
 
         return $this;
-    }    
+    }       
 }
