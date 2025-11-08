@@ -42,13 +42,13 @@ class PedidoItemsController extends AbstractController
         	//$pedidoItem->setPedidoCallCenter($pedidoCallCenter);
             $entityManager = $this->managerRegistry->getManager();
             $entityManager->persist($pedidoItem);
-            $entityManager->persist($pedidoCallCenter);
+            //$entityManager->persist($pedidoCallCenter);
             $entityManager->flush();
 
             return $this->redirectToRoute('pedido_items_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('pedido_items/new.html.twig', [
+        return $this->render('pedido_items/new.html.twig', [
             'pedido_item' => $pedidoItem,
             'form' => $form,
         ]);
@@ -74,7 +74,7 @@ class PedidoItemsController extends AbstractController
             return $this->redirectToRoute('pedido_items_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('pedido_items/edit.html.twig', [
+        return $this->render('pedido_items/edit.html.twig', [
             'pedido_item' => $pedidoItem,
             'form' => $form,
         ]);
