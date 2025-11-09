@@ -3,6 +3,7 @@
 import { recambiosMenusAjax } from './recambiosMenusAjax.js';
 import { clientesMenusAjax } from './clientesMenusAjax.js';
 import { tallerMenusAjax } from './tallerMenusAjax.js';
+import "/js/municipios.js";
 
 var $ = function(id) {
 	return document.getElementById(id);
@@ -1098,19 +1099,13 @@ window.onload = function(){
 		}		
 	}	
 	
-	//muestra descripciones de productos en la sección "Entradas" al tabular y desbloquea filas
+	// Muestra descripciones de productos en la sección "Entradas" al tabular y desbloquea filas
 	var div_registros = document.getElementById("registros");
 	if(div_registros) {						
 		odd();//cambia background de filas pares a gris en la tabla del <div class="registros">					
 		desbl_inputs(); //desbloquea campos en <div id="registros"> en "/spare_parts/view/inputs.php"
 		total_alb();		
-	}	
-
-	//muestra municipios a través del código postal mediante un JSON
-	var cp = document.getElementById("cliente_codigoPostal");
-	if(cp) {
-		cp.onblur = municipios;
-	}
+	}		
 
 	// Cambia texto de botón "guardar" a "buscar" o viceversa en el formulario "Maestro de referencias"
 	var change_text = document.getElementById("ref");
@@ -1142,7 +1137,7 @@ window.onload = function(){
 		else if(vin.value === "" && contacto.value != "") vin.focus();
 	}
 
-	//valida campo "Contacto" del formulario "Nuevo Pedido de Call Center" si los demás campos están rellenados
+	// valida campo "Contacto" del formulario "Nuevo Pedido de Call Center" si los demás campos están rellenados
 	if(contacto) {
 		contacto.onkeyup = clearContactError;
 	}
@@ -1183,7 +1178,7 @@ window.onload = function(){
 		}
 	}		
 	
-	//busca datos de referencias mediante AJAX en "Datos del Pedido de Call Center" 
+	// busca datos de referencias mediante AJAX en "Datos del Pedido de Call Center" 
 	//var cant = "";
 	var tipoFormulario = document.getElementsByTagName("h1");
 	var elements = document.getElementsByClassName("descripcion");
@@ -1198,7 +1193,7 @@ window.onload = function(){
 		}
 	}
 
-	//valida el campo bastidor en "Pedidos de Call Center"
+	// valida el campo bastidor en "Pedidos de Call Center"
 	var bastidor = document.getElementById("bastidor");
 	if(bastidor) {
 		bastidor.onkeyup = validateFieldError;
@@ -1216,7 +1211,7 @@ window.onload = function(){
 		datosCliente.onclick = tipoCliente;
 		datosCliente.onblur = tipoCliente;
 		
-		//deshabilita campos al inicio y cambia el background hasta que no se seleccione un tipo de cliente
+		// deshabilita campos al inicio y cambia el background hasta que no se seleccione un tipo de cliente
 		document.getElementById("nombre").style.background = "lightgray";
 		document.getElementById("apellido1").style.background = "lightgray";
 		document.getElementById("apellido2").style.background = "lightgray";
@@ -1227,7 +1222,7 @@ window.onload = function(){
 		document.getElementById("apellido1").readOnly = true;
 		document.getElementById("apellido2").readOnly = true;
 		
-		//deshabilita el campo cif si contiene datos al recargar la página (así evita duplicar el cif)
+		// deshabilita el campo cif si contiene datos al recargar la página (así evita duplicar el cif)
 		if(document.getElementById("cif").value != "") document.getElementById("cif").readOnly = true;
 	}
 
