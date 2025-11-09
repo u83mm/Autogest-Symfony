@@ -11,9 +11,17 @@ if(cp) {
                 const cp = document.getElementById("cliente_codigoPostal").value;        
                 
                 data.forEach(element => {                       
-                    if(element.cp == cp) {                             
-                        document.getElementById("cliente_localidad").value = element.municipio;
-                        document.getElementById("cliente_provincia").value = element.provincia;                                      
+                    try {
+                        if(element.cp == cp) {                             
+                            document.getElementById("cliente_localidad").value = element.municipio;
+                            document.getElementById("cliente_provincia").value = element.provincia;                                      
+                        }
+                        else {
+                            throw new Error("No se ha encontrado");                            
+                        }
+                    } catch (error) {
+                        document.getElementById("cliente_localidad").value = error.message;
+                        document.getElementById("cliente_provincia").value = error.message;
                     }       
                 });                
             })
