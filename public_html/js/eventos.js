@@ -4,19 +4,10 @@ import { recambiosMenusAjax } from './recambiosMenusAjax.js';
 import { clientesMenusAjax } from './clientesMenusAjax.js';
 import { tallerMenusAjax } from './tallerMenusAjax.js';
 import "/js/municipios.js";
+import "/js/commonActions.js";
 
 var $ = function(id) {
 	return document.getElementById(id);
-}
-
-function salir() {
-	if(confirm("Está a punto de salir de la aplicación. \n¿Estás seguro?")) {
-		this.href = '/logout';
-		return true;
-	}
-	else {
-		return false;
-	}
 }
 
 // Comprueba valores del campo "Sección" y lo muestra en "muestraRegistro.php"
@@ -1272,12 +1263,6 @@ window.onload = function(){
 		for(var i = 0; i < principal.length; i++) {					
 			principal[i].onclick = consultaPedidos;
 		}
-	}
-
-	// Añade evento 'onclick' al menú 'Salir' para confirmar la salida
-	let salirButton = document.getElementById('salir');
-	if(salirButton) {
-		salirButton.addEventListener('click', salir);
-	}
+	}	
 }
 
