@@ -6,7 +6,7 @@ let salirButton = document.getElementById('salir');
 if(salirButton) {
     salirButton.addEventListener('click', () => {
         if(confirm("Está a punto de salir de la aplicación. \n¿Estás seguro?")) {
-            this.href = '/logout';
+            salirButton.href = '/logout';
             return true;
         }
         else {
