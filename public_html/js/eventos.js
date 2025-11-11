@@ -1,11 +1,11 @@
 "use strict";
 
-//import { recambiosMenusAjax } from './recambiosMenusAjax.js';
-import { clientesMenusAjax } from './clientesMenusAjax.js';
+//import { clientesMenusAjax } from './clientesMenusAjax.js';
 import { tallerMenusAjax } from './tallerMenusAjax.js';
 import "/js/municipios.js";
 import "/js/commonActions.js";
 import "/js/menusRecambios.js";
+import "/js/menusClientes.js";
 
 var $ = function(id) {
 	return document.getElementById(id);
@@ -1225,13 +1225,8 @@ window.onload = function(){
 		showAbrev.onblur = muestraAbrev;
 	}		
 
-	// Añade evento onclick a los menus de "Postventa"	
-	let clientes = document.getElementById('clientes_main_menu');
-	let taller = document.getElementById('taller_main_menu');		
-	
-	if(clientes) {
-		clientes.addEventListener('click', clientesMenusAjax.muestraMenusDeClientes);		
-	}
+	// Añade evento onclick a los menus de "Postventa"		
+	let taller = document.getElementById('taller_main_menu');				
 
 	if(taller) {
 		taller.addEventListener('click', tallerMenusAjax.muestraMenusDeTaller);
