@@ -120,41 +120,7 @@
 		}
 		total_alb(); // llama a la función que muestra el total neto en el pie de la tabla en Entradas o Salidas
 		desbl_inputs();
-	}
-
-
-	//###########################################################################################
-	//#						MUESTRA MUNICIPIOS EN FORMULARIOS DONDE SE PIDE CÓDIGO POSTAL		#
-	//###########################################################################################
-
-	function municipios() {
-		var cp = document.getElementById("cliente_codigoPostal").value;				
-		var peticion = getXMLHTTPRequest();
-
-		peticion.onreadystatechange = consulta;
-		peticion.open("GET", "/municipios.txt", true);	
-		peticion.send();							
-
-		function consulta() {				
-			if(peticion.readyState == 1) {
-				//muestraGif();
-			}
-			else if(peticion.readyState == 4 && peticion.status == 200) {
-				var myObj = JSON.parse(peticion.responseText);				
-				
-				for(var i = 0; i < myObj.length; i++) {				
-					if(myObj[i].cp == cp) {
-						document.getElementById("cliente_localidad").value = myObj[i].municipio;
-						document.getElementById("cliente_provincia").value = myObj[i].provincia;
-						i = myObj.length;
-					}
-					else {
-						document.getElementById("cliente_localidad").value = "No hay resultado";					
-					}				
-				}						
-			}					
-		}		
-	}
+	}	
 
 
 	//###########################################################################################
