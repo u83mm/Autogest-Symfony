@@ -9,26 +9,30 @@ ARG GROUP_ID=1000
 ARG SYSTEM_USER="mario"
 ARG SYSTEM_GROUP="mario"
 
-COPY / /var/www/
-
 # Set timezone
 RUN ln -snf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime && echo ${TIMEZONE} > /etc/timezone
 RUN printf '[PHP]\ndate.timezone = "%s"\n', ${TIMEZONE} > /usr/local/etc/php/conf.d/tzone.ini
-RUN "date"
 
 # Asigna grupo y usuario en contenedor para no tener que estar cambiando propietario a los archivos creados desde el contenedor
-RUN addgroup --gid ${GROUP_ID} ${SYSTEM_GROUP}
-RUN adduser --disabled-password --gecos '' --uid ${USER_ID} --gid ${GROUP_ID} ${SYSTEM_USER}
+RUN groupadd --gid ${GROUP_ID} mario && \
+    useradd --uid ${USER_ID} --gid ${GROUP_ID} -m mario && \
+    usermod -aG www-data mario
 
 # Install system dependencies
-RUN apt update && apt install -y libicu-dev && rm -rf /var/lib/apt/lists/*
-RUN apt-get update && apt-get install -y git unzip zlib1g-dev libpng-dev
+RUN apt update && apt install -y libicu-dev \
+    git unzip zlib1g-dev libpng-dev libjpeg-dev \ 
+    libfreetype6-dev libwebp-dev && rm -rf /var/lib/apt/lists/*
+
+# Configure GD
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp
 
 # Install Xdebug
-RUN pecl install xdebug
+RUN pecl install xdebug && \
+    docker-php-ext-enable xdebug
 
 # Install PHP extensions Type docker-php-ext-install to see available extensions
 RUN docker-php-ext-install pdo_mysql intl gd
+RUN echo "ServerName 127.0.0.1" >> /etc/apache2/apache2.conf
 
 # Get latest Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -43,7 +47,14 @@ RUN mv /etc/apache2/sites-available/default-ssl.conf /etc/apache2/sites-availabl
 COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
 COPY default-ssl.conf /etc/apache2/sites-available/default-ssl.conf
 
+# Set permissions
+RUN chown -R mario:mario /var/www && \
+    chmod -R 755 /var/www
+
 # Set working directory
 WORKDIR /var/www
 
-USER 1000
+USER ${USER_ID}
+
+# Copy application code (with proper ownership)
+COPY --chown=mario:mario . .
