@@ -14,16 +14,6 @@
     composer install
     exit
 
-
-<li>Import SQL file "my_database.sql"</li>
-
-    I do it accessing to phpMyAdmin in local host:
-        http://localhost:8080/
-        user: admin
-        passw: admin
-    
-        Import "autogest.sql" file from MariaDB directory.
-
 <li>Accessing the application</li>
 
     type "http://localhost " in the url in the browser
