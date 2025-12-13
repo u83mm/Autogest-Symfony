@@ -5,46 +5,30 @@ namespace App\Entity;
 use App\Repository\StockRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass=StockRepository::class)
- */
+#[ORM\Entity(repositoryClass: StockRepository::class)]
 class Stock
-{
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+{   
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type:"integer")]
     private $id;
-
-    /**
-     * @ORM\Column(type="smallint")
-     */
+  
+    #[ORM\Column(type:"smallint")]
     private $almacen;
-
-    /**
-     * @ORM\Column(type="smallint")
-     */
+   
+    #[ORM\Column(type:"smallint")]
     private $marca;
-
-    /**
-     * @ORM\Column(type="string", length=20, unique=true)     
-     */
+ 
+    #[ORM\Column(type: "string", length: 20, unique: true)]
     private $referencia;
-
-    /**
-     * @ORM\Column(type="decimal", precision=9, scale=2)
-     */
+    
+    #[ORM\Column(type: "decimal", precision: 9, scale: 2)]
     private $cantidad;
-
-    /**
-     * @ORM\Column(type="string", length=30, nullable=true)
-     */
+  
+    #[ORM\Column(type: "string", length: 30, nullable: true)]
     private $ubicacion;
-
-    /**
-     * @ORM\OneToOne(targetEntity=Producto::class, mappedBy="stock", cascade={"persist", "remove"})
-     */
+   
+    #[ORM\OneToOne(targetEntity: Producto::class, mappedBy: "stock", cascade: ["persist", "remove"])]
     private $producto;       
 
     public function getId(): ?int

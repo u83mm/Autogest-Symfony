@@ -23,20 +23,18 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class AdminDashboardController extends AbstractDashboardController
 {
 	private $security;
- /**
-  * @var \EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator
-  */
- private $adminUrlGenerator;
+    /**
+     * @var \EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator
+    */
+    private $adminUrlGenerator;
 
 	public function __construct(Security $security, \EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator $adminUrlGenerator)
 	{       
-	  $this->security = $security;
-   $this->adminUrlGenerator = $adminUrlGenerator;
+	    $this->security = $security;
+        $this->adminUrlGenerator = $adminUrlGenerator;
 	}	
-	
-    /**
-     * @Route("/admin", name="admin")
-     */
+	   
+    #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
     	// Crea restricción si no se es administrador

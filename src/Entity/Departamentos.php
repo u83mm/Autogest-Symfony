@@ -7,26 +7,18 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass=DepartamentosRepository::class)
- */
+#[ORM\Entity(repositoryClass: DepartamentosRepository::class)]
 class Departamentos
-{
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+{   
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type:"integer")]
     private $id;
-
-    /**
-     * @ORM\Column(type="string", length=30)
-     */
+   
+    #[ORM\Column(type: "string", length: 50)]
     private $nombreDepartamento;
-
-    /**
-     * @ORM\Column(type="string", length=50)
-     */
+    
+    #[ORM\Column(type: "string", length: 50)]
     private $role;      
 
     public function getId(): ?int

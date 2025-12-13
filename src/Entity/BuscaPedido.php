@@ -6,27 +6,19 @@ use App\Repository\BuscaPedidoRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
-/**
- * @ORM\Entity(repositoryClass=BuscaPedidoRepository::class)
- */
+#[ORM\Entity(repositoryClass: BuscaPedidoRepository::class)]
 class BuscaPedido
-{
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+{ 
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type:"integer")]
     private $id;
-
-    /**
-     * @ORM\Column(type="string", length=50, nullable=true)
-     */
+   
+    #[ORM\Column(type: "string", length: 50, nullable: true)]
     private $selecciona;
-
-    /**
-     * @ORM\Column(type="string", length=50, nullable=true)
-     * @Assert\NotBlank(message="Debe rellenar los campos") 
-     */
+    
+    #[ORM\Column(type: "string", length: 50, nullable: true)]
+    #[Assert\NotBlank(message: 'Debe rellenar los campos')]
     private $valor;
 
     public function getId(): ?int
