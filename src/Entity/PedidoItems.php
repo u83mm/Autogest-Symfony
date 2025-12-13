@@ -5,87 +5,55 @@ namespace App\Entity;
 use App\Repository\PedidoItemsRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass=PedidoItemsRepository::class)
- */
+#[ORM\Entity(repositoryClass: PedidoItemsRepository::class)]
 class PedidoItems
-{
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+{ 
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type:"integer")]
     private $id;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
+    
+    #[ORM\Column(type:"integer")]
     private $pedidoId;
 
-    /**
-     * @ORM\Column(type="string", length=60)
-     */
+    #[ORM\Column(type: "string", length: 60)]
     private $descripcion;
-
-    /**
-     * @ORM\Column()
-     */
+   
+    #[ORM\Column()]
     private $cantidad;
-
-    /**
-     * @ORM\Column(type="decimal", precision=11, scale=2)
-     */
+   
+    #[ORM\Column(type: "decimal", precision: 11, scale: 2)]
     private $precio;
 
-    /**
-     * @ORM\Column(type="string", length=13, nullable=true)
-     */
+    #[ORM\Column(type: "string", length: 13, nullable: true)]
     private $referencia;
-
-    /**
-     * @ORM\Column(type="smallint")
-     */
+   
+    #[ORM\Column(type:"integer")]
     private $stock;
-
-    /**
-     * @ORM\Column(type="decimal", precision=6, scale=2)
-     */
+ 
+    #[ORM\Column(type: "decimal", precision: 6, scale: 2)]
     private $dto;
-
-    /**
-     * @ORM\Column(type="decimal", precision=11, scale=2)
-     */
+   
+    #[ORM\Column(type: "decimal", precision: 11, scale: 2)]
     private $neto;
-
-    /**
-     * @ORM\Column(type="decimal", precision=11, scale=2)
-     */
+  
+    #[ORM\Column(type: "decimal", precision: 11, scale: 2)]
     private $totalPvp;
-
-    /**
-     * @ORM\Column(type="decimal", precision=11, scale=2)
-     */
+   
+    #[ORM\Column(type: "decimal", precision: 11, scale: 2)]
     private $totalDto;
 
-    /**
-     * @ORM\Column(type="decimal", precision=11, scale=2)
-     */
+    #[ORM\Column(type: "decimal", precision: 11, scale: 2)]
     private $totalNeto;
-
-    /**
-     * @ORM\Column(type="decimal", precision=11, scale=2)
-     */
+   
+    #[ORM\Column(type: "decimal", precision: 11, scale: 2)]
     private $totalIva;
-
-    /**
-     * @ORM\Column(type="decimal", precision=11, scale=2)
-     */
+ 
+    #[ORM\Column(type: "decimal", precision: 11, scale: 2)]
     private $total;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=PedidoCallCenter::class, inversedBy="pedidoItems")
-     * @ORM\JoinColumn(nullable=false)
-     */
+    #[ORM\ManyToOne(targetEntity: PedidoCallCenter::class, inversedBy: "pedidoItems")]
+    #[ORM\JoinColumn(nullable: false)]
     private $PedidoCallCenter;
   
     public function getId(): ?int

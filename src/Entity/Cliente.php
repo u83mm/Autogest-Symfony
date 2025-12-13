@@ -6,101 +6,66 @@ use App\Repository\ClienteRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use ReturnTypeWillChange;
 use Symfony\Component\Validator\Constraints as Assert;
 
-/**
- * @ORM\Entity(repositoryClass=ClienteRepository::class)
- */
+#[ORM\Entity(repositoryClass: ClienteRepository::class)]
 class Cliente
-{	
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+{	 
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type:"integer")]
     private $id;
-
-    /**
-     * @ORM\Column(type="string", length=60, nullable=true)
-     */
+  
+    #[ORM\Column(type: "string", length: 60, nullable: true)]
     private $razonSocial;
-
-    /**
-     * @ORM\Column(type="string", length=20, nullable=true)
-     */
+   
+    #[ORM\Column(type: "string", length: 20, nullable: true)]
     private $nombre;
-
-    /**
-     * @ORM\Column(type="string", length=20, nullable=true)
-     */
+ 
+    #[ORM\Column()]
     private $apellido1;
-
-    /**
-     * @ORM\Column(type="string", length=20, nullable=true)
-     */
+   
+    #[ORM\Column(type: "string", length: 20, nullable: true)]
     private $apellido2;
 
-    /**
-     * @ORM\Column(type="string", length=4)
-     */
+    #[ORM\Column(type: "string", length: 4)]
     private $tipoVia;
-
-    /**
-     * @ORM\Column(type="string", length=60)     
-     */
+   
+    #[ORM\Column(type: "string", length: 60)]     
     private $nombreVia;
-
-    /**
-     * @ORM\Column(type="string", length=5)     
-     * @Assert\Length(min = 5, max = 5, exactMessage = "El código postal debe contener {{ limit }} caracteres.",) 
-     */
+    
+    #[ORM\Column(type: "string", length: 5)]
+    #[Assert\Length(min: 5, max: 5, exactMessage: 'El código postal debe contener {{ limit }} caracteres.')]
     private $codigoPostal;
-
-    /**
-     * @ORM\Column(type="string", length=5, nullable=true)
-     */
+   
+    #[ORM\Column(type: "string", length: 5, nullable: true)]
     private $numVia;
-
-    /**
-     * @ORM\Column(type="string", length=3, nullable=true)
-     */
+    
+    #[ORM\Column(type: "string", length: 3, nullable: true)]
     private $puerta;
-
-    /**
-     * @ORM\Column(type="string", length=60)     
-     */
+   
+    #[ORM\Column(type: "string", length: 60)]
     private $localidad;
-
-    /**
-     * @ORM\Column(type="string", length=60)     
-     */
+    
+    #[ORM\Column(type: "string", length: 60)]
     private $provincia;
-
-    /**
-     * @ORM\Column(type="string", length=15, nullable=true)
-     */
+    
+    #[ORM\Column(type: "string", length: 15, nullable: true)]
     private $tfno;
-
-    /**
-     * @ORM\Column(type="string", length=50, nullable=true)
-     * @Assert\Email( message = "El email {{ value }} no es un email válido.")       
-     */
+  
+    #[ORM\Column(type: "string", length: 50, nullable: true)]
+    #[Assert\Email(message: 'El email {{ value }} no es un email valido.')]
     private $email;
-
-    /**
-     * @ORM\Column(type="string", length=10, unique=true)
-     * @Assert\Length(min=9, max = 9, exactMessage = "El C.I.F debe contener {{ limit }} caracteres.",)    
-     */
+    
+    #[ORM\Column(type: "string", length: 10, unique: true)]
+    #[Assert\Length(min: 9, max: 9, exactMessage: 'El C.I.F debe contener {{ limit }} caracteres.')]
     private $cif;
-
-    /**
-     * @ORM\Column(type="date")
-     */
+    
+    #[ORM\Column(type: "date")]
     private $fechaAlta;
 
-    /**
-     * @ORM\OneToMany(targetEntity=PedidoCallCenter::class, mappedBy="cliente")
-     */
+    #[ORM\OneToMany(targetEntity: PedidoCallCenter::class, mappedBy: "cliente")]
     private $pedidoCallCenters;
 
     public function __construct()
@@ -293,9 +258,7 @@ class Cliente
         return $this;
     }
 
-    /**
-     * @return Collection<int, PedidoCallCenter>
-     */
+    #[ReturnTypeWillChange]
     public function getPedidoCallCenters(): Collection
     {
         return $this->pedidoCallCenters;

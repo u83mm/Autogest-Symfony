@@ -5,26 +5,18 @@ namespace App\Entity;
 use App\Repository\FamiliaRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass=FamiliaRepository::class)
- */
+#[ORM\Entity(repositoryClass: FamiliaRepository::class)]
 class Familia
-{
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+{  
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type:"integer")]
     private $id;
-
-    /**
-     * @ORM\Column(type="string", length=3)
-     */
+    
+    #[ORM\Column(type: "string", length: 3)]
     private $tipo_familia;
-
-    /**
-     * @ORM\Column(type="string", length=30)
-     */
+   
+    #[ORM\Column(type: "string", length:30)]
     private $nombre_familia;
 
     public function getId(): ?int

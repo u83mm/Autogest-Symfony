@@ -8,93 +8,59 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
-/**
- * @ORM\Entity(repositoryClass=PedidoCallCenterRepository::class)
- */
+#[ORM\Entity(repositoryClass: PedidoCallCenterRepository::class)]
 class PedidoCallCenter
-{
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+{  
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type:"integer")]
     private $id;
 
-    /**
-     * @ORM\Column(type="date")
-     */
+    #[ORM\Column(type: "date")]
     private $fecha;
-
-    /**
-     * @ORM\Column(type="string", length=10)
-     */
+    
+    #[ORM\Column(type: "string", length: 10)]
     private $cuentaCliente;
 
-    /**
-     * @ORM\Column(type="string", length=50)
-     */
+    #[ORM\Column(type: "string", length: 50)]
     private $nombreCliente;
-
-    /**
-     * @ORM\Column(type="string", length=30, nullable=true)
-     */
+   
+    #[ORM\Column(type: "string", length: 30, nullable: true)]
     private $contacto;
-
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
+  
+    #[ORM\Column(type: "integer", nullable: true)]
     private $telefono;
-
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
+   
+    #[ORM\Column(type: "integer", nullable: true)]
     private $telefono1;
 
-    /**
-     * @ORM\Column(type="string", length=10)
-     */
+    #[ORM\Column(type: "string", length: 10)]
     private $cif;
-
-    /**
-     * @ORM\Column(type="string", length=50, nullable=true)
-     */
+ 
+    #[ORM\Column(type: "string", length: 50, nullable: true)]
     private $email;
-
-    /**
-     * @ORM\Column(type="string", length=60)
-     */
+  
+    #[ORM\Column(type: "string", length: 60)]
     private $localidad;
-
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     */
+ 
+    #[ORM\Column(type: "text", nullable: true)]
     private $comentario;
-
-    /**
-     * @ORM\Column(type="string", length=30)
-     * @Assert\Length(min = 17, max = 17, exactMessage="El VIN debe contener {{ limit }} dígitos")
-     */
+   
+    #[ORM\Column(type: "string", length: 30)]
+    #[Assert\Length(min: 17, max: 17, exactMessage: "El VIN debe contener {{ limit }} dígitos")]
     private $vin;
-
-    /**
-     * @ORM\Column(type="string", length=20)
-     */
+  
+    #[ORM\Column(type: "string", length: 20)]
     private $marca;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
+   
+    #[ORM\Column(type: "integer")]
     private $estado;
-
-    /**
-     * @ORM\OneToMany(targetEntity=PedidoItems::class, mappedBy="PedidoCallCenter")
-     */
+   
+    #[ORM\OneToMany(targetEntity: PedidoItems::class, mappedBy: "pedidoCallCenter", cascade: ["persist", "remove"])]
     private $pedidoItems;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Cliente::class, inversedBy="pedidoCallCenters")
-     * @ORM\JoinColumn(nullable=false)
-     */
+   
+    #[ORM\ManyToOne(targetEntity: Cliente::class, inversedBy: "pedidoCallCenters")]
+    #[ORM\JoinColumn(nullable: false)]
     private $cliente;
 
     public function __construct()
@@ -262,11 +228,8 @@ class PedidoCallCenter
 
         return $this;
     }
-
-    /**
-     * @return Collection|PedidoItems[]
-     */
-    public function getPedidoItems(): Collection
+    
+    public function getPedidoItems(): Collection|PedidoItems
     {
         return $this->pedidoItems;
     }

@@ -5,26 +5,17 @@ namespace App\Entity;
 use App\Repository\BuscaProductoRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass=BuscaProductoRepository::class)
- */
+#[ORM\Entity(repositoryClass: BuscaProductoRepository::class)]
 class BuscaProducto
-{
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+{   
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type:"integer")]
     private $id;
-
-    /**
-     * @ORM\Column(type="string", length=50)
-     */
-    private $selecciona;
-
-    /**
-     * @ORM\Column(type="string", length=50)
-     */
+   
+    #[ORM\Column(type: "string", length: 50)]    private $selecciona;
+    
+    #[ORM\Column(type: "string", length: 50)]
     private $valor;
 
     public function getId(): ?int

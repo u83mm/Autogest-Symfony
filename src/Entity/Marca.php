@@ -5,26 +5,18 @@ namespace App\Entity;
 use App\Repository\MarcaRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass=MarcaRepository::class)
- */
+#[ORM\Entity(repositoryClass: MarcaRepository::class)]
 class Marca
-{
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+{  
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type:"integer")]
     private $id;
-
-    /**
-     * @ORM\Column(type="string", length=20)
-     */
+    
+    #[ORM\Column(type: "string", length: 20)]
     private $nombre;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+    #[ORM\Column(type: "string", length: 255, nullable: true)]
     private $logo;
 
     public function getId(): ?int

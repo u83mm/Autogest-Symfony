@@ -6,47 +6,31 @@ use App\Repository\ProductoRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
-/**
- * @ORM\Entity(repositoryClass=ProductoRepository::class)
- */
+#[ORM\Entity(repositoryClass: ProductoRepository::class)]
 class Producto
-{
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+{    
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type:"integer")]
     private $id;
-
-    /**
-     * @ORM\Column(type="string", length=20, unique=true)     
-     */
+   
+    #[ORM\Column(type:"string", length: 20, unique: true)]
     private $referencia;
-
-    /**
-     * @ORM\Column(type="string", length=50)
-     */
+    
+    #[ORM\Column(type:"string", length: 50)]
     private $descripcion;
-
-    /**
-     * @ORM\Column(type="string", length=20)
-     */
+   
+    #[ORM\Column(type:"string", length: 20)]
     private $familia;
-
-    /**
-     * @ORM\Column(type="decimal", precision=9, scale=2)
-     */
+    
+    #[ORM\Column(type: "decimal", precision: 9, scale: 2)]
     private $pvp;
-
-    /**
-     * @ORM\Column(type="smallint")
-     */
+   
+    #[ORM\Column(type:"smallint")]
     private $marca;
-
-    /**
-     * @ORM\OneToOne(targetEntity=Stock::class, inversedBy="producto", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
-     */
+   
+    #[ORM\OneToOne(targetEntity: Stock::class, inversedBy: "producto", cascade: ["persist", "remove"])]
+    #[ORM\JoinColumn(nullable: false)]
     private $stock;        
 
     public function getId(): ?int

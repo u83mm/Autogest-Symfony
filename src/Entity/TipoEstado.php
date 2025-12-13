@@ -5,21 +5,15 @@ namespace App\Entity;
 use App\Repository\TipoEstadoRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass=TipoEstadoRepository::class)
- */
+#[ORM\Entity(repositoryClass: TipoEstadoRepository::class)]
 class TipoEstado
-{
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+{   
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type:"integer")]
     private $id;
-
-    /**
-     * @ORM\Column(type="string", length=30)
-     */
+    
+    #[ORM\Column(type: "string", length: 30)]
     private $estado;
     
     public function __toString() {
