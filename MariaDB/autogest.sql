@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Generation Time: Mar 16, 2025 at 09:42 AM
+-- Generation Time: Dec 14, 2025 at 09:14 AM
 -- Server version: 11.5.2-MariaDB-ubu2404
 -- PHP Version: 8.2.23
 
@@ -93,6 +93,13 @@ CREATE TABLE `cliente` (
   `cif` varchar(10) NOT NULL,
   `fecha_alta` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `cliente`
+--
+
+INSERT INTO `cliente` (`id`, `razon_social`, `nombre`, `apellido1`, `apellido2`, `tipo_via`, `nombre_via`, `codigo_postal`, `num_via`, `puerta`, `localidad`, `provincia`, `tfno`, `email`, `cif`, `fecha_alta`) VALUES
+(1, 'RUEDAS, S.A', NULL, NULL, NULL, 'CL', 'CALVO SOTELO', '46080', '35', NULL, 'VALENCIA', 'VALENCIA', '645155432', 'admin@ruedas.com', 'B96465484', '2025-04-12');
 
 -- --------------------------------------------------------
 
@@ -202,6 +209,13 @@ CREATE TABLE `pedido_call_center` (
   `cliente_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `pedido_call_center`
+--
+
+INSERT INTO `pedido_call_center` (`id`, `fecha`, `cuenta_cliente`, `nombre_cliente`, `contacto`, `telefono`, `telefono1`, `cif`, `email`, `localidad`, `comentario`, `vin`, `marca`, `estado`, `cliente_id`) VALUES
+(1, '2025-04-12', '1', 'RUEDAS, S.A', NULL, NULL, 645155432, 'B96465484', 'admin@ruedas.com', 'VALENCIA', 'Este es un pedido de prueba para ver si funciona.', '1C3554FDS6556AS56', '1', 2, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -226,6 +240,13 @@ CREATE TABLE `pedido_items` (
   `total` decimal(11,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `pedido_items`
+--
+
+INSERT INTO `pedido_items` (`id`, `pedido_call_center_id`, `pedido_id`, `descripcion`, `cantidad`, `precio`, `referencia`, `stock`, `dto`, `neto`, `total_pvp`, `total_dto`, `total_neto`, `total_iva`, `total`) VALUES
+(1, 1, 1, 'PARAGOLPES DELANTERO', '1', 365.30, '000001', 0, 15.00, 310.50, 365.30, 54.80, 310.50, 65.21, 375.71);
+
 -- --------------------------------------------------------
 
 --
@@ -242,6 +263,13 @@ CREATE TABLE `producto` (
   `marca` smallint(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `producto`
+--
+
+INSERT INTO `producto` (`id`, `stock_id`, `referencia`, `descripcion`, `familia`, `pvp`, `marca`) VALUES
+(1, 1, '000001', 'PARAGOLPES DELANTERO', 'Chapa', 365.30, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -256,6 +284,13 @@ CREATE TABLE `stock` (
   `cantidad` decimal(9,2) NOT NULL,
   `ubicacion` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `stock`
+--
+
+INSERT INTO `stock` (`id`, `almacen`, `marca`, `referencia`, `cantidad`, `ubicacion`) VALUES
+(1, 1, 1, '000001', 0.00, NULL);
 
 -- --------------------------------------------------------
 
@@ -404,7 +439,7 @@ ALTER TABLE `tipo_estado`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `UNIQ_8D93D649F85E0677` (`username`);
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -438,7 +473,7 @@ ALTER TABLE `busca_usuario`
 -- AUTO_INCREMENT for table `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `departamentos`
@@ -462,25 +497,25 @@ ALTER TABLE `marca`
 -- AUTO_INCREMENT for table `pedido_call_center`
 --
 ALTER TABLE `pedido_call_center`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `pedido_items`
 --
 ALTER TABLE `pedido_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `stock`
 --
 ALTER TABLE `stock`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tipo_estado`
@@ -492,7 +527,7 @@ ALTER TABLE `tipo_estado`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
