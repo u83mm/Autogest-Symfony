@@ -21,7 +21,6 @@ use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
-use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/user')]
 class UserController extends AbstractController
@@ -89,6 +88,15 @@ class UserController extends AbstractController
 				'form' => $form->createView(),					
 			]);								
         }
+
+		// comprueba si el email ya existe
+		if($this->managerRegistry->getRepository(User::class)->findOneBy(['email' => $user->getEmail()])) {
+			$this->addFlash('warning', 'Ya existe un usuario con ese email.');
+			return $this->render('user/new.html.twig', [					
+				'user' => $user,					
+				'form' => $form->createView(),					
+			]);
+		}
 
         if ($form->isSubmitted() && $form->isValid()) {					    
         	// manage file to upload
@@ -161,7 +169,7 @@ class UserController extends AbstractController
         		}
         		
         		$user->setRoles($role);
-        	}        	        	        	        	        	        	
+        	}						
         	
             $entityManager = $this->managerRegistry->getManager();
             $entityManager->persist($user);
