@@ -69,7 +69,17 @@ class ClienteController extends AbstractController
 					'form'    => $form->createView(),
 					'abrev'   => $abrev, 
 				]);								
-        }                                 
+        }
+        
+        // comprueba si el cliente ya existe
+		if($this->managerRegistry->getRepository(Cliente::class)->findOneBy(['cif' => $cliente->getCif()])) {
+			$this->addFlash('warning', 'Ya existe un cliente con ese C.I.F.');
+			return $this->render('cliente/new.html.twig', [					
+				'cliente' => $cliente,					
+				'form'    => $form->createView(),
+                'abrev'   => $abrev, 					
+			]);
+		}
 
         if ($form->isSubmitted() && $form->isValid()) {        	         	      	                              	     	     	
             $entityManager = $this->managerRegistry->getManager();
