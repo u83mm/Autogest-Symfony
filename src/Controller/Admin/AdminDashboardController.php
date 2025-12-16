@@ -17,9 +17,10 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
-use Symfony\Component\Security\Core\Security;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+#[Route('/admin')]
 class AdminDashboardController extends AbstractDashboardController
 {
 	private $security;
@@ -34,7 +35,7 @@ class AdminDashboardController extends AbstractDashboardController
         $this->adminUrlGenerator = $adminUrlGenerator;
 	}	
 	   
-    #[Route('/admin', name: 'admin')]
+    #[Route('/', name: 'admin')]
     public function index(): Response
     {
     	// Crea restricción si no se es administrador
