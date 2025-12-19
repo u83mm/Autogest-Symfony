@@ -60,16 +60,16 @@
 			<img class="logoMarcaOrderShow" src="{{ asset('uploads/logo_marca/') ~ logo.logo}}" alt="logo marca">
 		</div>
 		<div class="row cols-row-4">
-			<div class="clienteForm vin col-12 col-sm-6 col-xxl-4">
+			<div class="clienteForm col-12 col-md-6 col-lg-4 vin">
 				{{ form_label(form.vin, 'VIN:') }}
 				{{ form_widget(form.vin, { 'attr': { 'size': '16', 'minlength': 17, 'maxlength': 17, 'placeholder': 'SAJAB52M21XC41941' }}) }}			
 			</div>
-			<div class="pedidoCallForm col-12 col-md-6 marca col-xxl-3">
+			<div class="pedidoCallForm col-12 col-md-6 col-lg-4 marca">
 				{{ form_label(form.marca, 'Marca:') }}
 				{{ form_widget(form.marca) }}			
 			</div>
 			{% if is_granted('ROLE_ADMIN') or is_granted('ROLE_RECAMBIOS') %}
-				<div class="pedidoCallForm col-12 col-md-6 estado col-xxl-3">			
+				<div class="pedidoCallForm col-12 col-md-6 col-lg-4 estado">			
 					{{ form_label(form.estado, 'Estado:') }}
 					{{ form_widget(form.estado)}}					
 				</div>

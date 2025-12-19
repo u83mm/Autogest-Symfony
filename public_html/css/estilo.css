@@ -1007,7 +1007,7 @@ div.clienteDate, div.razonSocial{
 	display: inline-block;
 }
 
-.numero-pedido, .fecha, .numero-cliente, .tfno-contacto, .estado {
+.numero-pedido, .fecha, .numero-cliente, .tfno-contacto {
 	width: 30%;
 }
 
@@ -1028,7 +1028,7 @@ div.clienteDate, div.razonSocial{
 }
 
 .vin {
-	width: 40%;	
+	/* width: 40%;	 */
 }
 
 .vin label {
@@ -1069,11 +1069,15 @@ div.clienteDate, div.razonSocial{
 }
 
 .pedidoCallForm {
-	text-align: center;
+	/* text-align: center; */
 	.logoMarcaOrderShow {
 		width: 10%;
 		align-self: center;
 	}
+}
+
+.vin label, .estado label, .marca label {
+	width: 100px;
 }
 	
 
@@ -2249,7 +2253,7 @@ div.clienteDate, div.razonSocial{
 		width: 150px;
 	}
 
-	.vin {
+	.vin, .marca {
 		width: 100%;
 	}
 
@@ -2315,7 +2319,7 @@ div.clienteDate, div.razonSocial{
 		width: 100%;
 	}
 
-	.nombre-cliente label, .persona-contacto label, .comentario label, .tfno-contacto label, .vin label, .marca label {
+	.nombre-cliente label, .persona-contacto label, .comentario label, .tfno-contacto label {
 		width: 107px;
 	}
 
@@ -2357,11 +2361,11 @@ div.clienteDate, div.razonSocial{
 	}	
 
 	.vin{
-		width: 58%;
+		/* width: 58%; */
 	}
 
 	.estado {
-		width: 41%;
+		/* width: 41%; */
 	}
 }
 
@@ -2435,11 +2439,11 @@ div.clienteDate, div.razonSocial{
 	}
 
 	.vin{
-		width: 52%;
+		/* width: 52%; */
 	}
 
 	.estado {
-		width: 45%;
+		/* width: 45%; */
 	}
 
 	.estado label {
@@ -2508,7 +2512,7 @@ div.clienteDate, div.razonSocial{
 	}
 
 	.vin, .estado {
-		width: 49%;
+		/* width: 49%; */
 	}
 
 	.comentario {
