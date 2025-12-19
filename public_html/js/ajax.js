@@ -381,39 +381,7 @@
 		else {
 			return;
 		}
-	}				
-	
-	/*###########################################################################################
-	#	 			Función que muestra logo en formulario de Pedido de Call Center			  	#
-	###########################################################################################*/		
-	
-	function showLogoMarca(value) {	
-		let id = value;			
-		let peticion = getXMLHTTPRequest();
-
-		peticion.onreadystatechange = consulta;
-		peticion.open("GET", "/logo/marca", true);	
-		peticion.send();							
-
-		function consulta() {						
-			if(peticion.readyState == 1) {
-				//muestraGif();
-			}
-			else if(peticion.readyState == 4 && peticion.status == 200) {
-				let myObj = JSON.parse(peticion.responseText);
-												
-				for(let i = 0; i < myObj.length; i++) {				
-					if(myObj[i].id == id) {
-						document.getElementById("logoMarca").innerHTML = "<img class='logoMarcaNew' src='/uploads/logo_marca/" + myObj[i].logo + "' alt='logo marca'>";						
-						i = myObj.length;
-					}
-					else {
-						document.getElementById("logoMarca").innerHTML = "No hay resultado";					
-					}				
-				}						
-			}					
-		}		
-	}
+	}		
 	
 	/*###########################################################################################
 	#	 						Muestra datos de una referencia		  							#

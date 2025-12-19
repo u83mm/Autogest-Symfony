@@ -845,8 +845,7 @@ td.logoMarcaShow {
 
 .logoMarcaOrderShow {
 	width: 7%;
-	vertical-align: middle;
-	/* text-align: center; */
+	vertical-align: middle;	
 }
 
 .logoMarcaNew {
@@ -1067,6 +1066,14 @@ div.clienteDate, div.razonSocial{
 
 .editCallCenterOrder .comentario textarea {
 	width: 70%;
+}
+
+.pedidoCallForm {
+	text-align: center;
+	.logoMarcaOrderShow {
+		width: 10%;
+		align-self: center;
+	}
 }
 	
 
