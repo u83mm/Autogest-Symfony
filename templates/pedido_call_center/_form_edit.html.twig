@@ -56,7 +56,7 @@
     </fieldset>
     <fieldset class="createUser">
 		<legend>Datos del Pedido</legend>
-		<div class="logo-marca-container">
+		<div id="logoMarca" class="logo-marca-container">
 			<img class="logoMarcaOrderShow" src="{{ asset('uploads/logo_marca/') ~ logo.logo}}" alt="logo marca">
 		</div>
 		<div class="row cols-row-4">
@@ -66,7 +66,7 @@
 			</div>
 			<div class="pedidoCallForm col-12 col-md-6 marca col-xxl-3">
 				{{ form_label(form.marca, 'Marca:') }}
-				{{ form_widget(form.marca, { 'attr': { 'onchange': 'showLogoMarca(this.value)' }}) }}			
+				{{ form_widget(form.marca) }}			
 			</div>
 			{% if is_granted('ROLE_ADMIN') or is_granted('ROLE_RECAMBIOS') %}
 				<div class="pedidoCallForm col-12 col-md-6 estado col-xxl-3">			

@@ -5,6 +5,7 @@ import "/js/commonActions.js";
 import "/js/menusRecambios.js";
 import "/js/menusClientes.js";
 import "/js/menusTaller.js";
+import "/js/pedidoCallCenter.js";
 
 var $ = function(id) {
 	return document.getElementById(id);
