@@ -1929,16 +1929,16 @@
         },
         {
             "name": "knplabs/knp-snappy-bundle",
-            "version": "v1.10.4",
+            "version": "v1.10.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/KnpSnappyBundle.git",
-                "reference": "df217e5deed3397de88b7eb96de1d7c0cd7ed9e9"
+                "reference": "50348595185167bf0a9e263ebfee3c9119dafa6a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/KnpSnappyBundle/zipball/df217e5deed3397de88b7eb96de1d7c0cd7ed9e9",
-                "reference": "df217e5deed3397de88b7eb96de1d7c0cd7ed9e9",
+                "url": "https://api.github.com/repos/KnpLabs/KnpSnappyBundle/zipball/50348595185167bf0a9e263ebfee3c9119dafa6a",
+                "reference": "50348595185167bf0a9e263ebfee3c9119dafa6a",
                 "shasum": ""
             },
             "require": {
@@ -1981,9 +1981,9 @@
             ],
             "support": {
                 "issues": "https://github.com/KnpLabs/KnpSnappyBundle/issues",
-                "source": "https://github.com/KnpLabs/KnpSnappyBundle/tree/v1.10.4"
+                "source": "https://github.com/KnpLabs/KnpSnappyBundle/tree/v1.10.5"
             },
-            "time": "2025-01-14T07:31:54+00:00"
+            "time": "2025-12-19T12:39:05+00:00"
         },
         {
             "name": "laminas/laminas-code",
