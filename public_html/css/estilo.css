@@ -1085,6 +1085,14 @@ div.clienteDate, div.razonSocial{
 *					Configuración para móviles							*
 ************************************************************************/
 @media (max-width:480px) {	
+	.pedidoCallForm {		
+		.logoMarcaOrderShow {
+			width: 26%;						
+		}
+
+		text-align: center;
+	}
+
 	body {
 		margin-left: auto;
 		margin-right: auto;
@@ -1623,7 +1631,7 @@ div.clienteDate, div.razonSocial{
 
 	.editCallCenterOrder .comentario textarea {
 		width: 80%;
-	}
+	}	
 }
 
 /************************************************************************
@@ -1651,6 +1659,7 @@ div.clienteDate, div.razonSocial{
 *			Configuración para tablets portrait (retrato)						*
 ************************************************************************/
 @media (min-width:481px) and (max-width: 767px) {
+	
 	body {
 		width: 99%;		
 		margin: 0 auto;
@@ -1975,7 +1984,7 @@ div.clienteDate, div.razonSocial{
 		width: 100%;
 	}
 
-	#createUser .vin label, #createUser .marca label, #createUser .estado label {
+	#createUser .vin label, #createUser .estado label {
 		width: 63px;
 	}
 	
@@ -1986,7 +1995,11 @@ div.clienteDate, div.razonSocial{
 	div.print_pdf {		
 		text-align: center;
 		margin: 1em 0 0;
-	}	
+	}
+	
+	#logoMarca {				
+		text-align: center;
+	}
 }
 
 /***************************************************************
@@ -2260,6 +2273,10 @@ div.clienteDate, div.razonSocial{
 	.editCallCenterOrder .comentario label {
 		width: 150px;
 	}
+
+	#logoMarca {				
+		text-align: center;
+	}
 }
 
 /***************************************************************
@@ -2358,14 +2375,14 @@ div.clienteDate, div.razonSocial{
 
 	.contacto {
 		width: 44%;
-	}	
+	}		
 
-	.vin{
-		/* width: 58%; */
+	#logoMarca {				
+		text-align: center;
 	}
 
-	.estado {
-		/* width: 41%; */
+	.pedidoCallForm label {
+		width: initial;
 	}
 }
 
@@ -2436,15 +2453,7 @@ div.clienteDate, div.razonSocial{
 
 	.order-details div {
 		margin-bottom: 0.5em;
-	}
-
-	.vin{
-		/* width: 52%; */
-	}
-
-	.estado {
-		/* width: 45%; */
-	}
+	}	
 
 	.estado label {
 		margin-left: 10px;
@@ -2452,6 +2461,14 @@ div.clienteDate, div.razonSocial{
 
 	.estado label, .vin label, .marca label {
 		width: 150px;
+	}
+
+	#logoMarca {
+		text-align: center;
+	}
+
+	.pedidoCallForm label {
+		width: initial;
 	}
 }
 
@@ -2509,17 +2526,13 @@ div.clienteDate, div.razonSocial{
 
 	.comentario label {
 		width: 107px;
-	}
-
-	.vin, .estado {
-		/* width: 49%; */
-	}
+	}	
 
 	.comentario {
 		width: 100%;
 	}
 
-	.tfno-contacto label, .vin label, .marca label, .estado label {
+	.tfno-contacto label, .pedidoCallForm label, .pedidoCallForm label, .pedidoCallForm label {
 		width: 107px;
 	}
 }
