@@ -22,7 +22,8 @@
 ###> my files to ignore ###
 /log/
 *.log
-.env
+/.env
+*.env
 docker-compose.override.yml
 ###< my files to ignore ###
 ###> phpstan/phpstan ###
