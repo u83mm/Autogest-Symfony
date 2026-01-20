@@ -1,24 +1,23 @@
 <h3 align="center">TEST THE PROJECT</h3>
-<li>Clone the repository:</li>    
+1.- Clone the repository:    
 
     git clone "git-repo" project-name
     cd /project-name
 
 
-<li>Build</li>
+2.- Build
 
-    mkdir log log/apache log/db log/php
     docker compose build  
     docker compose up -d
     docker exec -it php bash
     composer install
     exit
 
-<li>Accessing the application</li>
+3.- Accessing the application
 
     type "http://localhost " in the url in the browser
 
-<li>Login as admin user</li>
+4.- Login as admin user
 
     user: admin
     passw: adminadmin
